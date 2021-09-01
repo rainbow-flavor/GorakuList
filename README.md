@@ -8,11 +8,13 @@
 
 ```json
 {
-  "id": "기체 고유 id",
-  "type": "기체 타입(버전)",
+  "type": "기체 대분류 id (타입)",
+  "id": "기체별 global id",
   "koName": "기체 한국명",
   "enName": "기체 영어명",
   "jpName": "기체 일본명",
+  "category": "기체 분류",
+  "company": "제조사",
   "desc": "기체 추가 설명"
 }
 ```
