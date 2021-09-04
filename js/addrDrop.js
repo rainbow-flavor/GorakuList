@@ -140,4 +140,5 @@ function secondAddr() {
             $("#city2").append("<option value='"+item+"'>"+item+"</option>")
         });
     }
+    $("#city2").selectpicker("refresh");
 }
