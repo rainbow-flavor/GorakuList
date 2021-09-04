@@ -27,13 +27,19 @@
         const params = Object.fromEntries(urlSearchParams.entries());
         console.log(params);
 
-        $("#search-title").text("검색 중...");
+        if(params.length == 0) {
+          $("#search-title").text("오락실 검색 ");
+          $("#search-subtitle").text("아래에 조건을 입력해주세요");
+        }
+        else {
+          $("#search-title").text("검색 중...");
 
-        var condText = "";
-        $.each(params, function(idx, item) {
-          condText = condText + item + ","
-        });
-        $("#search-subtitle").text(condText.slice(0, -1));
+          var condText = "";
+          $.each(params, function(idx, item) {
+            condText = condText + item + ","
+          });
+          $("#search-subtitle").text(condText.slice(0, -1));
+        }
       }
     </script>
     <title>Goraku List</title>
