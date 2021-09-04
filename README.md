@@ -20,9 +20,21 @@
 ```
 #### 기체 대분류 id 범위
 
+<style>
+.heatMap {
+    width: 70%;
+    text-align: center;
+}
+.heatMap th {
+background: #F2EEE5;
+text-align: center;
+}
+.heatMap tr:nth-child(1) { background: #E5C1C5; }
+</style>
+
 <details>
 <summary>보기</summary>
-<div markdown="1"> 
+<div class="heatMap" markdown="1"> 
 
 |코드| 100~299 | 300~399| 400~499| 500~599 | 600~699 | 700~799 | 900~999 |
 |:---:|:---: |:---: |:---:|:---:|:---:|:---:|:---:|
