@@ -30,7 +30,8 @@
         const params = Object.fromEntries(urlSearchParams.entries());
         console.log(params);
 
-        const paramlength = Object.keys(params).length
+        const paramlength = Object.keys(params).length;
+        addGames();
 
         if(paramlength == 0 | paramlength == undefined) {
           $("#search-title").text("오락실 검색");
@@ -48,7 +49,6 @@
           $("#city1").val(params.city1);
           secondAddr();
           $("#city2").val(params.city2);
-          addGames();
         }
       }
     </script>
