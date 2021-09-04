@@ -27,7 +27,7 @@
         const params = Object.fromEntries(urlSearchParams.entries());
         console.log(params);
 
-        if(params.length < 2) {
+        if(params.length == 0 or params.length == undefined) {
           $("#search-title").text("오락실 검색 ");
           $("#search-subtitle").text("아래에 조건을 입력해주세요");
         }
