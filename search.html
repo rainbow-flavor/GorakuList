@@ -23,6 +23,7 @@
     </style>
     <script type="text/javascript" src="/GorakuList/js/addrDrop.js"></script>
     <script type="text/javascript" src="/GorakuList/js/searchBtn.js"></script>
+    <script type="text/javascript" src="/GorakuList/js/setDetail.js"></script>
     <script type="text/javascript">
       window.onload = function() {
         const urlSearchParams = new URLSearchParams(window.location.search);
@@ -36,7 +37,7 @@
           $("#search-subtitle").text("아래에 조건을 입력해주세요");
         }
         else {
-          $("#search-title").text("검색 중...");
+          $("#search-title").html('<div class="spinner-border" role="status" style="width:1.5rem; height:1.5rem;"></div> 검색 중...');
 
           var condText = "";
           $.each(params, function(idx, item) {
@@ -47,6 +48,7 @@
           $("#city1").val(params.city1);
           secondAddr();
           $("#city2").val(params.city2);
+          addGames();
         }
       }
     </script>
@@ -95,7 +97,24 @@
       </div>
       <div class="row">
         <div class="col-12 mt-2">
-          <button class="btn btn-outline-dark w-100">Find By Details</button>
+          <button class="btn btn-light w-100" type="button"
+                  data-toggle="collapse" data-target="#detail-content"
+                  aria-expanded="false" aria-controls="detail-content">
+            상세 검색
+          </button>
+          <div class="collapse" id="detail-content" style="margin-top: 1vh">
+            <small>
+              <ul class="list-group list-group-flush">
+                <li id="game1" class="list-group-item py-1"><span class="badge bg-danger" style="color:white">리듬</span></li>
+                <li id="game2" class="list-group-item py-1"><span class="badge bg-warning" style="color:white">격투</span></li>
+                <li id="game3" class="list-group-item py-1"><span class="badge bg-success" style="color:white">레이싱</span></li>
+                <li id="game4" class="list-group-item py-1"><span class="badge bg-info" style="color:white">슈팅</span></li>
+                <li id="game5" class="list-group-item py-1"><span class="badge bg-primary" style="color:white">액션</span></li>
+                <li id="game6" class="list-group-item py-1"><span class="badge bg-secondary" style="color:white">퍼즐/캐쥬얼/스포츠</span></li>
+                <li id="game7" class="list-group-item py-1"><span class="badge bg-dark" style="color:white">기타</span></li>
+              </ul>
+            </small>
+          </div>
         </div>
       </div>
       <div class="row mt-3 justify-content-center align-items-center" style="height: 30vh">
