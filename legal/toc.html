@@ -139,10 +139,10 @@
         crossorigin="anonymous"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script>
-      $.get("/GorakuList/navbar.html", function(data){
+      $.get("./navbar.html", function(data){
           $("#nav-placeholder").replaceWith(data);
       });
-      $.get("/GorakuList/footer.html", function(data){
+      $.get("./footer.html", function(data){
           $("#footer-placeholder").replaceWith(data);
       });
     </script>
