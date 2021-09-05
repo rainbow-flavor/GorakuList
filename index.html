@@ -10,6 +10,7 @@
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <style>
       body {
         padding: 0;
@@ -32,6 +33,7 @@
     <!-- BEGIN 컨텐츠 -->
     <div id="main-placeholder"></div>
     <!-- END 컨텐츠 -->
+    <div id="footer-placeholder"></div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
@@ -42,6 +44,9 @@
       });
       $.get("main.html", function(data){
           $("#main-placeholder").replaceWith(data);
+      });
+      $.get("footer.html", function(data){
+          $("#footer-placeholder").replaceWith(data);
       });
     </script>
     <script
