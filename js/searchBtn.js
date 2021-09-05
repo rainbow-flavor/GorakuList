@@ -72,9 +72,9 @@ function searchCond() {
     }
 
     if(count == 0) {
-        location.href = "./search.html?city1="+city1+"&city2="+city2+"&game=-1";
+        location.href = "/search.html?city1="+city1+"&city2="+city2+"&game=-1";
     }
     else {
-        location.href = "./search.html?city1="+city1+"&city2="+city2+"&game="+numlist.slice(0, -1);
+        location.href = "/search.html?city1="+city1+"&city2="+city2+"&game="+numlist.slice(0, -1);
     }
 }

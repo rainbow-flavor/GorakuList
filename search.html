@@ -40,16 +40,16 @@
     </style>
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script>
-      $.get("./navbar.html", function (data) {
+      $.get("/navbar.html", function (data) {
         $("#nav-placeholder").replaceWith(data);
       });
-      $.get("./footer.html", function (data) {
+      $.get("/footer.html", function (data) {
         $("#footer-placeholder").replaceWith(data);
       });
     </script>
-    <script type="text/javascript" src="./js/addrDrop.js"></script>
-    <script type="text/javascript" src="./js/setDetail.js"></script>
-    <script type="text/javascript" src="./js/searchBtn.js"></script>
+    <script type="text/javascript" src="/js/addrDrop.js"></script>
+    <script type="text/javascript" src="/js/setDetail.js"></script>
+    <script type="text/javascript" src="/js/searchBtn.js"></script>
     <script type="text/javascript">
       window.onload = function() {
         const urlSearchParams = new URLSearchParams(window.location.search);
