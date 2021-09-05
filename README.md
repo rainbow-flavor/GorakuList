@@ -10,9 +10,8 @@
 {
   "type": "기체 대분류 id (타입)",
   "id": "기체별 global id",
-  "koName": "기체 한국명",
-  "enName": "기체 영어명",
-  "jpName": "기체 일본명",
+  "koName": "기체 이름",
+  "enName": "기체 영문이름",
   "category": "기체 분류",
   "company": "제조사",
   "desc": "기체 추가 설명"
@@ -62,11 +61,25 @@
   "address": "전체 주소",
   "uptime": "영업시간",
   "isop": "영업여부",
-  "machine": "기체id, 대수, 상태에 대한 리스트",
+  "machine": "기체id리스트",
   "contact": "전화번호",
   "twitter": "트위터",
   "website": "사이트",
   "knsta": "이어뮤카드"
+}
+```
+
+### 가게별 기체 JSON 구조
+
+```json
+{
+  "가게id": [
+    {
+      "id": "기체id",
+      "count": "기체 대수",
+      "desc": "특이사항"
+    }
+  ]
 }
 ```
 
@@ -77,6 +90,11 @@
 - Windows 10 Pro (v2004)
 - macOS (Big Sur 11.5.1)
 
+- Windows 10 Home
+- macOS (Catalina 10.15.7)
+
 ### IDE
 
 - visual studio code (with extension : prettier)
+
+- IntelliJ
