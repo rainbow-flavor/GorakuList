@@ -8,7 +8,7 @@ public class Machine {
       private Long id;
       private String koName;
       private String enName;
-      private String category;
+      private Category category;
       private String company;
       private String desc;
 }

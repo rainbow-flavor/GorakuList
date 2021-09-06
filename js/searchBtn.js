@@ -71,22 +71,24 @@ function searchCond() {
         return -1;
     }
 
-    if (count == 0) {
-        data = {
+    data = {
             "city1": city1,
             "city2": city2,
             "game":-1
-        }
+    }
+    
+    if (count == 0) {
         search(data);
     }
     else {
-        location.href = "https://localhost:8086/search?city1="+city1+"&city2="+city2+"&game="+numlist.slice(0, -1);
+        data.game = numlist.slice(0, -1);
+        search(data);
     }
 }
 
 function search(data) {
     $.ajax({
-        url: "http://localhost:8086/search",
+        url: "https://gorakulist.herokuapp.com/search",
         data: data,
         method: "GET",
         dataType: "json",

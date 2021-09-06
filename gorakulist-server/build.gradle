@@ -4,6 +4,10 @@ plugins {
     id 'java'
 }
 
+manifest {
+    attributes 'Main-Class': 'com.gorakulist.gorakulistserver.GorakulistServerApplication'
+}
+
 group = 'com.gorakulist'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -20,6 +24,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
