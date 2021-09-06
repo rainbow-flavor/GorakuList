@@ -1,4 +1,4 @@
-# Goraku List :joystick:
+# GorakuList :joystick:
 
 아케이드 게임 플레이어에게 필요한 오락실을 쉽게 찾기 위한 오락실 검색 웹앱
 
