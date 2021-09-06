@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin("*")
 @RestController
 public class TestController {
 
