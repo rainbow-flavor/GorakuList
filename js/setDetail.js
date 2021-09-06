@@ -84,7 +84,7 @@ function getGameNameById(id) {
         }
     });
     if(retValue == 'suisensei') {
-        return 'ERROR!'
+        return ''
     }
     else {
         return retValue;
@@ -92,6 +92,9 @@ function getGameNameById(id) {
 }
 
 function getGameName(ids) {
+    if(ids == '-1') {
+        return '';
+    }
     const game_name = ids.split(',');
     var ret_str = '';
     for(var i=0 ; i<game_name.length ; i++) {
