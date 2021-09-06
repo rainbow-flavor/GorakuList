@@ -71,10 +71,27 @@ function searchCond() {
         return -1;
     }
 
-    if(count == 0) {
-        location.href = "/search.html?city1="+city1+"&city2="+city2+"&game=-1";
+    if (count == 0) {
+        data = {
+            "city1": city1,
+            "city2": city2,
+            "game":-1
+        }
+        search(data);
     }
     else {
-        location.href = "/search.html?city1="+city1+"&city2="+city2+"&game="+numlist.slice(0, -1);
+        location.href = "https://localhost:8086/search?city1="+city1+"&city2="+city2+"&game="+numlist.slice(0, -1);
     }
+}
+
+function search(data) {
+    $.ajax({
+        url: "http://localhost:8086/search",
+        data: data,
+        method: "GET",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        crossOrigin : true
+    })
+        .done(function (json) { console.log(json) });
 }
