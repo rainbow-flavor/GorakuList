@@ -9,6 +9,9 @@ import Search from "./components/search";
 import Cs from "./components/cs";
 import Toc from "./components/toc";
 
+import 'font-awesome/css/font-awesome.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   return (
     <div>

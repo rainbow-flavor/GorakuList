@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import { Button, InputGroup } from "react-bootstrap";
 
 import './cs.css';
 
@@ -21,23 +22,23 @@ function Cs() {
         </div>
       </div>
       <form name="cs-form" id="cs-form">
-        <div className="input-group mb-3">
+        <InputGroup className="mb-3">
           <span className="input-group-text">이메일</span>
           <input type="text" id="cs-email1" className="form-control" placeholder="메일 ID" aria-label="Username" />
           <span className="input-group-text">@</span>
           <input type="text" id="cs-email2" className="form-control" placeholder="메일 서버" aria-label="Server" />
-        </div>
-        <div className="input-group mb-3">
+        </InputGroup>
+        <InputGroup className="mb-3">
           <label className="input-group-text">문의 종류</label>
           <Select className="form-select" options={options}/>
-        </div>
-        <div className="input-group mb-3">
+        </InputGroup>
+        <InputGroup className="mb-3">
           <span className="input-group-text">문의 내용</span>
           <textarea className="form-control" aria-label="With textarea" rows={5} id="cs-content-text"></textarea>
-        </div>
-        <div className="input-group mb-3">
-          <button type="button" className="btn btn-primary">제출</button>
-        </div>
+        </InputGroup>
+        <InputGroup className="mb-3">
+          <Button type="button" className="btn btn-primary">제출</Button>
+        </InputGroup>
       </form>
     </div>
   );

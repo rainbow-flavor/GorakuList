@@ -81,8 +81,8 @@ const game7 = [{ 'id': '900', 'name': 'VR존' },
 function getGameListComponent(gameList: { id: string, name: string }[]) {
   return gameList.map((game) => {
     return (
-      <div>
-        <input type="checkbox" id={game.id} name={game.name} value={game.id}/>
+      <div style={{marginLeft:1}}>
+        <input type="checkbox" id={game.id} name={game.name} value={game.id} style={{marginLeft: 1}}/>
         <label htmlFor={"gid"+game.id} style={{fontSize: 11}}>{game.name}</label>
       </div>
     )
@@ -183,31 +183,31 @@ class Search extends React.Component<{}, SearchStates> {
               </button>
               <Collapse style={{ marginTop: '1vh' }} isOpened={this.state.isCollapseOpen} initialStyle={this.state.isCollapseOpen ? { height: 'auto' } : { height: 0 }}>
                 <ul className="list-group list-group-flush">
-                  <li id="game1" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game1" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-danger" style={{ color: 'white' }}>리듬</span>
                     {getGameListComponent(game1)}
                   </li>
-                  <li id="game2" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game2" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-warning" style={{ color: 'white' }}>격투</span>
                     {getGameListComponent(game2)}
                   </li>
-                  <li id="game3" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game3" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-success" style={{ color: 'white' }}>레이싱</span>
                     {getGameListComponent(game3)}
                   </li>
-                  <li id="game4" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game4" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-info" style={{ color: 'white' }}>슈팅</span>
                     {getGameListComponent(game4)}
                   </li>
-                  <li id="game5" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game5" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-primary" style={{ color: 'white' }}>액션</span>
                     {getGameListComponent(game5)}
                   </li>
-                  <li id="game6" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game6" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-secondary" style={{ color: 'white' }}>퍼즐/캐쥬얼/스포츠</span>
                     {getGameListComponent(game6)}
                   </li>
-                  <li id="game7" className="list-group-item py-1" style={{display: 'flex', alignItems: 'flex-start'}}>
+                  <li id="game7" className="list-group-item py-1" style={{display: 'flex', alignItems: 'center'}}>
                     <span className="badge bg-dark" style={{ color: 'white' }}>기타</span>
                     {getGameListComponent(game7)}
                   </li>
