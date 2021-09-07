@@ -29,7 +29,7 @@ function Cs() {
         </div>
         <div className="input-group mb-3">
           <label className="input-group-text">문의 종류</label>
-          <Select className="form-select" id="cs-type" options={options}/>
+          <Select className="form-select" options={options}/>
         </div>
         <div className="input-group mb-3">
           <span className="input-group-text">문의 내용</span>
