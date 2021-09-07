@@ -95,5 +95,8 @@ function search(data) {
         contentType: 'application/json; charset=utf-8',
         crossOrigin : true
     })
-        .done(function (json) { console.log(json) });
+        .done(function (json) {
+            //TODO: json 데이터 받아서 동적으로 html 생성해야하는 부분
+            console.log(json)
+        });
 }
