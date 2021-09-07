@@ -1,33 +1,37 @@
-import React, { useRef } from 'react';
-import logo from '../resources/gorakulist_logo.png';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../logo.svg';
 import './footer.css';
 
 function Footer() {
-  const GorakuListRef = useRef();
-
   return (
-    <div className="text-center text-white" style={{backgroundColor: '#f6f6f6', width: '100%', position: 'fixed', bottom: 0}}>
-      <div className="text-right text-dark p-3" style={{ backgroundColor: '#00000033', display:'flex', justifyContent: 'space-between' }}>
-        <div className="copyright-left">
-          <h2 className="navbar-brand text-dark" ref={GorakuListRef.current}>
-            <img src={logo} height="30vh" alt="/" /> GORAKULIST
-          </h2>
-          <a className="btn btn-primary linkBtn"
+    <footer className="container-fluid py-2">
+      <div className="d-flex flex-wrap justify-content-between align-items-center">
+        <div className="flex-grow-1">
+          <img alt={''} src={logo} height="20vh" />
+          <Link className="mb-0 text-dark d-inline-block" to="/"> GORAKULIST</Link>
+        </div>
+        <div className="mr-2">
+          <Link className="btn btn-primary linkBtn"
             style={{ backgroundColor: '#55acee' }}
-            href="https://twitter.com/GorakuList"
+            to="https://twitter.com/GorakuList"
             role="button">
             <i className="fa fa-twitter"></i>
-          </a>
+          </Link>
         </div>
-        <div className="copyright-right">
+
+        <div className="d-flex flex-wrap">
           <div>
-            <a className="text-dark text-bold" href={GorakuListRef.current}>이용 약관</a> | <a className="text-dark text-bold" href={GorakuListRef.current}>개인정보취급방침</a></div>
-          Copyright © 2021
-          <a className="text-dark text-bold" href={GorakuListRef.current}>GorakuList</a>
-          | All rights reserved.
+            <Link to="/legal/toc"><small>이용 약관</small></Link> | <a href="/#"><small>개인정보취급방침</small></a>
+          </div>
+        </div>
+        <div>
+          <small>Copyright © 2021</small>
+          <Link to="https://rainbow-flavor.github.io/GorakuList/"><small>GorakuList</small></Link>
+          | <small>All rights reserved</small>
         </div>
       </div>
-    </div>
+    </footer >
   );
 }
 

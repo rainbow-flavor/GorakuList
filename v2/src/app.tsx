@@ -6,6 +6,11 @@ import Footer from './components/footer';
 
 import Main from "./components/main";
 import Search from "./components/search";
+import Cs from "./components/cs";
+import Toc from "./components/toc";
+
+import 'font-awesome/css/font-awesome.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
@@ -13,6 +18,8 @@ function App() {
       <Nav />
       <Route path="/" component={Main} exact/>
       <Route path="/search" component={Search} />
+      <Route path="/cs" component={Cs} />
+      <Route path="/toc" component={Toc} />
       <Footer />
     </div>
   )
