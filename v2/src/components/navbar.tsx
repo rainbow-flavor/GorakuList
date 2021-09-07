@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../resources/gorakulist_logo.png';
 
 function Nav() {
-  const GorakuListRef = useRef();
-
   return (
     <div className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href={GorakuListRef.current}>
+      <Link className="navbar-brand" to="/">
         <img src={logo} height="30vh" alt="/"/> GORAKULIST
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -23,13 +22,13 @@ function Nav() {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
-            <a className="nav-link" href={GorakuListRef.current}>홈 <span className="sr-only">(current)</span></a>
+            <Link className="nav-link" to="/">홈 <span className="sr-only">(current)</span></Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href={GorakuListRef.current}>검색</a>
+            <Link className="nav-link" to="/search">검색</Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href={GorakuListRef.current}>문의</a>
+            <Link className="nav-link" to="/cs">문의</Link>
           </li>
         </ul>
       </div>

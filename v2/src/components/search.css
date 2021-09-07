@@ -1,0 +1,16 @@
+#search-combo button {
+  width: 100%;
+  text-align: center;
+}
+.dropdown-item{
+  white-space:normal;
+}
+.bootstrap-select .dropdown-menu{
+  max-height: 20vh;
+}
+.container {
+  position: relative;
+  padding-top: 50px;
+  padding-bottom: 200px;
+  min-height: 100%;
+}
