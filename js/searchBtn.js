@@ -90,7 +90,7 @@ function search(data) {
     $.ajax({
         url: "https://gorakulist.herokuapp.com/search",
         // url: "http://localhost:8081/search",
-        data: data,
+        data: JSON.stringify(data),
         method: "GET",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
