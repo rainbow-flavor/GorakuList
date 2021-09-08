@@ -91,7 +91,7 @@ function search(data) {
         url: "https://gorakulist.herokuapp.com/search",
         // url: "http://localhost:8081/search",
         data: JSON.stringify(data),
-        method: "GET",
+        method: "POST",
         dataType: "json",
         contentType: 'application/json; charset=utf-8',
         crossOrigin : true
