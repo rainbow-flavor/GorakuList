@@ -54,7 +54,7 @@ function secondAddr() {
            "충주"]
     sjs = ["조치원읍", "행정중심복합도시"]
 
-    $("#city2").append("<option value='전체'>전체</option>")
+    $("#city2").append("<option value=''>전체</option>")
     if(city1 == "강원") {
         $.each(kwd, function(idx, item) {
             $("#city2").append("<option value='"+item+"'>"+item+"</option>")
