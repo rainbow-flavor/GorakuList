@@ -36,6 +36,11 @@ var gameListAll = [
     { 'id': '510', 'name': '판타지 반반' },
     { 'id': '511', 'name': '트랜스포머' }],
 
+    // 액션
+    [{ 'id': '600', 'name': '버블 메모리즈' },
+    { 'id': '601', 'name': '버블보블' },
+    { 'id': '602', 'name': '스노우 브라더스' }],
+
     // 퍼즐/캐쥬얼/스포츠
     [{ 'id': '700', 'name': '갈스패닉' },
     { 'id': '701', 'name': '아타리 테트리스' },
@@ -85,39 +90,11 @@ function getGameName(ids) {
 }
 
 function addGames() {
-    $.each(game1, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game1").append(inputbox + labels);
-    });
-    $.each(game2, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game2").append(inputbox + labels);
-    });
-    $.each(game3, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game3").append(inputbox + labels);
-    });
-    $.each(game4, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game4").append(inputbox + labels);
-    });
-    $.each(game5, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game5").append(inputbox + labels);
-    });
-    $.each(game6, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game6").append(inputbox + labels);
-    });
-    $.each(game7, function (idx, item) {
-        var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-        var labels = " <label for='gid" + item.id + "'>" + item.name + "</label>";
-        $("#game7").append(inputbox + labels);
+    gameListAll.forEach((gameListCategorized, index) => {
+        gameListCategorized.forEach(item => {
+            var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+            var label = " <label for='gid" + item.id + "'>" + item.name + "</label>";
+            $("#game" + String(index + 1)).append(inputbox + label);
+        });
     });
 }
