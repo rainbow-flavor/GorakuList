@@ -2,11 +2,12 @@ function searchCond() {
     city1 = $("#city1").val();
     city2 = $("#city2").val();
 
-    if(city1 == null) {
+    if(!city1) {
         alert("시/도를 선택하세요.");
         return -1;
     }
-    if(city2 == null) {
+    
+    if(!city2) {
         alert("시/군/구를 선택하세요.");
         return -1;
     }
