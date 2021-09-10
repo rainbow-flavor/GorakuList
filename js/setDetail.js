@@ -105,39 +105,39 @@ function getGameName(ids) {
 }
 
 function addGames() {
-    $.each(game1, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game1").append(inputbox+labels);
+    $.each(game1, function (idx, item) {
+        var inputbox = "<div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game1").append(inputbox + labels);
     });
-    $.each(game2, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game2").append(inputbox+labels);
+    $.each(game2, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game2").append(inputbox + labels);
     });
-    $.each(game3, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game3").append(inputbox+labels);
+    $.each(game3, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game3").append(inputbox + labels);
     });
-    $.each(game4, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game4").append(inputbox+labels);
+    $.each(game4, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game4").append(inputbox + labels);
     });
-    $.each(game5, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game5").append(inputbox+labels);
+    $.each(game5, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game5").append(inputbox + labels);
     });
-    $.each(game6, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game6").append(inputbox+labels);
+    $.each(game6, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game6").append(inputbox + labels);
     });
-    $.each(game7, function(idx, item) {
-        var inputbox = " <input type='checkbox' id='gid"+item.id+"' name='"+item.name+"' value='"+item.id+"'>";
-        var labels = " <label for='gid"+item.id+"'>"+item.name+"</label>";
-        $("#game7").append(inputbox+labels);
+    $.each(game7, function (idx, item) {
+        var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+        var labels = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
+        $("#game7").append(inputbox + labels);
     });
 }
