@@ -44,9 +44,17 @@
     <script type="text/javascript" src="/js/searchBtn.js"></script>
     <script type="text/javascript">
       window.onload = function() {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        console.log(params);
+
+        const paramlength = Object.keys(params).length;
         addGames();
 
         if((paramlength == 0) | (paramlength == undefined)) {
+          $("#search-title").text("오락실 검색");
+          $("#search-subtitle").text("아래에 조건을 입력해주세요");
+        }else {
           $("#search-title").html('<div class="spinner-border" role="status" style="width:1.5rem; height:1.5rem;"></div> 검색 중...');
 
           var condText = "";
@@ -70,8 +78,8 @@
     <div class="container vh-100">
       <div class="row mt-3">
         <div class="col">
-          <h5 class="display-5" id="search-title">오락실 검색</h5>
-          <p class="lead" id="search-subtitle">아래에 조건을 입력해주세요</p>
+          <h5 class="display-5" id="search-title"></h5>
+          <p class="lead" id="search-subtitle"></p>
         </div>
       </div>
       <div class="row justify-content-between align-items-center" id="search-combo">
