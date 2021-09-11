@@ -92,8 +92,8 @@ function getGameName(ids) {
 function addGames() {
     gameListAll.forEach((gameListCategorized, index) => {
         gameListCategorized.forEach(item => {
-            var inputbox = " <input type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
-            var label = " <label for='gid" + item.id + "'>" + item.name + "</label>";
+            var inputbox = " <div class='form-check form-check-inline'><input class='form-check-input' type='checkbox' id='gid" + item.id + "' name='" + item.name + "' value='" + item.id + "'>";
+            var label = " <label class='form-check-label' for='gid" + item.id + "'>" + item.name + "</label></div>";
             $("#game" + String(index + 1)).append(inputbox + label);
         });
     });

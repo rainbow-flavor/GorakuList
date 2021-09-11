@@ -24,13 +24,9 @@ function searchCond() {
         }
     }
 
-    $.each(game1, checkIsChecked);
-    $.each(game2, checkIsChecked);
-    $.each(game3, checkIsChecked);
-    $.each(game4, checkIsChecked);
-    $.each(game5, checkIsChecked);
-    $.each(game6, checkIsChecked);
-    $.each(game7, checkIsChecked);
+    gameListAll.forEach(gameListCategorized => {
+        gameListCategorized.forEach(checkIsChecked);
+    })
 
     if (count >= 6) {
         alert("5개 이상 선택하실 수 없습니다!");
