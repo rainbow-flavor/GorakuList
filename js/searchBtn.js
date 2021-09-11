@@ -51,6 +51,8 @@ function searchCond() {
 }
 
 function search(data) {
+
+
     $.ajax({
         url: "https://gorakulist.herokuapp.com/search",
         data: JSON.stringify(data),
