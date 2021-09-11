@@ -1,30 +1,25 @@
- <div class="card mb-3" style="max-width: 680px">
+<div class="card mb-3" style="max-width: 680px">
   <div class="row no-gutters">
     <div class="col-md-3 align-self-center text-center" id="shop-card-image">
       <!-- IMAGE GOES HERE -->
+      <img src="/resources/gorakulist_logo.png" width="30%"/>
     </div>
     <div class="col-md-9">
       <div class="card-body">
         <h5 class="card-title">
-          <span class="badge bg-success" style="color:white">영업 중</span>
-          <span class="badge bg-danger" style="color:white">폐업</span>
-          <span class="badge bg-warning" style="color:white">영업 종료</span>
-          <span class="badge bg-secondary" style="color:white">정보 없음</span>
-          <img src="/resources/a.png" width="20" />
-          <img src="/resources/s.png" width="20" />
-          <img src="/resources/k.png" width="20" />
-          <img src="/resources/t.png" width="20" />
-          <img src="/resources/n.png" width="20" />
+          {shop-opened-status}
+          {shop-network-status}
         </h5>
         <h5 class="shop-name">
-          goraku
+          {shop-name-text}
         </h5>
         <p class="card-text font-weight-bold">
           주소
-          <span class="font-weight-normal" id="shop-card-address">서울특별시 양천구 목동 919-8 바람개비공영주차장</span>
+          <span class="font-weight-normal" id="shop-card-address">{shop-card-address-text}</span>
         </p>
         <p class="card-text font-weight-bold">영업시간
-          <span class="font-weight-normal" id="shop-card-uptime">3925h 55m 43s</span></p>
+          <span class="font-weight-normal" id="shop-card-uptime">{shop-card-uptime-text}</span>
+        </p>
         <p>
           <small class="card-text" id="shop-card-machines">오락 기기 태그/ 검색한 오락기기를 하이라이트 하여 앞으로 배치</small>
         </p>
