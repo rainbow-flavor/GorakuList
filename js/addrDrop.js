@@ -59,8 +59,8 @@ function secondAddr() {
 
 
 
-    $("#city2").append("<option value='전체'>전체</option>")
-    if (city1 !== "전국" || city1 !== "기타") {
+    $("#city2").append("<option value=''>전체</option>")
+    if (city1 !== "전국" && city1 !== "기타") {
         $.each(city2list[city1], function (idx, item) {
             $("#city2").append("<option value='" + item + "'>" + item + "</option>")
         });
