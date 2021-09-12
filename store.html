@@ -26,14 +26,6 @@
             text-align: center;
         }
 
-        .dropdown-item {
-            white-space: normal;
-        }
-
-        .bootstrap-select .dropdown-menu {
-            max-height: 20vh;
-        }
-
         .container {
             position: relative;
             padding-top: 50px;
@@ -67,7 +59,7 @@
                 <td>
                     <div>
                         <span>서울특별시 영등포구</span>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#store-map" aria-expanded="false" aria-controls="store-map">
+                        <button class="badge badge-primary badge-sm" type="button" style="border: none" data-toggle="collapse" data-target="#store-map" aria-expanded="false" aria-controls="store-map">
                             지도보기
                         </button>
                     </div>
@@ -78,7 +70,15 @@
             </tr>
             <tr>
                 <th scope="row">영업시간</th>
-                <td>매일 뭐시기 뭐시기</td>
+                <td>매일 10:30~22:00</td>
+            </tr>
+            <tr>
+                <th scope="row">연락처</th>
+                <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
+            </tr>
+            <tr>
+                <th scope="row">네트워크 서비스</th>
+                <td></td>
             </tr>
             </tbody>
         </table>
@@ -101,16 +101,19 @@
 </script>
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9bbadea7b75fbf248637eab613675741"></script>
 <script>
+    var lat = 37.5171254;
+    var lng = 126.9037993;
+    var name = "영등포 타임스퀘어 액션";
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
     // 마커가 표시될 위치입니다
-    var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667);
+    var markerPosition  = new kakao.maps.LatLng(lat, lng);
 
     // 마커를 생성합니다
     var marker = new kakao.maps.Marker({
@@ -120,8 +123,8 @@
     // 마커가 지도 위에 표시되도록 설정합니다
     marker.setMap(map);
 
-    var iwContent = '<div style="padding:5px;">영등포 타임스퀘어 액션 <br><a href="https://map.kakao.com/link/map/영등포 타임스퀘어 액션,37.5171327,126.8862731" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/영등포 타임스퀘어 액션,37.5171327,126.8862731" style="color:blue" target="_blank">길찾기</a></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); //인포윈도우 표시 위치입니다
+    var iwContent = `<div style="padding:5px;">${name}<br><a href="https://map.kakao.com/link/map/${name},${lat},${lng}" style="color:blue" target="_blank">큰지도보기</a> <a href="https://map.kakao.com/link/to/${name},${lat},${lng}" style="color:blue" target="_blank">길찾기</a></div>`,
+        iwPosition = new kakao.maps.LatLng(lat, lng); //인포윈도우 표시 위치입니다
 
     // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({
