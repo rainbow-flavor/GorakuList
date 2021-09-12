@@ -37,33 +37,6 @@
   <script type="text/javascript" src="/js/setDetail.js"></script>
   <script type="text/javascript" src="/js/searchBtn.js"></script>
 
-  <script type="text/javascript"
-    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9bbadea7b75fbf248637eab613675741"></script>
-  <script>
-    function onCollapse() {
-      var lat = 37.5171254;
-      var lng = 126.9037993;
-      var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-          center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
-          level: 3 // 지도의 확대 레벨
-        };
-
-      var map = new kakao.maps.Map(mapContainer, mapOption);
-
-      // 마커가 표시될 위치입니다
-      var markerPosition = new kakao.maps.LatLng(lat, lng);
-
-      // 마커를 생성합니다
-      var marker = new kakao.maps.Marker({
-        position: markerPosition
-      });
-
-      // 마커가 지도 위에 표시되도록 설정합니다
-      marker.setMap(map);
-    }
-  </script>
-
   <title>Goraku List</title>
 </head>
 
@@ -87,7 +60,7 @@
               <div>
                 <span>서울특별시 영등포구</span>
                 <button class="badge badge-primary badge-sm" type="button" style="border: none" data-toggle="collapse"
-                  data-target="#store-map" aria-expanded="false" aria-controls="store-map" onclick="onCollapse()">
+                  data-target="#store-map" aria-expanded="false" aria-controls="store-map" onclick="onCollapseClick();">
                   지도보기
                 </button>
               </div>
@@ -127,6 +100,37 @@
     $.get("/footer.html", function (data) {
       $("#footer-placeholder").replaceWith(data);
     });
+  </script>
+  <script type="text/javascript"
+    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9bbadea7b75fbf248637eab613675741"></script>
+  <script>
+    var lat = 37.5171254;
+    var lng = 126.9037993;
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+      mapOption = {
+        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // 마커가 표시될 위치입니다
+    var markerPosition = new kakao.maps.LatLng(lat, lng);
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+      position: markerPosition
+    });
+
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);
+
+    function onCollapseClick() {
+      setTimeout(() => {
+        map.relayout();
+        map.setCenter(new kakao.maps.LatLng(lat, lng));
+      }, 500);
+    }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
     integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
