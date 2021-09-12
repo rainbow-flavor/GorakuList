@@ -32,11 +32,11 @@
             padding-bottom: 200px;
             min-height: 100%;
         }
-    </style>
-    <script type="text/javascript" src="/js/addrDrop.js"></script>
-    <script type="text/javascript" src="/js/setDetail.js"></script>
-    <script type="text/javascript" src="/js/searchBtn.js"></script>
 
+        #store-map {
+            padding-top: 30px;
+        }
+    </style>
     <title>Goraku List</title>
 </head>
 
@@ -78,7 +78,16 @@
             </tr>
             <tr>
                 <th scope="row">네트워크 서비스</th>
-                <td></td>
+                <td>
+                    <a class="badge rounded-pill bg-success text-light" id="network-k"
+                            rel="popover" data-trigger="hover"
+                            data-original-title="e-amusement pass"
+                            data-content="코나미 e-amusement pass (BEMANI)">e-amusement pass</a>
+                    <span class="badge rounded-pill bg-success text-light" id="network-n">BANA PASSPORT</span>
+                    <span class="badge rounded-pill bg-success text-light" id="network-s">Aime</span>
+                    <span class="badge rounded-pill bg-success text-light" id="network-t" style="display:none">NESiCA</span>
+                    <span class="badge rounded-pill bg-success text-light" id="network-a">AM.PASS</span>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -90,7 +99,10 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<script>
+    $("[data-toggle=popover]").popover();
+</script>
 <script>
     $.get("/navbar.html", function (data) {
         $("#nav-placeholder").replaceWith(data);
