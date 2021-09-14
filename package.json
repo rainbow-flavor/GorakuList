@@ -9,11 +9,19 @@
   "dependencies": {
     "axios": "^0.21.4",
     "bootstrap": "^4.6.0",
-    "bootstrap-select": "^1.13.18"
+    "bootstrap-select": "^1.13.18",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack-cli",
+    "build-watch": "webpack-cli -w"
   },
   "repository": {
     "type": "git",
