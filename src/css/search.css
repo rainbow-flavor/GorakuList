@@ -1,0 +1,15 @@
+html, body {
+    height: 100%;
+}
+
+#app{
+    min-height: 100%;
+}
+
+#content{
+    min-height: 100%;
+}
+
+footer{
+    margin-top: auto;
+}
