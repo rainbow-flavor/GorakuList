@@ -1,0 +1,28 @@
+{
+  "name": "gorakulist",
+  "version": "1.0.0",
+  "description": "아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "bootstrap": "^4.6.0",
+    "bootstrap-select": "^1.13.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rainbow-flavor/GorakuList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rainbow-flavor/GorakuList/issues"
+  },
+  "homepage": "https://github.com/rainbow-flavor/GorakuList#readme"
+}
