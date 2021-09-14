@@ -55,8 +55,7 @@ function sendMessage() {
     }
 
     $.ajax({
-        // url: "https://gorakulist.herokuapp.com/cs",
-        url: "http://localhost:8080/cs",
+        url: "https://gorakulist.herokuapp.com/cs",
         data: JSON.stringify(data),
         method: "POST",
         dataType: "json",
