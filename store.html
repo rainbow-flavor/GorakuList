@@ -48,11 +48,15 @@
     <div class="mt-4">
       <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
     </div>
-    <div class="mt-4 row align-items-center" id="store-title-div">
-      <div class="store-name w-100 text-center">
+    <div class="mt-4 row" id="store-title-div">
+      <div class="w-100 text-center" id="store-name">
         <h3>영등포 타임스퀘어 액션</h3>
       </div>
-      <table class="mt-4 table table-borderless">
+      <div class="text-right w-100 color-grey">
+        <small><a href="javascript:;" onclick="alert('링크가 복사되었습니다.')">공유</a></small> |
+        <small><a href="/cs.html">정보 수정 요청</a></small>
+      </div>
+      <table class="mt-1 table table-borderless">
         <tbody>
           <tr>
             <th scope="row">주소</th>
@@ -80,10 +84,29 @@
           </tr>
           <tr>
             <th scope="row">네트워크 서비스</th>
-            <td></td>
+            <td>
+              <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-k"
+                      data-toggle="tooltip" data-bs-placement="bottom"
+                      title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
+              <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-n"
+                      data-toggle="tooltip" data-bs-placement="bottom"
+                      title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA PASSPORT</span></button>
+              <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-s"
+                      data-toggle="tooltip" data-bs-placement="bottom"
+                      title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
+              <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-t"
+                      data-toggle="tooltip" data-bs-placement="bottom"
+                      title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
+              <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-a"
+                      data-toggle="tooltip" data-bs-placement="bottom"
+                      title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
+            </td>
           </tr>
         </tbody>
       </table>
+      <div class="mt-4 row align-items-center" id="machine-list">
+        MACHINE LIST
+      </div>
     </div>
 
   </div>
