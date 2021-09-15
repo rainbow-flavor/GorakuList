@@ -1,11 +1,7 @@
 import $ from "jquery";
 import axios from "axios";
-import './common'
 
-import 'bootstrap-select/dist/js/bootstrap-select';
-import 'bootstrap-select/dist/css/bootstrap-select.min.css';
-
-const constants = require('./constants.js');
+import * as constants from "./constants";
 
 const email1 = $("#cs-email1").val();
 const email2 = $("#cs-email2").val();
@@ -51,32 +47,31 @@ function isValidateForm() {
 }
 
 function makeRequestData() {
-  let current = new Date();
+  const currentDate = new Date();
 
-  let embed = {
-    fields: [
-      {
-        name: "이메일",
-        value: email1 + "@" + email2
-      },
-      {
-        name: "문의 종류",
-        value: cstype
-      },
-      {
-        name: "문의 내용",
-        value: content
+  const embed = {
+    embeds: [{
+      fields: [
+        {
+          name: "이메일",
+          value: email1 + "@" + email2
+        },
+        {
+          name: "문의 종류",
+          value: cstype
+        },
+        {
+          name: "문의 내용",
+          value: content
+        }
+      ],
+      footer: {
+        text: currentDate.toLocaleString()
       }
-    ],
-    footer: {
-      text: current.toLocaleString()
-    }
-  }
+    }]
+  };
 
-  let data = {
-    embeds: [embed]
-  }
-  return data;
+  return embed;
 }
 
 function sendWebhookRequest() {

@@ -1,0 +1,114 @@
+<div id="content" class="flex-shrink-0">
+  <div class="container">
+    <div class="mt-4">
+      <h5 class="display-5" id="search-title">오락실 검색</h5>
+      <p class="lead" id="search-subtitle">아래에 조건을 입력해주세요</p>
+    </div>
+    <div id="search-combo" class="row justify-content-between align-items-center">
+      <div class="col-4 pr-1">
+        <select id="city1" name="city1" class="selectpicker" data-width="100%">
+          <option value="">전국</option>
+          <option value="서울">서울</option>
+          <option value="부산">부산</option>
+          <option value="인천">인천</option>
+          <option value="대구">대구</option>
+          <option value="광주">광주</option>
+          <option value="대전">대전</option>
+          <option value="세종">세종</option>
+          <option value="경기북부">경기북부</option>
+          <option value="경기남부">경기남부</option>
+          <option value="강원">강원</option>
+          <option value="충북">충북</option>
+          <option value="충남">충남</option>
+          <option value="전북">전북</option>
+          <option value="전남">전남</option>
+          <option value="경북">경북</option>
+          <option value="경남">경남</option>
+          <option value="제주">제주</option>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+      <div class="col-4 px-1">
+        <select id="city2" name="city2" class="selectpicker" data-width="100%" data-none-selected-text="전체">
+          <option value="전체">전체</option>
+        </select>
+      </div>
+      <div class="col-4 pl-1">
+        <button id="btn-search" type="button" class="btn btn-outline-dark w-100">검색</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-2">
+        <button class="btn btn-light w-100" type="button" data-toggle="collapse" data-target="#detail-content"
+          aria-expanded="false" aria-controls="detail-content">
+          상세 검색
+        </button>
+        <div class="collapse" id="detail-content">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-danger">리듬</span>
+              </div>
+              <div id="game1">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-warning">격투</span>
+              </div>
+              <div id="game2">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-success">레이싱</span>
+              </div>
+              <div id="game3">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-primary">액션</span>
+              </div>
+              <div id="game4">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-info">슈팅</span>
+              </div>
+              <div id="game5">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-secondary">퍼즐/캐쥬얼/스포츠</span>
+              </div>
+              <div id="game6">
+
+              </div>
+            </li>
+            <li class="list-group-item p-1">
+              <div class="px-0">
+                <span class="badge bg-dark">기타</span>
+              </div>
+              <div id="game7">
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 justify-content-center align-items-center">
+      <div id="store-card-list" class="col text-center">
+        <h2 id="no-searched">No Searched</h2>
+      </div>
+    </div>
+  </div>
+</div>

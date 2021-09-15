@@ -1,12 +1,11 @@
 module.exports = {
     entry: {
-        search: './src/js/search.js',
-        cs: './src/js/cs.js',
-        common: './src/js/common.js'
+        index: './src/index.js',
     },
     output: {
         path: __dirname + '/dist',
-        filename: '[name].bundle.js'
+        filename: 'bundle.js',
+        library: 'GLBundle'
     },
     module: {
         rules: [
@@ -17,6 +16,10 @@ module.exports = {
                     'css-loader'
                 ]
             },
+            {
+                test: /\.html$/,
+                loader: 'html-loader'
+            }
         ]
     },
     mode: 'development',

@@ -2,7 +2,7 @@
   "name": "gorakulist",
   "version": "1.0.0",
   "description": "아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱",
-  "main": "index.js",
+  "main": "dist/index.bundle.js",
   "directories": {
     "example": "example"
   },
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "css-loader": "^6.2.0",
+    "html-loader": "^2.1.2",
     "style-loader": "^3.2.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"

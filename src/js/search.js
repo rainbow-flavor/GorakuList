@@ -1,11 +1,7 @@
-import $, { data } from "jquery";
+import $ from "jquery";
 import axios from "axios";
-import './common'
 
-import 'bootstrap-select/dist/js/bootstrap-select';
-import 'bootstrap-select/dist/css/bootstrap-select.min.css';
-
-const constants = require('./constants.js');
+import * as constants from './constants'
 
 $(function () {
   constants.gameListAll.forEach((gameListCategorized, index) => {

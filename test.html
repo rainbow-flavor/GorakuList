@@ -5,73 +5,77 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
+
   <title>Document</title>
+
+  <!-- 번들링 스크립트 -->
   <script src="./dist/bundle.js" type="application/javascript"></script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div id="app" class=" d-flex flex-column justify-content-start">
+    <!-- BEGIN navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" onclick="window.onRouterChange('index')"><img src="/src/resources/gl_logo.svg" height="30vh"> GORAKULIST</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" onclick="window.onRouterChange('index')">홈 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="window.onRouterChange('search')">검색</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="window.onRouterChange('cs')">문의</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- END navbar -->
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
+    <!-- BEGIN content -->
+    <div id="content-placeholder"></div>
+    <!-- END content -->
+
+    <!-- BEGIN footer -->
+    <footer class="container-fluid py-2 bg-light mt-auto">
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="flex-grow-1">
+          <img src="/src/resources/gl_logo.svg" height="20vh">
+          <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+        </div>
+        <div class="mr-2 text-right">
+          <a href="https://twitter.com/GorakuList" role="button">
+            <img src="/src/resources/twitter_logo.svg" width="30%" alt="">
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="myLib.onButtonClick()">
-    Launch demo modal
-  </button>
+        </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+        <div class="d-flex flex-wrap">
+          <div class="text-nowrap">
+            <a href="/legal/toc.html"><small>이용 약관</small></a> | <a
+              href="/legal/privacy.html"><small>개인정보취급방침</small></a>
+          </div>
+          <div>
+            <small>&nbsp;&nbsp;Copyright © 2021</small>
+            <a href="/"><small>GorakuList</small></a>
+            | <small>All rights reserved</small>
+          </div>
         </div>
       </div>
-    </div>
+    </footer>
+    <!-- END footer -->
   </div>
+
+  <script>
+    window.onload = () => {
+      window.onRouterChange('index');
+    }
+  </script>
 </body>
 
 </html>
