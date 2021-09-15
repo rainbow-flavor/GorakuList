@@ -12,9 +12,9 @@ const email2 = $("#cs-email2").val();
 const cstype = $("#cs-type option:selected").val();
 const content = $("#cs-content-text").val();
 
-(function addEventListener() {
+$(function addEventListener() {
   $("#btn-submit").on("click", submitForm);
-})();
+});
 
 function submitForm() {
   if (!isValidateForm()) {

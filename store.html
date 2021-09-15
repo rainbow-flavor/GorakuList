@@ -12,6 +12,13 @@
 
   <!-- 커스텀 css -->
 
+
+  <!-- 
+      webpack을 통해 번들링한 js 파일을 임포트 합니다. 
+      src/js/common.js 와 src/js/index.js 를 참고해주세요. 
+    -->
+  <script src="./dist/common.bundle.js" type="application/javascript"></script>
+
   <title>Goraku List</title>
 </head>
 
@@ -120,12 +127,6 @@
     </footer>
     <!-- END footer -->
   </div>
-
-  <!-- 
-    webpack을 통해 번들링한 js 파일을 임포트 합니다. 
-    src/js/common.js 와 src/js/index.js 를 참고해주세요. 
-  -->
-  <script src="./dist/common.bundle.js" type="application/javascript"></script>
 </body>
 
 </html>

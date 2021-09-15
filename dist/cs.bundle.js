@@ -24512,9 +24512,9 @@ const email2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email2").val()
 const cstype = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-type option:selected").val();
 const content = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-content-text").val();
 
-(function addEventListener() {
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function addEventListener() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-submit").on("click", submitForm);
-})();
+});
 
 function submitForm() {
   if (!isValidateForm()) {

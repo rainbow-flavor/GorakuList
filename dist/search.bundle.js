@@ -24507,8 +24507,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const constants = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
 
-(function () {
-  'use strict';
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   constants.gameListAll.forEach((gameListCategorized, index) => {
     gameListCategorized.forEach(item => {
       const inputbox = " <div class='form-check form-check-inline'>" +
@@ -24517,13 +24516,12 @@ const constants = __webpack_require__(/*! ./constants.js */ "./src/js/constants.
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#game' + String(index + 1)).append(inputbox + label);
     });
   });
-})();
+});
 
-(function addEventListener() {
-  'use strict';
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function addEventListener() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-search").on("click", searchPage);
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#city1").on("change", onFirstAddressChange);
-})();
+});
 
 function onFirstAddressChange() {
   const city1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#city1").val();
@@ -24591,7 +24589,6 @@ function sendRequest(requestData) {
 function createStoreCard(responseData) {
   let storesHtml = '';
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#store-card-list").empty();
-  console.log(responseData)
   responseData.forEach((store) => {
     jquery__WEBPACK_IMPORTED_MODULE_0___default().get("../store-card.html", function (data) {
       if (store.isop !== null) data = data.replace('{store-opened-status}', constants.openedElementList[store.isop ? 0 : 1]);

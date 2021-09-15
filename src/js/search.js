@@ -7,8 +7,7 @@ import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 
 const constants = require('./constants.js');
 
-(function () {
-  'use strict';
+$(function () {
   constants.gameListAll.forEach((gameListCategorized, index) => {
     gameListCategorized.forEach(item => {
       const inputbox = " <div class='form-check form-check-inline'>" +
@@ -17,13 +16,12 @@ const constants = require('./constants.js');
       $('#game' + String(index + 1)).append(inputbox + label);
     });
   });
-})();
+});
 
-(function addEventListener() {
-  'use strict';
+$(function addEventListener() {
   $("#btn-search").on("click", searchPage);
   $("#city1").on("change", onFirstAddressChange);
-})();
+});
 
 function onFirstAddressChange() {
   const city1 = $("#city1").val();
@@ -91,7 +89,6 @@ function sendRequest(requestData) {
 function createStoreCard(responseData) {
   let storesHtml = '';
   $("#store-card-list").empty();
-  console.log(responseData)
   responseData.forEach((store) => {
     $.get("../store-card.html", function (data) {
       if (store.isop !== null) data = data.replace('{store-opened-status}', constants.openedElementList[store.isop ? 0 : 1]);
