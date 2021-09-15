@@ -1,11 +1,8 @@
 module.exports = {
-    entry: {
-        index: './src/js/index.js',
-        search: './src/js/search.js'
-    },
+    entry: './src/index.js',
     output: {
         path: __dirname + '/dist',
-        filename: '[name].bundle.js',
+        filename: 'bundle.js',
         library: 'myLib'
     },
     module: {
