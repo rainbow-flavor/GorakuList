@@ -1,6 +1,9 @@
-const API_URL = 'https://gorakulist.herokuapp.com';
+// export const BASE_URL = "https://gorakulist.herokuapp.com";
+export const BASE_URL = "http://localhost:8080";
+export const SEARCH = "/search";
+export const CS = "/cs";
 
-const city2List = {
+export const city2List = {
     강원: ["강릉시", "고성군", "동해시", "삼척시", "속초시",
         "양구군", "양양군", "영월군", "원주시", "인제군",
         "정선군", "철원군", "춘천시", "태백시", "평창군",
@@ -55,7 +58,7 @@ const city2List = {
     제주: ["제주시", "서귀포시"]
 }
 
-const gameListAll = [
+export const gameListAll = [
     // 리듬
     [{ 'id': '100', 'name': 'WACCA' },
     { 'id': '115', 'name': '츄니즘' },
@@ -136,7 +139,7 @@ const gameListAll = [
     { 'id': '903', 'name': '스티커 사진기' }]
 ]
 
-const openedElementList = [
+export const openedElementList = [
     '<span class="badge bg-success" style="color:white">영업 중</span>',
     '<span class="badge bg-danger" style="color:white">폐업</span>',
     '<span class="badge bg-warning" style="color:white">영업 종료</span>',

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
+  <!-- 공통 css -->
+  <link rel="stylesheet" href="./src/css/common.css">
+
+  <!-- 커스텀 css -->
+  <link rel="stylesheet" href="./src/css/cover.css">
+  <title>Goraku List</title>
+</head>
+
+<body>
+  <div id="app" class=" d-flex flex-column justify-content-start">
+    <!-- BEGIN navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><img src="/src/resources/gl_logo.svg" height="30vh"> GORAKULIST</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search.html">검색</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cs.html">문의</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- END navbar -->
+
+    <!-- BEGIN content -->
+    <div id="content" class="flex-shrink-0">
+      <div class="container">
+        <div class="row mt-3">
+          <div class="col">
+            <h3 id="cs-title" class="display-5">문의</h3>
+            <p id="cs-subtitle" class="lead">사이트 관련 각종 문의를 넣어주세요</p>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">이메일</span>
+          <input id="cs-email1" type="text" class="form-control" placeholder="메일 ID" aria-label="Username">
+          <span class="input-group-text">@</span>
+          <input id="cs-email2" type="text" class="form-control" placeholder="메일 서버" aria-label="Server">
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="cs-type">문의 종류</label>
+          </div>
+          <select class="custom-select " id="cs-type">
+            <option value="선택하세요" selected>선택하세요</option>
+            <option value="정보 추가/수정/삭제 요청">정보 추가/수정/삭제 요청</option>
+            <option value="서비스 관련">서비스 관련</option>
+            <option value="제휴 문의">제휴 문의</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text">문의 내용</span>
+          <textarea class="form-control" aria-label="With textarea" rows="5" id="cs-content-text"></textarea>
+        </div>
+        <div class="mb-3">
+          아래의 제출 버튼을 누름으로서 GorakuList의 <a href="/legal/toc.html">이용약관</a>과 <a href="/legal/privacy.html">개인정보처리방침</a>에
+          동의한
+          것으로 간주합니다.
+        </div>
+        <div class="input-group mb-3">
+          <button id="btn-submit" type="button" class="btn btn-primary">제출</button>
+        </div>
+      </div>
+    </div>
+    <!-- END content -->
+
+    <!-- BEGIN footer -->
+    <footer class="container-fluid py-2 bg-light mt-auto">
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="flex-grow-1">
+          <img src="/src/resources/gl_logo.svg" height="20vh">
+          <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+        </div>
+        <div class="mr-2 text-right">
+          <a href="https://twitter.com/GorakuList" role="button">
+            <img src="/src/resources/twitter_logo.svg" width="30%" alt="">
+          </a>
+        </div>
+
+        <div class="d-flex flex-wrap">
+          <div class="text-nowrap">
+            <a href="/legal/toc.html"><small>이용 약관</small></a> | <a
+              href="/legal/privacy.html"><small>개인정보취급방침</small></a>
+          </div>
+          <div>
+            <small>&nbsp;&nbsp;Copyright © 2021</small>
+            <a href="/"><small>GorakuList</small></a>
+            | <small>All rights reserved</small>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
+  </div>
+  <script src="./dist/cs.bundle.js" type="application/javascript"></script>
+</body>
+
+<!-- BEGIN modal -->
+<div id="cs-modal-success" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">문의</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>접수되었습니다. 감사합니다.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cs-modal-fail" class="modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">문의</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">문의 접수 중 오류가 발생하였습니다.</p>
+        <p>gorakulist@gmail.com으로 요청해주세요.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END modal -->
+
+</html>

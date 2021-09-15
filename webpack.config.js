@@ -1,9 +1,13 @@
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/js/index.js',
+        search: './src/js/search.js',
+        cs: './src/js/cs.js',
+        common: './src/js/common.js'
+    },
     output: {
         path: __dirname + '/dist',
-        filename: 'bundle.js',
-        library: 'myLib'
+        filename: '[name].bundle.js'
     },
     module: {
         rules: [

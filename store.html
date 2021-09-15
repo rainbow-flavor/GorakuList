@@ -7,10 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
   <!-- 공통 css -->
+  <!-- common.css 사용 시 수직 상단 정렬 기본 레이아웃 스타일이 적용됩니다  -->
   <link rel="stylesheet" href="./src/css/common.css">
 
   <!-- 커스텀 css -->
-  <link rel="stylesheet" href="./src/css/cover.css">
+
   <title>Goraku List</title>
 </head>
 
@@ -44,14 +45,46 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col">
-            <div class="jumbotron">
-              <h5>GorakuList 에 오신걸 환영합니다.</h5>
-              <p class="lead"><small>GorakuList는 한국 오락실 리스트 사이트입니다.</small></p>
-              <hr class="my-4">
-              <p>지역별, 기체별 검색을 진행하실 수 있습니다.</p>
-              <p class="lead">
-                <a class="btn btn-primary btn-lg" href="/search.html" role="button">오락실 찾기!</a>
-              </p>
+            <div class="mt-4">
+              <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
+            </div>
+            <div class="mt-4 row align-items-center" id="store-title-div">
+              <div class="store-name w-100 text-center">
+                <h3>영등포 타임스퀘어 액션</h3>
+              </div>
+              <table class="mt-4 table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">주소</th>
+                    <td>
+                      <div>
+                        <span>서울특별시 영등포구</span>
+                        <button class="badge badge-primary badge-sm" type="button" style="border: none"
+                          data-toggle="collapse" data-target="#store-map" aria-expanded="false"
+                          aria-controls="store-map" onclick="onCollapseClick();">
+                          지도보기
+                        </button>
+                      </div>
+                      <div id="store-map" class="collapse">
+                        <div id="map" style="width:100%;height:350px"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">영업시간</th>
+                    <td>매일 10:30~22:00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">연락처</th>
+                    <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i
+                          class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">네트워크 서비스</th>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -87,7 +120,12 @@
     </footer>
     <!-- END footer -->
   </div>
-  <script src="./dist/index.bundle.js" type="application/javascript"></script>
+
+  <!-- 
+    webpack을 통해 번들링한 js 파일을 임포트 합니다. 
+    src/js/common.js 와 src/js/index.js 를 참고해주세요. 
+  -->
+  <script src="./dist/common.bundle.js" type="application/javascript"></script>
 </body>
 
 </html>

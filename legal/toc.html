@@ -1,155 +1,177 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-      }
-      #main-thumbnail {
-        height: 50vh;
-      }
-      #without-main button {
-        width: 100%;
-      }
-      .container {
-        position: relative;
-        min-height: 100%;
-        padding-top: 50px;
-        padding-bottom: 200px;
-      }
-    </style>
+    <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
+    <!-- 공통 css -->
+    <link rel="stylesheet" href="../src/css/common.css">
+
+    <!-- 커스텀 css -->
 
     <title>Goraku List</title>
 </head>
+
 <body>
-<!-- BEGIN 네비게이션 -->
-<div id="nav-placeholder"></div>
-<!-- END 네비게이션 -->
-<!-- BEGIN 컨텐츠 -->
-<div class="container">
-    <p class="toc-title">
-        <h2 style="display:inline">GorakuList 이용 약관</h2>
-        <h5 style="color:lightgrey; display:inline">2021년 MM월 DD일 신설</h5>
-    </p>
-    <p>
-        <hr>
-    </p>
-    <p class="toc-content">
-        <p class="toc-line">
-            <h3>제1조(목적)</h3>
-            이 약관은 GorakuList(이하 "사이트")에서 제공하는 인터넷 관련 서비스(이하 "서비스")를 이용함에 있어 사이트와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다.
-        </p>
-        <p class="toc-line">
-            <h3>제2조(정의)</h3>
-            <ol>
-                <li>"이용자"란 "사이트"에 접속하여 이 약관에 따라 "사이트"가 제공하는 "서비스"를 받는 비회원을 말합니다.</li>
-                <li>"비회원"이라 함은 "사이트"가 제공하는 "서비스"를 이용하는 자를 말합니다.</li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>제3조(서비스의 제공 및 변경)</h3>
-            <ol>
-                <li>
-                    "사이트"는 다음과 같은 "서비스"를 제공합니다.
-                    <ol>
-                        <li>오락실 및 오락실 기기 정보</li>
-                        <li>기타 "사이트"가 정하는 업무</li>
-                    </ol>
-                </li>
-                <li>"사이트"가 제공하는 "서비스"는 언제든지 변경될 수 있습니다.</li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>제4조(서비스의 중단)</h3>
-            <ol>
-                <li>"서비스"는 정보통신설비 등의 보수 점검, 교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.</li>
-                <li>운영 상의 목적으로 "사이트"는 "서비스"를 일정 기간 중단할 수 있습니다.</li>
-                <li>"사이트"는 "서비스"의 변경, 중지로 발생하는 문제에 대해서는 어떤 책임도 지지 않습니다.</li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>제5조(사이트의 의무)</h3>
-            <ol>
-                <li>"사이트"는 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하지 않으며
-                이 약관이 정하는 바에 따라 지속적이고 안정적으로 "서비스"를 제공하는데 최선을 다해 노력합니다.</li>
-                <li>"사이트"는 이용자가 안전하게 "서비스"를 이용할 수 있도록 시스템을 구축하기 위해 노력합니다.</li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>제6조(이용자의 의무)</h3>
-            <ol>
-                <li>이용자는 다음 각 호의 행위를 하지 않아야하며, 다음 행위를 함으로 발생하는 모든 결과에 대한 책임은 이용자 본인에게 있습니다.
-                    <ol>
-                        <li>신청 또는 변경 시 허위 내용의 기재</li>
-                        <li>타인의 정보 도용</li>
-                        <li>"사이트"가 금지한 정보의 송신 및 게시</li>
-                        <li>"사이트"와 기타 제3자의 저작권 등 지적재산권에 대한 침해</li>
-                        <li>"사이트"와 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위</li>
-                        <li>외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 공개 또는 게시하는 행위</li>
-                    </ol>
-                </li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>제7조(게시물에 대한 권리 및 의무)</h3>
-            게시물에 대한 저작권을 포함한 모든 권리 및 책임은 이를 "서비스"에 제공한 이용자에게 있습니다.
-        </p>
-        <p class="toc-line">
-            <h3>제8조(저작권의 귀속 및 이용제한)</h3>
-            "서비스"에 작성된 저작물에 대한 저작권 및 기타 지적재산권은 해당 저작물의 저작자에게 귀속됩니다.
-        </p>
-        <p class="toc-line">
-            <h3>제9조(면책조항)</h3>
-            <ol>
-                <li>"사이트"는 이용자가 사이트에 제공한 정보, 자료, 사실의 정확성 신뢰성 등 그 내용에 관해서는 어떠한 책임을 부담하지 아니하고,
-                이용자는 자신의 책임 아래 서비스를 이용하며, 사이트에 제공한 정보, 자료 등에 관하여 손해가 발생하거나 자료의 취사선택,
-                기타 사이트 이용과 관련하여 어떠한 불이익이 발생하더라도 이에 대한 모든 책임은 이용자에게 있습니다.</li>
-                <li>이용자가 제 6조, 기타 이 약관의 규정을 위반함으로 인하여 사이트가 이용자 또는 제 3자에 대하여 책임을 부담하게 되고,
-                이로써 사이트에 손해가 발생하게 되는 경우, 이 약관을 위반한 이용자는 사이트에게 발생하는 모든 손해를 배상하여야 하며,
-                동 손해로부터 사이트를 면책시켜야 합니다.</li>
-                <li>사이트는 서비스를 제공할 수 없는 경우에는 서비스 제공에 관한 책임이 면제됩니다.</li>
-                <li>사이트는 이용자의 귀책 사유로 인한 이용의 장애에 대해서는 책임을 지지 않습니다.</li>
-                <li>사이트는 서비스와 관련하여 이용자에게 어떠한 손해가 발생하더라도 이에 대한 책임을 지지 않습니다.</li>
-            </ol>
-        </p>
-        <p class="toc-line">
-            <h3>부칙</h3>
-            <ol>
-                <li>이 약관은 2021년 MM월 DD일부터 시행됩니다.</li>
-            </ol>
-        </p>
-    </p>
-</div>
-<!-- END 컨텐츠 -->
-<div id="footer-placeholder"></div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script>
-      $.get("/navbar.html", function(data){
-          $("#nav-placeholder").replaceWith(data);
-      });
-      $.get("/footer.html", function(data){
-          $("#footer-placeholder").replaceWith(data);
-      });
-    </script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"
-></script>
+    <div id="app" class=" d-flex flex-column justify-content-start">
+        <!-- BEGIN navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/"><img src="/src/resources/gl_logo.svg" height="30vh"> GORAKULIST</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search.html">검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cs.html">문의</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- END navbar -->
+
+        <!-- BEGIN content -->
+        <div id="content" class="flex-shrink-0">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                        <p class="toc-title">
+                        <h2>GorakuList 이용 약관</h2>
+                        <h5 class="text-muted">2021년 MM월 DD일 신설</h5>
+                        </p>
+                        <p>
+                            <hr>
+                        </p>
+                        <p class="toc-content">
+                        <p class="toc-line">
+                        <h3>제1조(목적)</h3>
+                        이 약관은 GorakuList(이하 "사이트")에서 제공하는 인터넷 관련 서비스(이하 "서비스")를 이용함에 있어 사이트와 이용자의 권리, 의무 및 책임사항을 규정함을
+                        목적으로 합니다.
+                        </p>
+                        <p class="toc-line">
+                        <h3>제2조(정의)</h3>
+                        <ol>
+                            <li>"이용자"란 "사이트"에 접속하여 이 약관에 따라 "사이트"가 제공하는 "서비스"를 받는 비회원을 말합니다.</li>
+                            <li>"비회원"이라 함은 "사이트"가 제공하는 "서비스"를 이용하는 자를 말합니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제3조(서비스의 제공 및 변경)</h3>
+                        <ol>
+                            <li>
+                                "사이트"는 다음과 같은 "서비스"를 제공합니다.
+                                <ol>
+                                    <li>오락실 및 오락실 기기 정보</li>
+                                    <li>기타 "사이트"가 정하는 업무</li>
+                                </ol>
+                            </li>
+                            <li>"사이트"가 제공하는 "서비스"는 언제든지 변경될 수 있습니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제4조(서비스의 중단)</h3>
+                        <ol>
+                            <li>"서비스"는 정보통신설비 등의 보수 점검, 교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.</li>
+                            <li>운영 상의 목적으로 "사이트"는 "서비스"를 일정 기간 중단할 수 있습니다.</li>
+                            <li>"사이트"는 "서비스"의 변경, 중지로 발생하는 문제에 대해서는 어떤 책임도 지지 않습니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제5조(사이트의 의무)</h3>
+                        <ol>
+                            <li>"사이트"는 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하지 않으며
+                                이 약관이 정하는 바에 따라 지속적이고 안정적으로 "서비스"를 제공하는데 최선을 다해 노력합니다.</li>
+                            <li>"사이트"는 이용자가 안전하게 "서비스"를 이용할 수 있도록 시스템을 구축하기 위해 노력합니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제6조(이용자의 의무)</h3>
+                        <ol>
+                            <li>이용자는 다음 각 호의 행위를 하지 않아야하며, 다음 행위를 함으로 발생하는 모든 결과에 대한 책임은 이용자 본인에게 있습니다.
+                                <ol>
+                                    <li>신청 또는 변경 시 허위 내용의 기재</li>
+                                    <li>타인의 정보 도용</li>
+                                    <li>"사이트"가 금지한 정보의 송신 및 게시</li>
+                                    <li>"사이트"와 기타 제3자의 저작권 등 지적재산권에 대한 침해</li>
+                                    <li>"사이트"와 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위</li>
+                                    <li>외설 또는 폭력적인 메시지, 화상, 음성, 기타 공서양속에 반하는 정보를 공개 또는 게시하는 행위</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제7조(게시물에 대한 권리 및 의무)</h3>
+                        게시물에 대한 저작권을 포함한 모든 권리 및 책임은 이를 "서비스"에 제공한 이용자에게 있습니다.
+                        </p>
+                        <p class="toc-line">
+                        <h3>제8조(저작권의 귀속 및 이용제한)</h3>
+                        "서비스"에 작성된 저작물에 대한 저작권 및 기타 지적재산권은 해당 저작물의 저작자에게 귀속됩니다.
+                        </p>
+                        <p class="toc-line">
+                        <h3>제9조(면책조항)</h3>
+                        <ol>
+                            <li>"사이트"는 이용자가 사이트에 제공한 정보, 자료, 사실의 정확성 신뢰성 등 그 내용에 관해서는 어떠한 책임을 부담하지 아니하고,
+                                이용자는 자신의 책임 아래 서비스를 이용하며, 사이트에 제공한 정보, 자료 등에 관하여 손해가 발생하거나 자료의 취사선택,
+                                기타 사이트 이용과 관련하여 어떠한 불이익이 발생하더라도 이에 대한 모든 책임은 이용자에게 있습니다.</li>
+                            <li>이용자가 제 6조, 기타 이 약관의 규정을 위반함으로 인하여 사이트가 이용자 또는 제 3자에 대하여 책임을 부담하게 되고,
+                                이로써 사이트에 손해가 발생하게 되는 경우, 이 약관을 위반한 이용자는 사이트에게 발생하는 모든 손해를 배상하여야 하며,
+                                동 손해로부터 사이트를 면책시켜야 합니다.</li>
+                            <li>사이트는 서비스를 제공할 수 없는 경우에는 서비스 제공에 관한 책임이 면제됩니다.</li>
+                            <li>사이트는 이용자의 귀책 사유로 인한 이용의 장애에 대해서는 책임을 지지 않습니다.</li>
+                            <li>사이트는 서비스와 관련하여 이용자에게 어떠한 손해가 발생하더라도 이에 대한 책임을 지지 않습니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>부칙</h3>
+                        <ol>
+                            <li>이 약관은 2021년 MM월 DD일부터 시행됩니다.</li>
+                        </ol>
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END content -->
+
+        <!-- BEGIN footer -->
+        <footer class="container-fluid py-2 bg-light mt-auto">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="flex-grow-1">
+                    <img src="/src/resources/gl_logo.svg" height="20vh">
+                    <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+                </div>
+                <div class="mr-2 text-right">
+                    <a href="https://twitter.com/GorakuList" role="button">
+                        <img src="/src/resources/twitter_logo.svg" width="30%" alt="">
+                    </a>
+                </div>
+
+                <div class="d-flex flex-wrap">
+                    <div class="text-nowrap">
+                        <a href="/legal/toc.html"><small>이용 약관</small></a> | <a
+                            href="/legal/privacy.html"><small>개인정보취급방침</small></a>
+                    </div>
+                    <div>
+                        <small>&nbsp;&nbsp;Copyright © 2021</small>
+                        <a href="/"><small>GorakuList</small></a>
+                        | <small>All rights reserved</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END footer -->
+    </div>
+    <script src="../dist/common.bundle.js" type="application/javascript"></script>
 </body>
+
 </html>
