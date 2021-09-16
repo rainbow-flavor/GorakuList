@@ -66,9 +66,9 @@
                     <td>
                       <div>
                         <span>서울특별시 영등포구</span>
-                        <button class="badge badge-primary badge-sm" type="button" style="border: none"
+                        <button id="btn-map" class="badge badge-primary badge-sm" type="button" style="border: none"
                           data-toggle="collapse" data-target="#store-map" aria-expanded="false"
-                          aria-controls="store-map" onclick="onCollapseClick();">
+                          aria-controls="store-map">
                           지도보기
                         </button>
                       </div>
@@ -109,6 +109,9 @@
                   </tr>
                 </tbody>
               </table>
+              <div class="mt-4 row align-items-center" id="machine-list">
+                MACHINE LIST
+              </div>
             </div>
           </div>
         </div>
@@ -144,6 +147,8 @@
     </footer>
     <!-- END footer -->
   </div>
+  <script type="text/javascript"
+    src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9bbadea7b75fbf248637eab613675741"></script>
 </body>
 
 </html>
