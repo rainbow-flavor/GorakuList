@@ -17,7 +17,7 @@
       webpack을 통해 번들링한 js 파일을 임포트 합니다. 
       src/js/common.js 와 src/js/index.js 를 참고해주세요. 
     -->
-  <script src="./dist/common.bundle.js" type="application/javascript"></script>
+  <script src="./dist/store.bundle.js" type="application/javascript"></script>
 
   <title>Goraku List</title>
 </head>
@@ -88,7 +88,24 @@
                   </tr>
                   <tr>
                     <th scope="row">네트워크 서비스</th>
-                    <td></td>
+                    <td>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-k"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-n"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA
+                          PASSPORT</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-s"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-t"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-a"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

@@ -1,6 +1,7 @@
 module.exports = {
     entry: {
         search: './src/js/search.js',
+        store: './src/js/store.js',
         cs: './src/js/cs.js',
         common: './src/js/common.js'
     },

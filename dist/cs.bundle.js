@@ -24016,8 +24016,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "gameListAll": () => (/* binding */ gameListAll),
 /* harmony export */   "openedElementList": () => (/* binding */ openedElementList)
 /* harmony export */ });
-// export const BASE_URL = "https://gorakulist.herokuapp.com";
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://gorakulist.herokuapp.com";
+// export const BASE_URL = "http://localhost:8080";
 const SEARCH = "/search";
 const CS = "/cs";
 
