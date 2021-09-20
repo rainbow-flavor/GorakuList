@@ -18936,7 +18936,9 @@ __webpack_require__.r(__webpack_exports__);
 
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('[data-toggle="tooltip"]').tooltip('enable');
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#btn-map').on('click', onCollapseClick);
 });
+
 })();
 
 /******/ })()
