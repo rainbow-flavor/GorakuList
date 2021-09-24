@@ -24507,20 +24507,20 @@ __webpack_require__.r(__webpack_exports__);
 
 const constants = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
 
-const email1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email1").val();
-const email2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email2").val();
-const cstype = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-type option:selected").val();
-const content = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-content-text").val();
-
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(function addEventListener() {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-submit").on("click", submitForm);
 });
 
 function submitForm() {
-  if (!isValidateForm()) {
+  const email1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email1").val();
+  const email2 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email2").val();
+  const cstype = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-type option:selected").val();
+  const content = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-content-text").val();
+
+  if (!isValidateForm(email1, email2, cstype, content)) {
     return;
   }
-  sendWebhookRequest();
+  sendWebhookRequest(makeRequestData(email1, email2, cstype, content));
 }
 
 function validateEmail(e1, e2) {
@@ -24530,7 +24530,7 @@ function validateEmail(e1, e2) {
   else return false;
 }
 
-function isValidateForm() {
+function isValidateForm(email1, email2, cstype, content) {
   if (email1 == '' || email1 == undefined || email2 == '' || email2 == undefined) {
     alert("이메일 주소를 입력해주세요.");
     return false;
@@ -24550,7 +24550,7 @@ function isValidateForm() {
   return true;
 }
 
-function makeRequestData() {
+function makeRequestData(email1, email2, cstype, content) {
   let current = new Date();
 
   let embed = {
@@ -24579,8 +24579,8 @@ function makeRequestData() {
   return data;
 }
 
-function sendWebhookRequest() {
-  axios__WEBPACK_IMPORTED_MODULE_1___default().post(constants.BASE_URL + constants.CS, makeRequestData())
+function sendWebhookRequest(data) {
+  axios__WEBPACK_IMPORTED_MODULE_1___default().post(constants.BASE_URL + constants.CS, data)
     .then(() => {
       jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-form")[0].reset();
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('#cs-modal-success').modal('toggle');
