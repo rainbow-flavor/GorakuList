@@ -31,7 +31,7 @@ function validateEmail(e1, e2) {
 }
 
 function isValidateForm() {
-  if (email1 == '' | email1 == undefined | email2 == '' | email2 == undefined) {
+  if (email1 == '' || email1 == undefined || email2 == '' || email2 == undefined) {
     alert("이메일 주소를 입력해주세요.");
     return false;
   }
@@ -39,11 +39,11 @@ function isValidateForm() {
     alert("올바르지 않은 이메일 형식입니다.");
     return false;
   }
-  if (cstype == '' | cstype == undefined | cstype == '선택하세요') {
+  if (cstype == '' || cstype == undefined || cstype == '선택하세요') {
     alert("문의 종류를 선택하세요.");
     return false;
   }
-  if (content == '') {
+  if (content == '' || content == undefined) {
     alert("문의 내용을 입력해주세요.");
     return false;
   }
