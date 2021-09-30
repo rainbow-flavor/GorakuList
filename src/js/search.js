@@ -89,7 +89,10 @@ function sendRequest(requestData) {
 }
 
 function createStoreCard(responseData) {
-  $("#detail-content").collapse('toggle');
+  const detailContent = $("#detail-content");
+  if (detailContent.hasClass("show")) {
+    $("#detail-content").collapse('toggle');
+  }
   let storesHtml = '';
   $("#store-card-list").empty();
   responseData.forEach((store) => {
