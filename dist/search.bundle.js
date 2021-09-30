@@ -24589,6 +24589,7 @@ function sendRequest(requestData) {
 }
 
 function createStoreCard(responseData) {
+  jquery__WEBPACK_IMPORTED_MODULE_0___default()("#detail-content").collapse('toggle');
   let storesHtml = '';
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#store-card-list").empty();
   responseData.forEach((store) => {

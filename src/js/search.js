@@ -89,6 +89,7 @@ function sendRequest(requestData) {
 }
 
 function createStoreCard(responseData) {
+  $("#detail-content").collapse('toggle');
   let storesHtml = '';
   $("#store-card-list").empty();
   responseData.forEach((store) => {
