@@ -125,3 +125,11 @@ build-watch 의 경우 javascript 소스에 변경사항이 있을 경우 실시
 - visual studio code (with extension : prettier)
 
 - IntelliJ
+
+
+## Contributors
+
+<img src="https://avatars.githubusercontent.com/u/26007107?v=4" width="100" height="100" /> | <img src="https://avatars.githubusercontent.com/u/61470181?v=4" width="100" height="100" /> | <img src="https://avatars.githubusercontent.com/u/51986318?v=4" width="100" height="100" />
+:---:|:---:|:---:
+[DetegiCE](https://github.com/DetegiCE) | [irostub](https://github.com/irostub) | [SieR-VR](https://github.com/SieR-VR)
+PM, Data, FE | BE, Infra | FE, BE
