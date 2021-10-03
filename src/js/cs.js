@@ -7,9 +7,27 @@ import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 
 const constants = require('./constants.js');
 
-$(function addEventListener() {
+$(function () {
+  initIncorrectCS();
   $("#btn-submit").on("click", submitForm);
 });
+
+function initIncorrectCS() {
+  if (hasUrlParam("incorrect")) {
+    const name = getUrlParam("name");
+
+    $("#cs-type").val("정보 추가/수정/삭제 요청").prop("selected", true);
+    $("#cs-content-text").val(`오락실 이름 : ${name}\n내용 제보 : `);
+  }
+}
+
+function hasUrlParam(param) {
+  return new URLSearchParams(location.search).get(param) == "";
+}
+
+function getUrlParam(param) {
+  return new URLSearchParams(location.search).get(param);
+}
 
 function submitForm() {
   const email1 = $("#cs-email1").val();

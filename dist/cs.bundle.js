@@ -24507,9 +24507,27 @@ __webpack_require__.r(__webpack_exports__);
 
 const constants = __webpack_require__(/*! ./constants.js */ "./src/js/constants.js");
 
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(function addEventListener() {
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
+  initIncorrectCS();
   jquery__WEBPACK_IMPORTED_MODULE_0___default()("#btn-submit").on("click", submitForm);
 });
+
+function initIncorrectCS() {
+  if (hasUrlParam("incorrect")) {
+    const name = getUrlParam("name");
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-type").val("정보 추가/수정/삭제 요청").prop("selected", true);
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-content-text").val(`오락실 이름 : ${name}\n내용 제보 : `);
+  }
+}
+
+function hasUrlParam(param) {
+  return new URLSearchParams(location.search).get(param) == "";
+}
+
+function getUrlParam(param) {
+  return new URLSearchParams(location.search).get(param);
+}
 
 function submitForm() {
   const email1 = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#cs-email1").val();
