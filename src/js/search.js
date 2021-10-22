@@ -80,7 +80,11 @@ function sendRequest(requestData) {
   axios.post(constants.BASE_URL + constants.SEARCH, requestData)
     .then(response => {
       console.log(response.data);
-      if (response.data.length == 0) return;
+      if (response.data.length == 0) {
+        $("#store-card-list").empty();
+        $("#store-card-list").append("<h2 id='no-searched'>No Searched</h2>");
+        return;
+      }
       createStoreCard(response.data);
     })
     .catch(error => {
