@@ -24579,7 +24579,7 @@ function searchPage() {
 }
 
 function sendRequest(requestData) {
-  axios__WEBPACK_IMPORTED_MODULE_1___default().post(constants.BASE_URL + constants.SEARCH, requestData)
+  axios__WEBPACK_IMPORTED_MODULE_1___default().post(constants.BASE_URL + constants.API + constants.SEARCH, requestData)
     .then(response => {
       console.log(response.data);
       if (response.data.length == 0) {

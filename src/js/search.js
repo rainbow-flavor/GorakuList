@@ -77,7 +77,7 @@ function searchPage() {
 }
 
 function sendRequest(requestData) {
-  axios.post(constants.BASE_URL + constants.SEARCH, requestData)
+  axios.post(constants.BASE_URL + constants.API + constants.SEARCH, requestData)
     .then(response => {
       console.log(response.data);
       if (response.data.length == 0) {
