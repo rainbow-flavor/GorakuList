@@ -39,7 +39,7 @@ function onFirstAddressChange() {
 function searchPage() {
   const city1 = $("#city1").val();
   const city2 = $("#city2").val();
-  const searchCondition = $("input[name=condition]").val();
+  const searchCondition = $("input[name=condition]:checked").val();
 
   if (city1 === '' || !city1 || city1 === "전국") {
     alert("시/도를 선택하세요.");
