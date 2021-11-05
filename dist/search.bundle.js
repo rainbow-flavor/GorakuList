@@ -24010,6 +24010,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BASE_URL": () => (/* binding */ BASE_URL),
+/* harmony export */   "API": () => (/* binding */ API),
 /* harmony export */   "SEARCH": () => (/* binding */ SEARCH),
 /* harmony export */   "CS": () => (/* binding */ CS),
 /* harmony export */   "city2List": () => (/* binding */ city2List),
@@ -24018,6 +24019,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const BASE_URL = "https://gorakulist.herokuapp.com";
 // export const BASE_URL = "http://localhost:8080";
+const API = "/api"
 const SEARCH = "/search";
 const CS = "/cs";
 
