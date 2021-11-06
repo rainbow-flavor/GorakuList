@@ -5,105 +5,174 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="/resources/gl_logo.svg" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+  <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
+  <!-- 공통 css -->
+  <!-- common.css 사용 시 수직 상단 정렬 기본 레이아웃 스타일이 적용됩니다  -->
+  <link rel="stylesheet" href="./src/css/common.css">
+
+  <!-- 커스텀 css -->
   <style>
-    body {
-      height: 100%;
+    a:link {
+      color: black;
+      text-decoration: none;
     }
 
-    body,
-    div,
-    button {
-      font-size: 1em;
+    a:visited {
+      color: black;
+      text-decoration: none;
     }
 
-    #search-combo button {
-      width: 100%;
-      text-align: center;
-    }
-
-    .container {
-      position: relative;
-      padding-top: 50px;
-      padding-bottom: 200px;
-      min-height: 100%;
+    a:hover {
+      color: black;
+      text-decoration: underline;
     }
   </style>
-  <script type="text/javascript" src="/js/addrDrop.js"></script>
-  <script type="text/javascript" src="/js/setDetail.js"></script>
-  <script type="text/javascript" src="/js/searchBtn.js"></script>
+  <!-- 
+      webpack을 통해 번들링한 js 파일을 임포트 합니다. 
+      src/js/common.js 와 src/js/index.js 를 참고해주세요. 
+    -->
+  <script src="./dist/store.bundle.js" type="application/javascript"></script>
 
-  <title>Goraku List</title>
+  <title>GorakuList :: 한국 오락실 리스트</title>
 </head>
 
 <body>
-  <!-- Navigation Bar Start -->
-  <div id="nav-placeholder"></div>
-  <!-- Navigation Bar End -->
-  <div class="container" style="min-height:89vh">
-    <div class="mt-4">
-      <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
-    </div>
-    <div class="mt-4 row align-items-center" id="store-title-div">
-      <div class="store-name w-100 text-center">
-        <h3>영등포 타임스퀘어 액션</h3>
+  <div id="app" class=" d-flex flex-column justify-content-start">
+    <!-- BEGIN navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"><img src="/src/resources/gl_logo.svg" height="30vh"> GORAKULIST</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search.html">검색</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cs.html">문의</a>
+          </li>
+        </ul>
       </div>
-      <table class="mt-4 table table-borderless">
-        <tbody>
-          <tr>
-            <th scope="row">주소</th>
-            <td>
-              <div>
-                <span>서울특별시 영등포구</span>
-                <button class="badge badge-primary badge-sm" type="button" style="border: none" data-toggle="collapse"
-                  data-target="#store-map" aria-expanded="false" aria-controls="store-map" onclick="onCollapseClick();">
-                  지도보기
-                </button>
-              </div>
-              <div id="store-map" class="collapse">
-                <div id="map" style="width:100%;height:350px"></div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">영업시간</th>
-            <td>매일 10:30~22:00</td>
-          </tr>
-          <tr>
-            <th scope="row">연락처</th>
-            <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i
-                  class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
-          </tr>
-          <tr>
-            <th scope="row">네트워크 서비스</th>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    </nav>
+    <!-- END navbar -->
 
+    <!-- BEGIN content -->
+    <div id="content" class="flex-shrink-0">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <div class="mt-4">
+              <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
+            </div>
+            <div class="mt-4 row align-items-center">
+              <div class="store-name w-100 text-center">
+                <h3 id="title-store">영등포 타임스퀘어 액션</h3>
+              </div>
+              <table class="mt-4 table table-borderless">
+                <tbody>
+                  <tr>
+                    <th scope="row">주소</th>
+                    <td>
+                      <div>
+                        <span>서울특별시 영등포구</span>
+                        <button id="btn-map" class="badge badge-primary badge-sm" type="button" style="border: none"
+                          data-toggle="collapse" data-target="#store-map" aria-expanded="false"
+                          aria-controls="store-map">
+                          지도보기
+                        </button>
+                      </div>
+                      <div id="store-map" class="collapse">
+                        <div id="map" style="width:100%;height:350px"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">영업시간</th>
+                    <td>매일 10:30~22:00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">연락처</th>
+                    <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i
+                          class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">네트워크 서비스</th>
+                    <td>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-k"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-n"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA
+                          PASSPORT</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-s"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-t"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
+                      <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-a"
+                        data-toggle="tooltip" data-bs-placement="bottom"
+                        title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <div class="mt-4" id="machine-list">
+              <span>MACHINE LIST</span>
+            </div>
+            <div class="mt-4 link-dark text-decoration-none">
+              <a id="link-cs" href="cs.html?incorrect">정보 수정 제안하기
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-chevron-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END content -->
+
+    <!-- BEGIN footer -->
+    <footer class="container-fluid py-2 bg-light mt-auto">
+      <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="flex-grow-1">
+          <img src="/src/resources/gl_logo.svg" height="20vh">
+          <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+        </div>
+        <div class="mr-2 text-right">
+          <a href="https://twitter.com/GorakuList" role="button">
+            <img src="/src/resources/twitter_logo.svg" width="30%" alt="">
+          </a>
+        </div>
+
+        <div class="d-flex flex-wrap">
+          <div class="text-nowrap">
+            <a href="/legal/toc.html"><small>이용 약관</small></a> | <a
+              href="/legal/privacy.html"><small>개인정보취급방침</small></a>
+          </div>
+          <div>
+            <small>&nbsp;&nbsp;Copyright © 2021</small>
+            <a href="/"><small>GorakuList</small></a>
+            | <small>All rights reserved</small>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
   </div>
-  <div id="footer-placeholder"></div>
-  <!-- bootstrap-select depend on bootstrap -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-  <script src="//code.jquery.com/jquery.min.js"></script>
-  <script>
-    $.get("/navbar.html", function (data) {
-      $("#nav-placeholder").replaceWith(data);
-    });
-    $.get("/footer.html", function (data) {
-      $("#footer-placeholder").replaceWith(data);
-    });
-  </script>
   <script type="text/javascript"
     src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=9bbadea7b75fbf248637eab613675741"></script>
-  <script>
+  <script type="text/javascript">
     var lat = 37.5171254;
     var lng = 126.9037993;
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -132,13 +201,6 @@
       }, 500);
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-    crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
-    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
-    crossorigin="anonymous"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 </body>
 
 </html>

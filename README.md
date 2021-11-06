@@ -2,6 +2,20 @@
 
 아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱
 
+## How to install package
+```
+//node.js 설치 후 프로젝트 루트 경로에서
+npm install
+```
+
+## How to bundling javascript source
+```
+//프로젝트 루트 경로에서
+npm run build 
+or 
+npm run build-watch
+```
+build-watch 의 경우 javascript 소스에 변경사항이 있을 경우 실시간으로 핫로드
 ## 프로젝트 구성
 
 ### 기체 JSON 구조
@@ -49,19 +63,17 @@
 
 </div></details>
 
-### 가게 JSON 구조
+### Store JSON 구조
 
 ```json
 {
-  "id": "아이디",
   "city1": "도시1 (서울, 경기 등)",
   "city2": "도시2 (양천구, 과천시 등)",
-  "name": "가게이름",
-  "branch": "프랜차이즈 명 (짱오락실, 개인 등)",
+  "name": "가게 명칭",
   "address": "전체 주소",
   "uptime": "영업시간",
   "isop": "영업여부",
-  "machine": "기체id리스트",
+  "machines": "기체id리스트",
   "contact": "전화번호",
   "twitter": "트위터",
   "website": "사이트",
@@ -69,18 +81,23 @@
 }
 ```
 
-### 가게별 기체 JSON 구조
+### Store JSON 내부, machines JSON 구조
 
 ```json
-{
-  "가게id": [
-    {
-      "id": "기체id",
-      "count": "기체 대수",
-      "desc": "특이사항"
-    }
-  ]
-}
+
+[
+  {
+    "type": "기체 대분류",
+    "typeId": "기체 고유식별 번호",
+    "machineName": "기체 명칭",
+    "count": "기체 대수",
+    "desc": "기체 설명"
+  },
+  {
+    ...
+  }
+]
+
 ```
 
 ## 개발 환경
@@ -93,8 +110,26 @@
 - Windows 10 Home
 - macOS (Catalina 10.15.7)
 
+### EXT
+- npm (7.23.0)
+- webpack (5.52.1)
+- bootstrap (4.6.0)
+- axios (0.21.4)
+- bootstrap (4.6.0)
+- bootstrap-select (1.13.18)
+- font-awesome (4.7.0)
+- jquery (3.6.0)
+
 ### IDE
 
 - visual studio code (with extension : prettier)
 
 - IntelliJ
+
+
+## Contributors
+
+<img src="https://avatars.githubusercontent.com/u/26007107?v=4" width="100" height="100" /> | <img src="https://avatars.githubusercontent.com/u/61470181?v=4" width="100" height="100" /> | <img src="https://avatars.githubusercontent.com/u/51986318?v=4" width="100" height="100" />
+:---:|:---:|:---:
+[DetegiCE](https://github.com/DetegiCE) | [irostub](https://github.com/irostub) | [SieR-VR](https://github.com/SieR-VR)
+PM, Data, FE | BE, Infra | FE, BE

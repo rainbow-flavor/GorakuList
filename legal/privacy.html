@@ -1,158 +1,179 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-            crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-      }
-      #main-thumbnail {
-        height: 50vh;
-      }
-      #without-main button {
-        width: 100%;
-      }
-      .container {
-        position: relative;
-        min-height: 100%;
-        padding-top: 50px;
-        padding-bottom: 200px;
-      }
-    </style>
+    <link rel="shortcut icon" href="/src/resources/gl_logo.svg" />
+    <!-- 공통 css -->
+    <link rel="stylesheet" href="../src/css/common.css">
 
-    <title>Goraku List</title>
+    <!-- 커스텀 css -->
+
+    <title>GorakuList :: 한국 오락실 리스트</title>
 </head>
+
 <body>
-<!-- BEGIN 네비게이션 -->
-<div id="nav-placeholder"></div>
-<!-- END 네비게이션 -->
-<!-- BEGIN 컨텐츠 -->
-<div class="container">
-    <p class="toc-title">
-    <h2 style="display:inline">GorakuList 개인정보취급방침</h2>
-    <h5 style="color:lightgrey; display:inline">2021년 MM월 DD일 신설</h5>
-    </p>
-    <p>
-    <hr>
-    </p>
-    <p class="toc-content">
-    <p class="toc-line">
-    GorakuList는 개인정보 보호법 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련된 고충을 신속하고 원활하게 처리할 수 있도록
-    다음과 같이 개인정보취급방침을 수립 및 공개합니다.
-    </p>
-    <p class="toc-line">
-    <h3>제1조(개인정보 처리목적)</h3>
-    <ol>
-        GorakuList(이하 "사이트")는 다음의 목적을 위하여 개인정보를 처리합니다.
-        처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라
-        필요한 조치를 이행할 예정입니다.
-        <li>고충처리: 민원인의 연락 통지 및 처리 결과 통지등의 목적으로 개인정보를 처리합니다.</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제2조(개인정보의 처리 및 보유기간)</h3>
-    <ol>
-        <li>"사이트"는 법령에 따른 개인정보 보유 및 이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은
-        개인정보 보유 및 이용기간 내에서 개인정보를 처리 및 보유 합니다.</li>
-        <li>고충처리: 반영구</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제3조(정보주체와 법정대리인의 권리, 의무 및 행사방법)</h3>
-    <ol>
-        <li>정보주체는 "사이트"에 대해 언제든지 개인정보 열람, 정정, 삭제, 처리정지 요구 등의 권리를 행사할 수 있습니다.</li>
-        <li>제1항에 따른 권리 행사는 "사이트"에 대해 개인정보보호법 시행령 제41조제1항에 따라 서면, 전자우편 등을 통하여
-        하실 수 있으며 "사이트"는 이에 대해 지체없이 조치하겠습니다.</li>
-        <li>제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다.
-        이 경우 "개인정보 처리 방법에 관한 고시(제2020-7호)" 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.</li>
-        <li>개인정보 열람 및 처리정지 요구는 개인정보보호법 제35조제4항, 제37조제2항에 의하여 정보주체의 권리가
-        제한될 수 있습니다.</li>
-        <li>개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는
-        그 삭제를 요구할 수 있습니다.</li>
-        <li>"사이트"는 정보주체 권리에 따른 열람의 요구, 정정, 삭제의 요구 처리 정지의 요구 시 열람 등 요구를 한 자가
-        본인이거나 정당한 대리인인지 확인합니다.</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제4조(처리하는 개인정보 항목)</h3>
-    "사이트"는 다음의 개인정보 항목을 처리하고 있습니다.
-    <ol>
-        <li>고충처리<br>- 필수항목 : 이메일</li>
-        <li>인터넷 서비스 이용과정에서 아래 개인정보 항목이 자동으로 생성되어 수집될 수 있습니다.<br>
-        - IP주소, 쿠키, MAC주소, 서비스 이용기록, 방문기록</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제5조(개인정보의 파기)</h3>
-    <ol>
-        <li>"사이트"는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다.</li>
-        <li>정보주체로부터 동의받은 개인정보 보유기간이 경과하거나 처리목적이 달성된 때 별도의 데이터베이스로 옮겨져
-        관계 법령에서 정한 일정한 기간 동안 보관한 다음 파기합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄허간
-        소각을 통하여 파기하고, 전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
-        다만, 서비스 부정 이용 기록은 "사이트"의 서비스가 종료될 때 위의 방법으로 파기됩니다.</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제6조(개인정보의 안전성 확보조치)</h3>
-    "사이트"는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.
-    <ol>
-        <li>관리적 조치 : 내부관리계획 수립 및 시행 등</li>
-        <li>기술적 조치 : 개인정보처리시스템 등의 접근권한 관리, 접근통제시스템 설치, 보안프로그램 설치 등</li>
-    </ol>
-    </p>
-    <p class="toc-line">
-    <h3>제7조(개인정보 자동 수집 장치의 설치, 운영 및 거부에 관한 사항)</h3>
-    "사이트"는 정보주체의 이용정보를 저장하고 수시로 불러오는 쿠키를 사용하지 않습니다.
-    </p>
-    <p class="toc-line">
-    <h3>제8조(개인정보 보호책임자)</h3>
-    <li>"사이트"는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 등을 위하여
-    아래와 같이 개인정보 보호 담당부서를 지정하고 있습니다.
-        <ul>
-        <li>GorakuList 팀</li>
-        <li>연락처 : gorakulist@gmail.com</li>
-        </ul>
-    </li>
-    <li>정보주체께서는 "사이트"의 서비스를 이용하시면서 발생한 개인정보 보호 관련 문의 등에 관한 사항을
-    개인정보 보호 담당부서로 문의하실 수 있습니다. "사이트"는 정보주체의 문의에 대해 답변 및 처리해드릴 것입니다.</li>
-    </p>
-    <p class="toc-line">
-    <h3>부칙</h3>
-    <ol>
-        <li>이 방침은 2021년 MM월 DD일부터 시행됩니다.</li>
-    </ol>
-    </p>
-    </p>
-</div>
-<!-- END 컨텐츠 -->
-<div id="footer-placeholder"></div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script>
-      $.get("/navbar.html", function(data){
-          $("#nav-placeholder").replaceWith(data);
-      });
-      $.get("/footer.html", function(data){
-          $("#footer-placeholder").replaceWith(data);
-      });
-    </script>
-<script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"
-></script>
+    <div id="app" class=" d-flex flex-column justify-content-start">
+        <!-- BEGIN navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/"><img src="/src/resources/gl_logo.svg" height="30vh"> GORAKULIST</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">홈 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search.html">검색</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cs.html">문의</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- END navbar -->
+
+        <!-- BEGIN content -->
+        <div id="content" class="flex-shrink-0">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                        <p class="toc-title">
+                        <h2>GorakuList 개인정보취급방침</h2>
+                        <h5 class="text-muted">2021년 MM월 DD일 신설</h5>
+                        </p>
+                        <p>
+                            <hr>
+                        </p>
+                        <p class="toc-content">
+                        <p class="toc-line">
+                            GorakuList는 개인정보 보호법 제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련된 고충을 신속하고 원활하게 처리할 수 있도록
+                            다음과 같이 개인정보취급방침을 수립 및 공개합니다.
+                        </p>
+                        <p class="toc-line">
+                        <h3>제1조(개인정보 처리목적)</h3>
+                        <ol>
+                            GorakuList(이하 "사이트")는 다음의 목적을 위하여 개인정보를 처리합니다.
+                            처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라
+                            필요한 조치를 이행할 예정입니다.
+                            <li>고충처리: 민원인의 연락 통지 및 처리 결과 통지등의 목적으로 개인정보를 처리합니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제2조(개인정보의 처리 및 보유기간)</h3>
+                        <ol>
+                            <li>"사이트"는 법령에 따른 개인정보 보유 및 이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의받은
+                                개인정보 보유 및 이용기간 내에서 개인정보를 처리 및 보유 합니다.</li>
+                            <li>고충처리: 반영구</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제3조(정보주체와 법정대리인의 권리, 의무 및 행사방법)</h3>
+                        <ol>
+                            <li>정보주체는 "사이트"에 대해 언제든지 개인정보 열람, 정정, 삭제, 처리정지 요구 등의 권리를 행사할 수 있습니다.</li>
+                            <li>제1항에 따른 권리 행사는 "사이트"에 대해 개인정보보호법 시행령 제41조제1항에 따라 서면, 전자우편 등을 통하여
+                                하실 수 있으며 "사이트"는 이에 대해 지체없이 조치하겠습니다.</li>
+                            <li>제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다.
+                                이 경우 "개인정보 처리 방법에 관한 고시(제2020-7호)" 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.</li>
+                            <li>개인정보 열람 및 처리정지 요구는 개인정보보호법 제35조제4항, 제37조제2항에 의하여 정보주체의 권리가
+                                제한될 수 있습니다.</li>
+                            <li>개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는
+                                그 삭제를 요구할 수 있습니다.</li>
+                            <li>"사이트"는 정보주체 권리에 따른 열람의 요구, 정정, 삭제의 요구 처리 정지의 요구 시 열람 등 요구를 한 자가
+                                본인이거나 정당한 대리인인지 확인합니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제4조(처리하는 개인정보 항목)</h3>
+                        "사이트"는 다음의 개인정보 항목을 처리하고 있습니다.
+                        <ol>
+                            <li>고충처리<br>- 필수항목 : 이메일</li>
+                            <li>인터넷 서비스 이용과정에서 아래 개인정보 항목이 자동으로 생성되어 수집될 수 있습니다.<br>
+                                - IP주소, 쿠키, MAC주소, 서비스 이용기록, 방문기록</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제5조(개인정보의 파기)</h3>
+                        <ol>
+                            <li>"사이트"는 개인정보 보유기간의 경과, 처리목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체없이 해당 개인정보를 파기합니다.</li>
+                            <li>정보주체로부터 동의받은 개인정보 보유기간이 경과하거나 처리목적이 달성된 때 별도의 데이터베이스로 옮겨져
+                                관계 법령에서 정한 일정한 기간 동안 보관한 다음 파기합니다. 종이에 출력된 개인정보는 분쇄기로 분쇄허간
+                                소각을 통하여 파기하고, 전자적 파일 형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제합니다.
+                                다만, 서비스 부정 이용 기록은 "사이트"의 서비스가 종료될 때 위의 방법으로 파기됩니다.</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제6조(개인정보의 안전성 확보조치)</h3>
+                        "사이트"는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취하고 있습니다.
+                        <ol>
+                            <li>관리적 조치 : 내부관리계획 수립 및 시행 등</li>
+                            <li>기술적 조치 : 개인정보처리시스템 등의 접근권한 관리, 접근통제시스템 설치, 보안프로그램 설치 등</li>
+                        </ol>
+                        </p>
+                        <p class="toc-line">
+                        <h3>제7조(개인정보 자동 수집 장치의 설치, 운영 및 거부에 관한 사항)</h3>
+                        "사이트"는 정보주체의 이용정보를 저장하고 수시로 불러오는 쿠키를 사용하지 않습니다.
+                        </p>
+                        <p class="toc-line">
+                        <h3>제8조(개인정보 보호책임자)</h3>
+                        <li>"사이트"는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 등을 위하여
+                            아래와 같이 개인정보 보호 담당부서를 지정하고 있습니다.
+                            <ul>
+                                <li>GorakuList 팀</li>
+                                <li>연락처 : gorakulist@gmail.com</li>
+                            </ul>
+                        </li>
+                        <li>정보주체께서는 "사이트"의 서비스를 이용하시면서 발생한 개인정보 보호 관련 문의 등에 관한 사항을
+                            개인정보 보호 담당부서로 문의하실 수 있습니다. "사이트"는 정보주체의 문의에 대해 답변 및 처리해드릴 것입니다.</li>
+                        </p>
+                        <p class="toc-line">
+                        <h3>부칙</h3>
+                        <ol>
+                            <li>이 방침은 2021년 MM월 DD일부터 시행됩니다.</li>
+                        </ol>
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END content -->
+
+        <!-- BEGIN footer -->
+        <footer class="container-fluid py-2 bg-light mt-auto">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="flex-grow-1">
+                    <img src="/src/resources/gl_logo.svg" height="20vh">
+                    <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+                </div>
+                <div class="mr-2 text-right">
+                    <a href="https://twitter.com/GorakuList" role="button">
+                        <img src="/src/resources/twitter_logo.svg" width="30%" alt="">
+                    </a>
+                </div>
+
+                <div class="d-flex flex-wrap">
+                    <div class="text-nowrap">
+                        <a href="/legal/toc.html"><small>이용 약관</small></a> | <a
+                            href="/legal/privacy.html"><small>개인정보취급방침</small></a>
+                    </div>
+                    <div>
+                        <small>&nbsp;&nbsp;Copyright © 2021</small>
+                        <a href="/"><small>GorakuList</small></a>
+                        | <small>All rights reserved</small>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END footer -->
+    </div>
+    <script src="../dist/common.bundle.js" type="application/javascript"></script>
 </body>
+
 </html>

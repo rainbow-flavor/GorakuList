@@ -28,15 +28,9 @@ function sendMessage() {
         return;
     }
 
-    var request = new XMLHttpRequest();
-    request.open("POST", "https://discord.com/api/webhooks/884436640523780117/hx3ytchS3Wu1WlySZeeM6cN0Z-XQAGPu-4byPc7Hy3olMF6cLfUBhZhEEdPe0s9F6cW7")
-    request.setRequestHeader('Content-type', 'application/json')
-
     var current = new Date();
 
     var embed = {
-        title: "New CS Posted!",
-        color: 9633791,
         fields: [
             {
                 name: "이메일",
@@ -52,21 +46,27 @@ function sendMessage() {
             }
         ],
         footer: {
-            text: current
+            text: current.toLocaleString()
         }
     }
 
-    var params = {
-        username: "CS Webhook",
-        embeds: [ embed ]
+    var data = {
+        embeds: [embed]
     }
 
-    try {
-        request.send(JSON.stringify(params));
-        $("#cs-form")[0].reset();
-        alert("문의가 정상적으로 접수되었습니다!");
-    } catch (error) {
-        alert("문의 접수 중 오류가 발생하였습니다.\ngorakulist@gmail.com으로 스크린샷을 보내주세요.");
-        console.error(error);
-    }
+    $.ajax({
+        url: "https://gorakulist.herokuapp.com/cs",
+        data: JSON.stringify(data),
+        method: "POST",
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        crossOrigin: true
+    })
+        .done(function () {
+            $("#cs-form")[0].reset();
+            $('#cs-modal-success').modal('toggle');
+        })
+        .fail(function () {
+            $('#cs-modal-fail').modal('toggle');
+        });
 }
