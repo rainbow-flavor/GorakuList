@@ -3,8 +3,7 @@ module.exports = {
         search: './src/js/search.js',
         store: './src/js/store.js',
         cs: './src/js/cs.js',
-        common: './src/js/common.js',
-        constants: './src/js/constants.js'
+        common: './src/js/common.js'
     },
     output: {
         path: __dirname + '/dist',
