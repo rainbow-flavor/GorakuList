@@ -1,25 +1,47 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+/** @typedef {import('webpack').Configuration} WebpackConfig */
+
+/** @type WebpackConfig */
 module.exports = {
-    entry: {
-        search: './src/js/search.js',
-        store: './src/js/store.js',
-        cs: './src/js/cs.js',
-        common: './src/js/common.js'
-    },
-    output: {
-        path: __dirname + '/dist',
-        filename: '[name].bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
+  mode: 'development',
+  entry: './src/index.tsx',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
         ]
-    },
-    mode: 'development',
-    devtool: 'source-map'
+      },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    })
+  ],
+  devtool: 'source-map'
 };

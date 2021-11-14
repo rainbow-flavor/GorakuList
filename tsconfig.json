@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "ES6",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "declaration": false,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "baseUrl": "./src",
+    }
+}

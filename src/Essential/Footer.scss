@@ -1,0 +1,43 @@
+footer {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    background-color: #eee;
+    border-radius: 25px 25px 0 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .logo-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+
+        .gl-logo {
+            margin: 0 1rem 0 1rem;
+        }
+
+        .twitter-logo {
+            margin: 10px;
+        }
+    }
+
+    .privacy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        a {
+            color: #111;
+            text-decoration: none;
+        }
+
+        .copyright {
+            margin: 0 1rem 0 0;
+        }
+    }
+}
