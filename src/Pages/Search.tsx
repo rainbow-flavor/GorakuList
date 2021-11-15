@@ -7,21 +7,29 @@ import gameList from "../data/gameList.json";
 
 import "./Search.scss";
 
-const SearchDetails: React.FC = () => {
+const SearchDetails: React.FC<{show: boolean}> = ({ show }) => {
+  const gameGenreToKorean = {
+    rhythm: "리듬",
+    fighting: "격투",
+    racing: "레이싱",
+    shooting: "슈팅",
+    action: "액션",
+    casual: "퍼즐/캐주얼/스포츠",
+    etc: "기타"
+  }
+
   return (
-    <div className="collapse">
+    <div className="collapse" style={{ animation: `${show ? "slideDown" : "slideUp"} 1s ease-in-out forwards` }}>
       <div className="and-or">
         검색 조건
         <label><input id="or" type="radio" name="and-or"/>or</label>
         <label><input id="and" type="radio" name="and-or"/>and</label>
       </div>
-      <ul>
+      <ul className="game-list">
         {Object.entries(gameList).map(([key, value]) => (
-          <li key={key}>
-            <div>
-              <span className={key}>{key}</span>
-            </div>
-            <div>
+          <li key={key} className="game-item">
+            <span className={`${key} game-genre`}>{gameGenreToKorean[key]}</span>
+            <div className="game-detail-list">
               {value.map((game) => (
                 <label key={game.id}>
                   <input type="checkbox" name={game.name}/>
@@ -74,7 +82,7 @@ export default class Search extends React.Component<{}, {showDetail: boolean}> {
           >
             상세 검색
           </button>
-          {this.state.showDetail && <SearchDetails />}
+          <SearchDetails show={this.state.showDetail}/>
           <div className="search-results">
             <h2 id="no-searched">No Searched</h2>
           </div>

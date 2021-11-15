@@ -1,88 +1,168 @@
 #search {
-    .container {
-        padding: 5vw;
+  .container {
+    padding: 5vw;
 
-        #search-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .select-options {
-            display: flex;
-            flex-direction: row;
-
-            select, button {
-                width: 30vw;
-                margin-right: 0.5vw;
-                height: 2.5rem;
-
-                border-radius: 5px;
-                border: 0;
-                padding-left: 1rem;
-                padding-right: 1rem;
-
-                font-size: 1.2rem;
-                
-                background: #e9ecef;
-            }
-
-            button:hover {
-                background: #d4d4d4;
-            }
-        }
-
-        .btn-open-detail {
-            width: 89.5vw;
-            margin-top: 0.5vw;
-            height: 2.5rem;
-
-            border-radius: 5px;
-            border: 0;
-            
-            font-size: 1.2rem;
-            background: #e9ecef;
-
-            &:hover {
-                background: #d4d4d4;
-            }
-        }
-
-        .collapse {
-            width: 89.5vw;
-            border-radius: 5px;
-
-            background-color: #e9ecef;
-
-            .and-or {
-                display: flex;
-                flex-direction: row;
-
-                padding: 30px 0 0 30px;
-
-                margin-top: 0.5vw;
-                margin-bottom: 0.5vw;
-
-                #and {
-                    font-size: 1.2rem;
-                    color: #6c757d;
-                }
-
-                #or {
-                    font-size: 1.2rem;
-                    color: #6c757d;
-                }
-            }
-        }
-
-        .search-results {
-            width: 100%;
-            align-content: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            margin-top: 1rem;
-        }
+    #search-title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
     }
+
+    .select-options {
+      display: flex;
+      flex-direction: row;
+
+      select,
+      button {
+        width: 30vw;
+        margin-right: 0.5vw;
+        height: 2.5rem;
+
+        border-radius: 5px;
+        border: 0;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        font-size: 1.2rem;
+
+        background: #e9ecef;
+      }
+
+      button:hover {
+        background: #d4d4d4;
+      }
+    }
+
+    .btn-open-detail {
+      width: 89.5vw;
+      margin-top: 0.5vw;
+      height: 2.5rem;
+
+      border-radius: 5px;
+      border: 0;
+
+      font-size: 1.2rem;
+      background: #e9ecef;
+
+      &:hover {
+        background: #d4d4d4;
+      }
+    }
+
+    .collapse {
+      @keyframes slideDown {
+        from {
+          height: 0%;
+        }
+        to {
+          height: 100%;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          height: 100%;
+        }
+        to {
+          height: 0%;
+        }
+      }
+
+      width: 85.5vw !important;
+      padding: 2vw;
+      margin-top: 1vh;
+      overflow: hidden;
+
+      .and-or {
+        display: flex;
+        flex-direction: row;
+
+        padding-left: 30px;
+        margin-top: 0.5vw;
+        margin-bottom: 0.5vw;
+
+        #and {
+          font-size: 1.2rem;
+          color: #6c757d;
+        }
+
+        #or {
+          font-size: 1.2rem;
+          color: #6c757d;
+        }
+      }
+
+      .game-list {
+        list-style: none;
+        padding: 0 30px 0 30px;
+
+        .game-item {
+          border-top: 1px solid #aaa;
+          margin-top: 1vh;
+          margin-bottom: 1vh;
+          padding-top: 1vh;
+
+          .game-genre {
+            font-size: 0.75rem;
+            color: white;
+            font-weight: bold;
+
+            padding: 0 4px 0 4px;
+            border-radius: 5px;
+          }
+
+          .rhythm {
+            background-color: #dc3545;
+          }
+
+          .fighting {
+            background-color: #ffc107;
+          }
+
+          .racing {
+            background-color: #28a745;
+          }
+
+          .shooting {
+            background-color: #007bff;
+          }
+
+          .action {
+            background-color: #17a2b8;
+          }
+
+          .casual {
+            background-color: #6c757d;
+          }
+
+          .etc {
+            background-color: #000;
+          }
+
+          .game-detail-list {
+            display: block;
+
+            label {
+              position: relative;
+              align-items: center;
+              padding-left: 0;
+              margin-right: 0.75rem;
+
+              display: inline-flex;
+            }
+          }
+        }
+      }
+    }
+
+    .search-results {
+      width: 100%;
+      align-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
 }
