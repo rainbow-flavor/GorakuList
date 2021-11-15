@@ -52,26 +52,26 @@
     .collapse {
       @keyframes slideDown {
         from {
-          height: 0%;
+          height: 0vh;
         }
         to {
-          height: 100%;
+          height: 100vh;
         }
       }
 
       @keyframes slideUp {
         from {
-          height: 100%;
+          height: 100vh;
         }
         to {
-          height: 0%;
+          height: 0vh;
         }
       }
 
       width: 85.5vw !important;
-      padding: 2vw;
       margin-top: 1vh;
       overflow: hidden;
+      height: 100vh;
 
       .and-or {
         display: flex;
