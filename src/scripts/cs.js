@@ -1,11 +1,10 @@
 import $ from "jquery";
 import axios from "axios";
+import * as constants from './constants';
 import './common'
 
 import 'bootstrap-select/dist/js/bootstrap-select';
 import 'bootstrap-select/dist/css/bootstrap-select.min.css';
-
-const constants = require('./constants.js');
 
 $(function () {
   initIncorrectCS();

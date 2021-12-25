@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./resources/gl_logo.svg" />
+  <title>GorakuList :: 한국 오락실 리스트</title>
+</head>
+
+<body>
+  <div id="app" class=" d-flex flex-column justify-content-start">
+    <!-- BEGIN navbar -->
+    <%= require('html-loader!./header.html').default %>
+    <!-- END navbar -->
+
+    <!-- BEGIN content -->
+    <div id="content" class="flex-shrink-0">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+              <img class="d-block" src="./resources/404_logo.png" width="30%" alt="">
+              <h1>404</h1>
+              <h2>Something went wrong</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END content -->
+
+    <!-- BEGIN footer -->
+    <%= require('html-loader!./footer.html').default %>
+    <!-- END footer -->
+  </div>
+</body>
+
+</html>

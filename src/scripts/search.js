@@ -1,11 +1,10 @@
-import $, { data } from "jquery";
+import $ from "jquery";
 import axios from "axios";
+import * as constants from "./constants";
 import './common'
 
 import 'bootstrap-select/dist/js/bootstrap-select';
 import 'bootstrap-select/dist/css/bootstrap-select.min.css';
-
-const constants = require('./constants.js');
 
 $(function () {
   constants.gameListAll.forEach((gameListCategorized, index) => {
@@ -100,7 +99,7 @@ function createStoreCard(responseData) {
   let storesHtml = '';
   $("#store-card-list").empty();
   responseData.forEach((store) => {
-    $.get("../store-card.html", function (data) {
+    $.get("/store-card.html", function (data) {
       if (store.isop !== null) data = data.replace('{store-opened-status}', constants.openedElementList[store.isop ? 0 : 1]);
       else data = data.replace('{store-opened-status}', constants.openedElementList[3]);
 

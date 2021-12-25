@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./resources/gl_logo.svg" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JY8V6BBF3T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-JY8V6BBF3T');
+  </script>
+
+  <title>GorakuList :: 한국 오락실 리스트</title>
+</head>
+
+<body>
+  <div id="app" class=" d-flex flex-column justify-content-start">
+    <!-- BEGIN navbar -->
+    <%= require('html-loader!./header.html').default %>
+    <!-- END navbar -->
+
+    <!-- BEGIN content -->
+    <div id="content" class="flex-shrink-0">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <div class="jumbotron">
+              <h5>GorakuList 에 오신걸 환영합니다.</h5>
+              <p class="lead"><small>GorakuList는 한국 오락실 리스트 사이트입니다.</small></p>
+              <hr class="my-4">
+              <p>지역별, 기체별 검색을 진행하실 수 있습니다.</p>
+              <p class="lead">
+                <a class="btn btn-primary btn-lg" href="/search.html" role="button">오락실 찾기!</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END content -->
+
+    <!-- BEGIN footer -->
+    <%= require('html-loader!./footer.html').default %>
+    <!-- END footer -->
+  </div>
+</body>
+
+</html>
