@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default-layout(activeTab='home')}">
+<body>
+<div layout:fragment="content" class="content-center" id="content">
+    <div class="container">
+        <div class="jumbotron py-5">
+            <h5>GorakuList 에 오신걸 환영합니다.</h5>
+            <p class="lead"><small>GorakuList는 한국 오락실 목록 사이트입니다.</small></p>
+            <hr class="my-4">
+            <p>지역별, 기체별 검색을 진행하실 수 있습니다.</p>
+        </div>
+        <a class="btn btn-block btn-primary btn-lg" th:href="@{/store}" role="button">오락실 찾기!</a>
+    </div>
+</div>
+</body>
+</html>

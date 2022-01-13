@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default-layout}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div layout:fragment="content" id="content" class="flex-shrink-0">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img class="d-block" th:src="@{/images/404_logo.png}" width="30%" alt="">
+                    <h1>4xx</h1>
+                    <h2>Something went wrong</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
