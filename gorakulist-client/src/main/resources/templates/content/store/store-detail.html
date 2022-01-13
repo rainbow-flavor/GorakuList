@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default-layout(activeTab='store')}">
+<body>
+<div layout:fragment="content" id="content">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col">
+                <div class="mt-4">
+                    <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
+                </div>
+                <div class="mt-4 row align-items-center">
+                    <div class="store-name w-100 text-center">
+                        <h3 id="title-store">영등포 타임스퀘어 액션</h3>
+                    </div>
+                    <table class="mt-4 table table-borderless">
+                        <tbody>
+                        <tr>
+                            <th scope="row">주소</th>
+                            <td>
+                                <div>
+                                    <span>서울특별시 영등포구</span>
+                                    <button id="btn-map" class="badge badge-primary badge-sm" type="button" style="border: none"
+                                            data-toggle="collapse" data-target="#store-map" aria-expanded="false"
+                                            aria-controls="store-map">
+                                        지도보기
+                                    </button>
+                                </div>
+                                <div id="store-map" class="collapse">
+                                    <div id="map" style="width:100%;height:350px"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">영업시간</th>
+                            <td>매일 10:30~22:00</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">연락처</th>
+                            <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i
+                                    class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">네트워크 서비스</th>
+                            <td>
+                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-k"
+                                        data-toggle="tooltip" data-bs-placement="bottom"
+                                        title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
+                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-n"
+                                        data-toggle="tooltip" data-bs-placement="bottom"
+                                        title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA
+                          PASSPORT</span></button>
+                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-s"
+                                        data-toggle="tooltip" data-bs-placement="bottom"
+                                        title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
+                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-t"
+                                        data-toggle="tooltip" data-bs-placement="bottom"
+                                        title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
+                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-a"
+                                        data-toggle="tooltip" data-bs-placement="bottom"
+                                        title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="mt-4" id="machine-list">
+                    <span>MACHINE LIST</span>
+                </div>
+                <div class="mt-4 link-dark text-decoration-none">
+                    <a id="link-cs" th:href="@{/cs}">정보 수정 제안하기
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                        </svg> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

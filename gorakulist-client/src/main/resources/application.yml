@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost/gorakulist_db
+    username: gorakulist_admin
+    password: suibeatsaber151
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: debug
+
+app:
+  discord:
+    url: https://discord.com/api/webhooks/930756690486386758/CfFZ2XeUajgTXt85GyP1KDzveXpekEOYbF7RdkQEEXTjvyxW71RLP2IlCv9U3NZw5uSc
+
+server:
+  port: 8081
