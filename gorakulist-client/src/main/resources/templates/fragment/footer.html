@@ -28,7 +28,7 @@
                     th:href="@{/legal/privacy}"><small>개인정보취급방침</small></a>
             </div>
             <div>
-                <small>&nbsp;&nbsp;Copyright © 2021</small>
+                <small>&nbsp;&nbsp;Copyright © 2021 - <span th:text="${#dates.year(#dates.createNow())}"></span></small>
                 <a href="/"><small>GorakuList</small></a>
                 | <small>All rights reserved</small>
             </div>
