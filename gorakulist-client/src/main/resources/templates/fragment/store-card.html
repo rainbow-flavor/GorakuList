@@ -2,7 +2,7 @@
 <body>
 <div th:fragment="simple-store-card(searchStore)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(id=${searchStore.id})}'|">
     <div class="row no-gutters">
-        <div class="col-md-4">
+        <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
         </div>
         <div class="col-md-8">
@@ -35,7 +35,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <p class="mb-0">
+            <p class="mb-0 text-center">
                 <small th:each="machine, status : ${searchStore.machines}" th:if="${status.index < 5}"
                        class="card-text" id="store-card-machines">
                     <span th:text="${machine.shortName}" class="badge bg-info text-white"></span>
