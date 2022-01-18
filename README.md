@@ -1,4 +1,4 @@
-# GorakuList :joystick:
+# GorakuList :joystick:[![CircleCI](https://circleci.com/gh/rainbow-flavor/GorakuList/tree/master.svg?style=svg)](https://circleci.com/gh/rainbow-flavor/GorakuList/tree/master)
 
 아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱
 
