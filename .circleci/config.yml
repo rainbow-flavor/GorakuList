@@ -4,14 +4,12 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0-node
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "b0:8e:d5:34:e3:62:a5:4e:44:b8:8b:e0:12:db:31:ac"
+      - add_ssh_keys
       - checkout
       - run: ls ~/.ssh/
       - run: ./mvnw clean install
       - run: |
-          echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDg2/vy5aCjssrjYAm7A9oUtrp8czVJxYuJQLtfpPASk82qQ4NibZmpxl3A+aFi29qX2/TPI/oRu7HwTKCpmTVjMl7u85b2fl+rMx5JskV/3OGC/PheSQBst05TCr0S5gTVe8roZubxbGV46SuWcqEptB+rRWBWsZ+o8QpqkuvT8UdNrsvyos6OfmaGamgJT9P8ItMlYmBYU5NjiBLIDgwh4JFr0wKhpU6YvCpitKdgBiNftBTQlJ+20Q1KTF9x0rXdstcrGdcPn8f9efrE6j0XOipjl72o1psPmyhJaciuuXsE2rc8Du2BiH/H2+kNTMPgFBBDi3/t75TBSZl5DPEpftnMHTq1ZoPRu8j1GCHVKWznU/u1/eHXq+Fb3lyl9PJhxInbvwvEY5gL78y3IS/NeSP/jhMYjjOf6RgiG0/cBeqGD7dUEnNsTRk0z9kGd2bHsmVdw22+BoMW2duy8HzBl1W/lG9ZANpT27x8hSCaZOJNl9N1o8UFCpEDz6U2Ac8= irostub' >> ~/.ssh/known_hosts
+          echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKMQgGOFHMAdBnLdLys+EizhdlY94pRMQ9+MV28afaX0gIbzGkIq1EYHdjOoznrlHC2s6AVwMzkpcI8HSc1G1CsPo5zeDfV2qPLKmEP60vWGHjSztHGc6a0Pong9NSXDWDshw6/XumvSMGYRnuF8rh/haW6FQ2+Gx0guCQ4sYzyCMGK/LV+CKCin6hWO4MXzKIIeVez348lRDdaeUfxiB17EBiP+ZvyN4nCYb5sW68MQwOkdH8Gmi5WWmS4RO/+KZjoL3N0R7BYpviQFKlaEmvIEGGM4Ax1jzPOt3qccRTLEcgQEZdbnSSZXmUwPc743xrljxSPrF/48q0AaemWpuQ5tyugFD6Vw0pJwHna+P1JSqXKDEblwm2ZutUb7Rtq02ly/4YiCAMss2H3mllcM7XuPrucuffrjgmyLw+MOk+PDS8y6NBh99IP3ueNruQqBSQaXeaFIY0PCb9tE3Dt9a5yOBcSsqp3zfXco4b+1kn4CYJj8Dl5bEHs0WzNsIVWZs= irostub' >> ~/.ssh/known_hosts
           sudo scp ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${USER}@${RAINBOW_SERVER}:${WORKDIR}gorakulist-client-0.0.2.jar
 workflows:
   build:
