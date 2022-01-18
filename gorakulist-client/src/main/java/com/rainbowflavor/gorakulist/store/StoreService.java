@@ -32,8 +32,8 @@ public class StoreService {
                 .stream().map(SearchStoreDto::new).collect(Collectors.toList());
     }
 
-//    public StoreDetailDto getStoreDetail(Long id) {
-//        Store store = storeRepository.findAllRelationById(id).orElseThrow(StoreNotFoundException::new);
-//
-//    }
+    public StoreDetailDto getStoreDetail(Long id) {
+        Store store = storeRepository.findAllRelationById(id).orElseThrow(StoreNotFoundException::new);
+        return new StoreDetailDto(store);
+    }
 }

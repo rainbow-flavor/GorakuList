@@ -3,13 +3,9 @@ $(function addEventListener() {
     $("#city1").on("change", onFirstAddressChange);
 });
 
-function isValid(city1, city2, selectedGame){
+function isValid(city1, selectedGame){
     if (city1 === '' || !city1 || city1 === "전국") {
         alert("시/도를 선택하세요.");
-        return false;
-    }
-    if (city2 === '' || !city2 || city2 === "전체") {
-        alert("시/군/구를 선택하세요.");
         return false;
     }
     if (selectedGame.length > 5) {
@@ -21,14 +17,13 @@ function isValid(city1, city2, selectedGame){
 
 function submitForm(){
     const city1 = $("#city1").val();
-    const city2 = $("#city2").val();
     const selectedGame = [];
 
     $("input[name=gameCheckbox]:checked").each(function(){
         selectedGame.push(this.value);
     });
 
-    if(!isValid(city1, city2, selectedGame)){
+    if(!isValid(city1, selectedGame)){
         return;
     }
 

@@ -2,6 +2,7 @@ package com.rainbowflavor.gorakulist.store;
 
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
 import com.rainbowflavor.gorakulist.store.dto.SearchStoreDto;
+import com.rainbowflavor.gorakulist.store.dto.StoreDetailDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +39,7 @@ public class StoreController {
         return "content/store/store";
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             log.warn("[StoreController] binding result={}",bindingResult);
@@ -54,7 +55,9 @@ public class StoreController {
     }
 
     @GetMapping("/detail")
-    public String storeDetailView() {
+    public String storeDetailView(@RequestParam Long storeId, Model model) {
+        StoreDetailDto storeDetail = storeService.getStoreDetail(storeId);
+        model.addAttribute("storeDetail", storeDetail);
         return "content/store/store-detail";
     }
 
