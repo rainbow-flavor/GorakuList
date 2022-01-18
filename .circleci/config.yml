@@ -4,7 +4,6 @@ jobs:
     docker:
       - image: cimg/openjdk:11.0-node
     steps:
-      - checkout
       - add_ssh_keys:
           fingerprints:
             - "b0:8e:d5:34:e3:62:a5:4e:44:b8:8b:e0:12:db:31:ac"
