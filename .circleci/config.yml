@@ -3,8 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:8-jdk-stretch
-      - image: circleci/node@5.0.0
-
     steps:
       - checkout
       - run: ./mvnw clean install
