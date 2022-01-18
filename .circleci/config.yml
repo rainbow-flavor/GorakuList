@@ -10,7 +10,7 @@ jobs:
       - run: ./mvnw clean install
       - run: |
           echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKMQgGOFHMAdBnLdLys+EizhdlY94pRMQ9+MV28afaX0gIbzGkIq1EYHdjOoznrlHC2s6AVwMzkpcI8HSc1G1CsPo5zeDfV2qPLKmEP60vWGHjSztHGc6a0Pong9NSXDWDshw6/XumvSMGYRnuF8rh/haW6FQ2+Gx0guCQ4sYzyCMGK/LV+CKCin6hWO4MXzKIIeVez348lRDdaeUfxiB17EBiP+ZvyN4nCYb5sW68MQwOkdH8Gmi5WWmS4RO/+KZjoL3N0R7BYpviQFKlaEmvIEGGM4Ax1jzPOt3qccRTLEcgQEZdbnSSZXmUwPc743xrljxSPrF/48q0AaemWpuQ5tyugFD6Vw0pJwHna+P1JSqXKDEblwm2ZutUb7Rtq02ly/4YiCAMss2H3mllcM7XuPrucuffrjgmyLw+MOk+PDS8y6NBh99IP3ueNruQqBSQaXeaFIY0PCb9tE3Dt9a5yOBcSsqp3zfXco4b+1kn4CYJj8Dl5bEHs0WzNsIVWZs= irostub' >> ~/.ssh/known_hosts
-          sudo scp ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${USER}@${RAINBOW_SERVER}:${WORKDIR}gorakulist-client-0.0.2.jar
+          scp ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${USER}@${RAINBOW_SERVER}:${WORKDIR}gorakulist-client-0.0.2.jar
 workflows:
   build:
     jobs:
