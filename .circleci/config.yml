@@ -2,7 +2,13 @@ version: 2 # use CircleCI 2.0 #
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:11-jdk-stretch
+      - image: cimg/openjdk:11.0-node
     steps:
       - checkout
       - run: ./mvnw clean install
+      - run: scp ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${RAINBOW_SERVER}:${WORKDIR}/gorakulist-client-0.0.1.jar
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
