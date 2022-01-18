@@ -9,11 +9,12 @@
         <div class="row justify-content-center align-items-center">
             <div class="col">
                 <div class="mt-4">
-                    <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500" width="100%" />
+                    <img src="https://pbs.twimg.com/profile_banners/1013379587219181568/1592128127/1500x500"
+                         width="100%"/>
                 </div>
                 <div class="mt-4 row align-items-center">
                     <div class="store-name w-100 text-center">
-                        <h3 id="title-store">영등포 타임스퀘어 액션</h3>
+                        <h3 th:text="${storeDetail.name}" id="title-store">영등포 타임스퀘어 액션</h3>
                     </div>
                     <table class="mt-4 table table-borderless">
                         <tbody>
@@ -21,8 +22,9 @@
                             <th scope="row">주소</th>
                             <td>
                                 <div>
-                                    <span>서울특별시 영등포구</span>
-                                    <button id="btn-map" class="badge badge-primary badge-sm" type="button" style="border: none"
+                                    <span th:text="${storeDetail.address}">서울특별시 영등포구</span>
+                                    <button id="btn-map" class="badge badge-primary badge-sm" type="button"
+                                            style="border: none"
                                             data-toggle="collapse" data-target="#store-map" aria-expanded="false"
                                             aria-controls="store-map">
                                         지도보기
@@ -35,30 +37,39 @@
                         </tr>
                         <tr>
                             <th scope="row">영업시간</th>
-                            <td>매일 10:30~22:00</td>
+                            <td th:text="${storeDetail.uptime}">매일 10:30~22:00</td>
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
-                            <td><i class="fa fa-phone"></i>02-2638-2888~9 <a href="https://twitter.com/action9872"><i
-                                    class="fa fa-twitter"></i>action9872</a> <i class="fa fa-globe"></i></td>
+                            <td><i class="fa fa-phone"></i><span
+                                    th:text="${storeDetail.contact}">02-2638-2888~9</span><a
+                                    href="https://twitter.com/action9872"><i
+                                    class="fa fa-twitter"></i><span
+                                    th:text="${storeDetail.twitter}">action9872</span></a> <i class="fa fa-globe"></i>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row">네트워크 서비스</th>
                             <td>
-                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-k"
+                                <button th:if="${storeDetail.networkType.k}" type="button"
+                                        class="badge rounded-pill bg-success text-light border-0" id="network-k"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
-                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-n"
+                                <button th:if="${storeDetail.networkType.n}" type="button"
+                                        class="badge rounded-pill bg-success text-light border-0" id="network-n"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA
                           PASSPORT</span></button>
-                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-s"
+                                <button th:if="${storeDetail.networkType.s}" type="button"
+                                        class="badge rounded-pill bg-success text-light border-0" id="network-s"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
-                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-t"
+                                <button th:if="${storeDetail.networkType.t}" type="button"
+                                        class="badge rounded-pill bg-success text-light border-0" id="network-t"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
-                                <button type="button" class="badge rounded-pill bg-success text-light border-0" id="network-a"
+                                <button th:if="${storeDetail.networkType.a}" type="button"
+                                        class="badge rounded-pill bg-success text-light border-0" id="network-a"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
                             </td>
@@ -69,18 +80,62 @@
                 </div>
                 <div class="mt-4" id="machine-list">
                     <span>MACHINE LIST</span>
+                    <div th:each="machine : ${storeDetail.machineDetailDtos}">
+                        <h4 th:text="${machine.machineId}"></h4>
+                        <span th:text="${machine.name}"></span>
+                    </div>
                 </div>
                 <div class="mt-4 link-dark text-decoration-none">
-                    <a id="link-cs" th:href="@{/cs}">정보 수정 제안하기
+                    <a id="link-cs" th:href="@{/cs/incorrect(storeName=${storeDetail.name})}">정보 수정 제안하기
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-chevron-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
-                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg> </a>
+                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<th:block layout:fragment="custom-script">
+    <script type="text/javascript"
+            src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=162ae82f112d5657bfca3b64694c2ac0"></script>
+    <script th:inline="javascript" type="text/javascript">
+        /*<![CDATA[*/
+        var lat = /*[[${storeDetail.latitude}]]*/;
+        var lng = /*[[${storeDetail.longitude}]]*/;
+        /*]]>*/
+
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+            mapOption = {
+                center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 마커가 표시될 위치입니다
+        var markerPosition = new kakao.maps.LatLng(lat, lng);
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+        function onCollapseClick() {
+            setTimeout(() => {
+                map.relayout();
+                map.setCenter(new kakao.maps.LatLng(lat, lng));
+            }, 500);
+        }
+
+        $('#btn-map').on('click', onCollapseClick);
+    </script>
+</th:block>
 </body>
+
 </html>

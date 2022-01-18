@@ -1,6 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
-<div th:fragment="simple-store-card(searchStore)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(id=${searchStore.id})}'|">
+<div th:fragment="simple-store-card(searchStore)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(storeId=${searchStore.id})}'|">
     <div class="row no-gutters">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
