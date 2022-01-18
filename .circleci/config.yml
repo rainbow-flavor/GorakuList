@@ -1,11 +1,10 @@
 version: 2 # use CircleCI 2.0 #
 jobs:
   build:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+      - image: circleci/node@5.0
 
-  docker:
-  - image: circleci/openjdk:8-jdk-stretch
-  - image: circleci/node@5.0
-
-  steps:
-  - checkout
-  - run: ./mvnw clean install
+    steps:
+      - checkout
+      - run: ./mvnw clean install
