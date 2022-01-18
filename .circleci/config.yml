@@ -1,4 +1,4 @@
-version: 2 # use CircleCI 2.0 #
+version: 2.1
 jobs:
   build:
     docker:
@@ -7,11 +7,10 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "91:76:68:69:af:77:ec:ce:82:62:47:1d:9b:91:ec:2a"
+            - '91:76:68:69:af:77:ec:ce:82:62:47:1d:9b:91:ec:2a'
       - run: ./mvnw clean install
       - run: sudo scp ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${USER}@${RAINBOW_SERVER}:${WORKDIR}gorakulist-client-0.0.2.jar
 workflows:
-  version: 2
   build:
     jobs:
       - build
