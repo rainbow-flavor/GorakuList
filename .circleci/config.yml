@@ -8,8 +8,9 @@ jobs:
           fingerprints:
             - "b0:8e:d5:34:e3:62:a5:4e:44:b8:8b:e0:12:db:31:ac"
       - checkout
+      - run: ls ~/.ssh/
       - run: ./mvnw clean install
-      - run: sudo scp -o StrictHostKeyChecking=no ./gorakulist-client/target/gorakulist-client-0.0.1.jar $USER@$RAINBOW_SERVER:${WORKDIR}gorakulist-client-0.0.2.jar
+      - run: sudo scp -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./gorakulist-client/target/gorakulist-client-0.0.1.jar ${USER}@${RAINBOW_SERVER}:${WORKDIR}gorakulist-client-0.0.2.jar
 workflows:
   build:
     jobs:
