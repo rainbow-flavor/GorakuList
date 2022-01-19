@@ -37,7 +37,8 @@
                         </tr>
                         <tr>
                             <th scope="row">영업시간</th>
-                            <td th:text="${storeDetail.uptime}">매일 10:30~22:00</td>
+                            <td th:text="${storeDetail.uptime}" th:if="${!#strings.isEmpty(storeDetail.uptime)}">매일 10:30~22:00</td>
+                            <td th:if="${#strings.isEmpty(storeDetail.uptime)}">정보 없음</td>
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
