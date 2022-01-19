@@ -14,7 +14,7 @@
             <h5 class="display-5" id="search-title">오락실 검색</h5>
             <p class="lead" id="search-subtitle">아래에 조건을 입력해주세요</p>
         </div>
-        <form id="searchRequestForm" th:action="@{/store/search}" th:object="${searchRequest}" method="post">
+        <form id="searchRequestForm" th:action="@{/store/search}" method="post">
             <div id="search-combo" class="row justify-content-between align-items-center">
                 <div class="col-4 pr-1">
                     <select id="city1" name="city1" class="selectpicker" data-width="100%">
