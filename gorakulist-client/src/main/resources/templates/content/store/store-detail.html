@@ -42,11 +42,18 @@
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
-                            <td><i class="fa fa-phone"></i><span
-                                    th:text="${storeDetail.contact}">02-2638-2888~9</span><a
-                                    href="https://twitter.com/action9872"><i
-                                    class="fa fa-twitter"></i><span
-                                    th:text="${storeDetail.twitter}">action9872</span></a> <i class="fa fa-globe"></i>
+                            <td>
+                                <a th:href="@{|tel:${storeDetail.contact}|}"
+                                    th:if="${!#strings.isEmpty(storeDetail.contact)}">
+                                    <i class="fa fa-phone"></i>
+                                    <span th:text="${storeDetail.contact}">02-2638-2888~9</span>
+                                </a>
+                                <a th:href="@{|https://twitter.com/${storeDetail.twitter}|}"
+                                   th:if="${!#strings.isEmpty(storeDetail.twitter)}">
+                                    <i class="fa fa-twitter"></i>
+                                    <span th:text="${storeDetail.twitter}">action9872</span>
+                                </a>
+                                <i class="fa fa-globe"></i>
                             </td>
                         </tr>
                         <tr>
