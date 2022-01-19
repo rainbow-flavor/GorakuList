@@ -36,10 +36,12 @@
     <div class="row">
         <div class="col-md-12">
             <p class="mb-0 text-center">
-                <small th:each="machine, status : ${searchStore.machines}" th:if="${status.index < 5}"
+                <span th:each="machine, status : ${searchStore.machines}" th:if="${status.index < 5}"
                        class="card-text" id="store-card-machines">
                     <span th:text="${machine.shortName}" class="badge bg-info text-white"></span>
-                </small>
+                </span>
+                <span th:text="|+${#lists.size(searchStore.machines)-5}|" th:if="${#lists.size(searchStore.machines) > 5}"
+                      class="badge bg-secondary text-white"></span>
             </p>
         </div>
     </div>
