@@ -48,21 +48,24 @@
                                              ${#strings.isEmpty(storeDetail.website)}">
                                     정보 없음
                                 </span>
-                                <a th:href="@{|tel:${storeDetail.contact}|}"
-                                    th:if="${!#strings.isEmpty(storeDetail.contact)}">
-                                    <i class="fa fa-phone"></i>
-                                    <span th:text="${storeDetail.contact}">02-2638-2888~9</span>
-                                </a>
-                                <a th:href="@{|https://twitter.com/${storeDetail.twitter}|}"
-                                   th:if="${!#strings.isEmpty(storeDetail.twitter)}">
-                                    <i class="fa fa-twitter"></i>
-                                    <span th:text="${storeDetail.twitter}">action9872</span>
-                                </a>
-                                <a th:href="${storeDetail.website}"
-                                   th:if="${!#strings.isEmpty(storeDetail.website)}">
-                                    <i class="fa fa-globe"></i>
-                                    <span th:text="${storeDetail.website}">action9872</span>
-                                </a>
+                                <div th:if="${!#strings.isEmpty(storeDetail.contact)}">
+                                    <a th:href="@{|tel:${storeDetail.contact}|}">
+                                        <i class="fa fa-phone"></i>
+                                        <span th:text="${storeDetail.contact}">02-2638-2888~9</span>
+                                    </a>
+                                </div>
+                                <div th:if="${!#strings.isEmpty(storeDetail.twitter)}">
+                                    <a th:href="@{|https://twitter.com/${storeDetail.twitter}|}">
+                                        <i class="fa fa-twitter"></i>
+                                        <span th:text="${storeDetail.twitter}">action9872</span>
+                                    </a>
+                                </div>
+                                <div th:if="${!#strings.isEmpty(storeDetail.website)}">
+                                    <a th:href="${storeDetail.website}">
+                                        <i class="fa fa-globe"></i>
+                                        <span th:text="${storeDetail.website}">action9872</span>
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                         <tr>
