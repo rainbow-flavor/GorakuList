@@ -17,6 +17,7 @@ public class StoreDetailDto {
     private String longitude;
     private String contact;
     private String twitter;
+    private String website;
     private NetworkType networkType;
     private List<MachineDetailDto> machineDetailDtos = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class StoreDetailDto {
         this.longitude = store.getLongitude();
         this.contact = store.getContact();
         this.twitter = store.getTwitter();
+        this.website = store.getWebsite();
         this.networkType = store.getNetworkType();
         this.machineDetailDtos = store.getMachines()
                 .stream()

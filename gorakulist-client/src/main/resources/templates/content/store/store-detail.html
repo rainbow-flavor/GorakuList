@@ -43,6 +43,11 @@
                         <tr>
                             <th scope="row">연락처</th>
                             <td>
+                                <span th:if="${#strings.isEmpty(storeDetail.contact)} and
+                                             ${#strings.isEmpty(storeDetail.twitter)} and
+                                             ${#strings.isEmpty(storeDetail.website)}">
+                                    정보 없음
+                                </span>
                                 <a th:href="@{|tel:${storeDetail.contact}|}"
                                     th:if="${!#strings.isEmpty(storeDetail.contact)}">
                                     <i class="fa fa-phone"></i>
@@ -53,7 +58,11 @@
                                     <i class="fa fa-twitter"></i>
                                     <span th:text="${storeDetail.twitter}">action9872</span>
                                 </a>
-                                <i class="fa fa-globe"></i>
+                                <a th:href="${storeDetail.website}"
+                                   th:if="${!#strings.isEmpty(storeDetail.website)}">
+                                    <i class="fa fa-globe"></i>
+                                    <span th:text="${storeDetail.website}">action9872</span>
+                                </a>
                             </td>
                         </tr>
                         <tr>
