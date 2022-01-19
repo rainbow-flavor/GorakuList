@@ -52,6 +52,9 @@
                         <tr>
                             <th scope="row">네트워크 서비스</th>
                             <td>
+                                <span th:if="!${storeDetail.networkType.k} and !${storeDetail.networkType.n} and
+                                            !${storeDetail.networkType.s} and !${storeDetail.networkType.t} and
+                                            !${storeDetail.networkType.a}">정보 없음</span>
                                 <button th:if="${storeDetail.networkType.k}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-k"
                                         data-toggle="tooltip" data-bs-placement="bottom"
