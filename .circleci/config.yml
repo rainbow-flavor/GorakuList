@@ -16,10 +16,7 @@ jobs:
       - run:
           name: deploy and reload gorakulist service
           command: |
-            ssh ${USER}@${RAINBOW_SERVER} -o StrictHostKeyChecking=no \\<<'ENDSSH'
-              ${PROD_PATH}/launch.sh
-              exit
-            ENDSSH
+            ssh ${USER}@${RAINBOW_SERVER} -o StrictHostKeyChecking=no ${PROD_PATH}/launch.sh
 workflows:
   build:
     jobs:
