@@ -236,7 +236,15 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-3 justify-content-center align-items-center">
+            <div class="row mt-3 justify-content-end w-100">
+                <th:block th:if="${!#lists.isEmpty(searchStores)}">
+                    <div th:text="|검색 결과 ${#lists.size(searchStores)} 건|"></div>
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(searchStores)}">
+                    <div>검색 결과가 없습니다.</div>
+                </th:block>
+            </div>
+            <div class="row mt-1 justify-content-center align-items-center">
                 <div id="store-card-list" class="col">
                     <th:block th:if="${!#lists.isEmpty(searchStores)}" th:each=" searchStore : ${searchStores}">
                         <div th:replace="fragment/store-card :: simple-store-card(${searchStore})"></div>
