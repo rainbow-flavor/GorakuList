@@ -104,8 +104,7 @@
                 <div class="mt-4" id="machine-list">
                     <span>MACHINE LIST</span>
                     <div th:each="machine : ${storeDetail.machineDetailDtos}">
-                        <h4 th:text="${machine.machineId}"></h4>
-                        <span th:text="${machine.name}"></span>
+                        <div th:replace="fragment/machine-card :: simple-machine-card(${machine})"></div>
                     </div>
                 </div>
                 <div class="mt-4 link-dark text-decoration-none">
