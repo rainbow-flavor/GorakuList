@@ -246,8 +246,8 @@
             </div>
             <div class="row mt-1 justify-content-center align-items-center">
                 <div id="store-card-list" class="col">
-                    <th:block th:if="${!#lists.isEmpty(searchStores)}" th:each=" searchStore : ${searchStores}">
-                        <div th:replace="fragment/store-card :: simple-store-card(${searchStore})"></div>
+                    <th:block th:if="${!#lists.isEmpty(storeDto)}" th:each=" storeDto : ${storeDtos}">
+                        <div th:replace="fragment/store-card :: simple-store-card(${storeDto})"></div>
                     </th:block>
                 </div>
             </div>

@@ -27,11 +27,14 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .fetchJoin()
                 .join(storeMachine.machine, machine)
                 .fetchJoin()
+                .leftJoin(machine.parent, machine)
+                .fetchJoin()
                 .where(
                         byCity1(city1),
                         byCity2(city2),
                         byMachineIdList(machineTypes, condition),
                         byAndMachineType(machineTypes, condition))
+                .orderBy(store.id.asc(), machine.id.asc())
                 .distinct()
                 .fetch();
     }

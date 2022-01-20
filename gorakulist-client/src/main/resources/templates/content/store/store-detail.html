@@ -14,11 +14,11 @@
                 </div>
                 <div class="mt-4 row align-items-center">
                     <div class="store-name w-100 text-center">
-                        <h3 th:text="${storeDetail.name}" id="title-store">영등포 타임스퀘어 액션</h3>
+                        <h3 th:text="${storeDto.name}" id="title-store">영등포 타임스퀘어 액션</h3>
                     </div>
                     <div class="mt-1 w-100 text-right">
                         <small class="link-dark text-decoration-none">
-                            <a id="link-cs" th:href="@{/cs/incorrect(storeName=${storeDetail.name})}">정보 수정 제안하기
+                            <a id="link-cs" th:href="@{/cs/incorrect(storeName=${storeDto.name})}">정보 수정 제안하기
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -33,7 +33,7 @@
                             <th scope="row">주소</th>
                             <td>
                                 <div>
-                                    <span th:text="${storeDetail.address}">서울특별시 영등포구</span>
+                                    <span th:text="${storeDto.address}">서울특별시 영등포구</span>
                                     <button id="btn-map" class="badge badge-primary badge-sm" type="button"
                                             style="border: none"
                                             data-toggle="collapse" data-target="#store-map" aria-expanded="false"
@@ -48,33 +48,33 @@
                         </tr>
                         <tr>
                             <th scope="row">영업시간</th>
-                            <td th:text="${storeDetail.uptime}" th:if="${!#strings.isEmpty(storeDetail.uptime)}">매일 10:30~22:00</td>
-                            <td th:if="${#strings.isEmpty(storeDetail.uptime)}">정보 없음</td>
+                            <td th:text="${storeDto.uptime}" th:if="${!#strings.isEmpty(storeDto.uptime)}">매일 10:30~22:00</td>
+                            <td th:if="${#strings.isEmpty(storeDto.uptime)}">정보 없음</td>
                         </tr>
                         <tr>
                             <th scope="row">연락처</th>
                             <td>
-                                <span th:if="${#strings.isEmpty(storeDetail.contact)} and
-                                             ${#strings.isEmpty(storeDetail.twitter)} and
-                                             ${#strings.isEmpty(storeDetail.website)}">
+                                <span th:if="${#strings.isEmpty(storeDto.contact)} and
+                                             ${#strings.isEmpty(storeDto.twitter)} and
+                                             ${#strings.isEmpty(storeDto.website)}">
                                     정보 없음
                                 </span>
-                                <div th:if="${!#strings.isEmpty(storeDetail.contact)}">
-                                    <a th:href="@{|tel:${storeDetail.contact}|}">
+                                <div th:if="${!#strings.isEmpty(storeDto.contact)}">
+                                    <a th:href="@{|tel:${storeDto.contact}|}">
                                         <i class="fa fa-phone"></i>
-                                        <span th:text="${storeDetail.contact}">02-2638-2888~9</span>
+                                        <span th:text="${storeDto.contact}">02-2638-2888~9</span>
                                     </a>
                                 </div>
-                                <div th:if="${!#strings.isEmpty(storeDetail.twitter)}">
-                                    <a th:href="@{|https://twitter.com/${storeDetail.twitter}|}">
+                                <div th:if="${!#strings.isEmpty(storeDto.twitter)}">
+                                    <a th:href="@{|https://twitter.com/${storeDto.twitter}|}">
                                         <i class="fa fa-twitter"></i>
-                                        <span th:text="${storeDetail.twitter}">action9872</span>
+                                        <span th:text="${storeDto.twitter}">action9872</span>
                                     </a>
                                 </div>
-                                <div th:if="${!#strings.isEmpty(storeDetail.website)}">
-                                    <a th:href="${storeDetail.website}">
+                                <div th:if="${!#strings.isEmpty(storeDto.website)}">
+                                    <a th:href="${storeDto.website}">
                                         <i class="fa fa-globe"></i>
-                                        <span th:text="${storeDetail.website}">action9872</span>
+                                        <span th:text="${storeDto.website}">action9872</span>
                                     </a>
                                 </div>
                             </td>
@@ -82,27 +82,27 @@
                         <tr>
                             <th scope="row">네트워크 서비스</th>
                             <td>
-                                <span th:if="!${storeDetail.networkType.k} and !${storeDetail.networkType.n} and
-                                            !${storeDetail.networkType.s} and !${storeDetail.networkType.t} and
-                                            !${storeDetail.networkType.a}">정보 없음</span>
-                                <button th:if="${storeDetail.networkType.k}" type="button"
+                                <span th:if="!${storeDto.networkType.k} and !${storeDto.networkType.n} and
+                                            !${storeDto.networkType.s} and !${storeDto.networkType.t} and
+                                            !${storeDto.networkType.a}">정보 없음</span>
+                                <button th:if="${storeDto.networkType.k}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-k"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="코나미 e-amusement pass (BEMANI)"><span>e-amusement pass</span></button>
-                                <button th:if="${storeDetail.networkType.n}" type="button"
+                                <button th:if="${storeDto.networkType.n}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-n"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="남코 BANA PASSPORT (신 태고의 달인, 완간 미드나이트 MAXIMUM TUNE 시리즈)"><span>BANA
                           PASSPORT</span></button>
-                                <button th:if="${storeDetail.networkType.s}" type="button"
+                                <button th:if="${storeDto.networkType.s}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-s"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="세가 Aime (WACCA, CHUNITHM, maimai, 이니셜 D)"><span>Aime</span></button>
-                                <button th:if="${storeDetail.networkType.t}" type="button"
+                                <button th:if="${storeDto.networkType.t}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-t"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="타이토 NESiCA (GROOVE COASTER)"><span>NESiCA</span></button>
-                                <button th:if="${storeDetail.networkType.a}" type="button"
+                                <button th:if="${storeDto.networkType.a}" type="button"
                                         class="badge rounded-pill bg-success text-light border-0" id="network-a"
                                         data-toggle="tooltip" data-bs-placement="bottom"
                                         title="안다미로 AM.PASS (펌프 잇 업)"><span>AM.PASS</span></button>
@@ -114,8 +114,8 @@
                 </div>
                 <div class="mt-4" id="machine-list">
                     <strong>MACHINE LIST</strong>
-                    <div th:each="machine : ${storeDetail.machineDetailDtos}">
-                        <div th:replace="fragment/machine-card :: simple-machine-card(${machine})"></div>
+                    <div th:each="storeMachine : ${storeDto.storeMachines}">
+                        <div th:replace="fragment/machine-card :: simple-machine-card(${storeMachine})"></div>
                     </div>
                 </div>
             </div>
@@ -127,8 +127,8 @@
             src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=162ae82f112d5657bfca3b64694c2ac0"></script>
     <script th:inline="javascript" type="text/javascript">
         /*<![CDATA[*/
-        var lat = /*[[${storeDetail.latitude}]]*/;
-        var lng = /*[[${storeDetail.longitude}]]*/;
+        var lat = /*[[${storeDto.latitude}]]*/;
+        var lng = /*[[${storeDto.longitude}]]*/;
         /*]]>*/
 
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div

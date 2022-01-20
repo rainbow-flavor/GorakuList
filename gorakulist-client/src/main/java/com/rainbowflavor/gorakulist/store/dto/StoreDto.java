@@ -2,13 +2,14 @@ package com.rainbowflavor.gorakulist.store.dto;
 
 import com.rainbowflavor.gorakulist.domain.NetworkType;
 import com.rainbowflavor.gorakulist.domain.Store;
-import lombok.*;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
-public class SearchStoreDto {
+public class StoreDto {
     private Long id;
 
     private String city1;
@@ -23,6 +24,10 @@ public class SearchStoreDto {
 
     private Boolean isop;
 
+    private String latitude;
+
+    private String longitude;
+
     private String contact;
 
     private String twitter;
@@ -31,9 +36,9 @@ public class SearchStoreDto {
 
     private NetworkType networkType;
 
-    private List<MachineInfo> machines = new ArrayList<>();
+    private List<StoreMachineDto> storeMachines = new ArrayList<>();
 
-    public SearchStoreDto(Store store) {
+    public StoreDto(Store store) {
         this.id = store.getId();
         this.city1 = store.getCity1();
         this.city2 = store.getCity2();
@@ -41,34 +46,14 @@ public class SearchStoreDto {
         this.address = store.getAddress();
         this.uptime = store.getUptime();
         this.isop = store.getIsop();
+        this.latitude = store.getLatitude();
+        this.longitude = store.getLongitude();
         this.contact = store.getContact();
         this.twitter = store.getTwitter();
         this.website = store.getWebsite();
-        this.networkType=store.getNetworkType();
-        store.getMachines().forEach(t-> this.machines.add(new MachineInfo(
-                t.getMachineCount(),
-                t.getMachine().getKoName(),
-                t.getMachine().getShortName(),
-                t.getMachine().getDescription(),
-                t.getMachine().getId(),
-                t.getMachine().getParent().getId()
-        )));
-    }
-
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    private static class MachineInfo{
-        private Integer count;
-
-        private String machineName;
-
-        private String shortName;
-
-        private String description;
-
-        private Long id;
-
-        private Long parentId;
+        this.networkType = store.getNetworkType();
+        this.storeMachines = store.getMachines().stream()
+                .map(StoreMachineDto::new)
+                .collect(Collectors.toList());
     }
 }

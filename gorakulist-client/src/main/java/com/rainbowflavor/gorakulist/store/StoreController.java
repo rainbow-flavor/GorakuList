@@ -1,8 +1,7 @@
 package com.rainbowflavor.gorakulist.store;
 
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
-import com.rainbowflavor.gorakulist.store.dto.SearchStoreDto;
-import com.rainbowflavor.gorakulist.store.dto.StoreDetailDto;
+import com.rainbowflavor.gorakulist.store.dto.StoreDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,19 +44,19 @@ public class StoreController {
             log.warn("[StoreController] binding result={}",bindingResult);
             return "content/store/store";
         }
-        List<SearchStoreDto> searchStoreDtos = storeService.searchStore(
+        List<StoreDto> storeDtos = storeService.searchStore(
                 searchRequest.getCity1(),
                 searchRequest.getCity2(),
                 searchRequest.getGameCheckbox(),
                 searchRequest.getCondition());
-        model.addAttribute("searchStores", searchStoreDtos);
+        model.addAttribute("storeDtos", storeDtos);
         return "content/store/store";
     }
 
     @GetMapping("/detail")
     public String storeDetailView(@RequestParam Long storeId, Model model) {
-        StoreDetailDto storeDetail = storeService.getStoreDetail(storeId);
-        model.addAttribute("storeDetail", storeDetail);
+        StoreDto storeDto = storeService.getStoreDetail(storeId);
+        model.addAttribute("storeDto", storeDto);
         return "content/store/store-detail";
     }
 
