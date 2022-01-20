@@ -37,7 +37,7 @@ public class StoreController {
     }
 
     @PostMapping("/search")
-    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()){
             log.warn("[StoreController] binding result={}",bindingResult);
             return "content/store/store";
@@ -47,8 +47,8 @@ public class StoreController {
                 searchRequest.getCity2(),
                 searchRequest.getGameCheckbox(),
                 searchRequest.getCondition());
-        redirectAttributes.addAttribute("storeDtos", storeDtos);
-        return "redirect:/store";
+        model.addAttribute("storeDtos", storeDtos);
+        return "content/store/store";
     }
 
     @GetMapping("/detail")

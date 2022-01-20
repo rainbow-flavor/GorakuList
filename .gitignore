@@ -345,6 +345,8 @@ dist
 # comment the following lines
 !.yarn/cache
 yarn.lock
+
+application.yml
 # and uncomment the following lines
 # .pnp.*
 
