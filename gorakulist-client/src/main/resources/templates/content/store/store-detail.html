@@ -112,6 +112,21 @@
                     </table>
 
                 </div>
+                <div class="mt-4 w-100 text-center" id="share-page">
+                    <div class="card mx-auto" style="width:30%">
+                        <div>공유하기</div>
+                        <div class="row mx-auto w-100 justify-content-center align-items-center">
+                            <button type="button" class="btn btn-secondary btn-circle">
+                                <i class="fa fa-link"></i>
+                            </button>
+                            <button type="button" class="btn btn-circle"
+                                    style="background-color: #1DA1F2; color: white;"
+                                    onclick="fn_shareButton('twitter')">
+                                <i class="fa fa-twitter"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
                 <div class="mt-4" id="machine-list">
                     <strong>MACHINE LIST</strong>
                     <div th:each="storeMachine : ${storeDto.storeMachines}">
@@ -158,6 +173,20 @@
         }
 
         $('#btn-map').on('click', onCollapseClick);
+    </script>
+    <script th:inline="javascript" type="text/javascript">
+        function fn_shareButton(sns) {
+            if(sns === "twitter") {
+                var thisUrl = document.URL;
+                /*<![CDATA[*/
+                var snsTitle = /*[[${storeDto.name}]]*/;
+                /*]]>*/
+                snsTitle += " - GorakuList :: 한국 오락실 리스트\n#GorakuList #고라쿠리스트";
+                var url = "http://twitter.com/share?url="+encodeURIComponent(thisUrl)+"&text="+encodeURIComponent(snsTitle);
+                window.open(url, "tweetPop", "width=486, height=286, scrollbars=yes");
+            }
+        }
+
     </script>
 </th:block>
 </body>
