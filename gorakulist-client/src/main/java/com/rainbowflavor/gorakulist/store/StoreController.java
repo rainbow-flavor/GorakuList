@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
@@ -31,15 +32,12 @@ public class StoreController {
     }
 
     @GetMapping
-    public String storeSearchView(Model model){
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.setCondition("or");
-        model.addAttribute(searchRequest);
+    public String storeSearchView(@ModelAttribute("searchRequest")SearchRequest searchRequest){
         return "content/store/store";
     }
 
     @PostMapping("/search")
-    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, Model model) {
+    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if(bindingResult.hasErrors()){
             log.warn("[StoreController] binding result={}",bindingResult);
             return "content/store/store";
@@ -49,8 +47,8 @@ public class StoreController {
                 searchRequest.getCity2(),
                 searchRequest.getGameCheckbox(),
                 searchRequest.getCondition());
-        model.addAttribute("storeDtos", storeDtos);
-        return "content/store/store";
+        redirectAttributes.addAttribute("storeDtos", storeDtos);
+        return "redirect:/store";
     }
 
     @GetMapping("/detail")
