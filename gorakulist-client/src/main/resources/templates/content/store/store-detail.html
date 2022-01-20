@@ -116,13 +116,19 @@
                     <div class="card mx-auto" style="width:30%">
                         <div>공유하기</div>
                         <div class="row mx-auto w-100 justify-content-center align-items-center">
-                            <button type="button" class="btn btn-secondary btn-circle">
+                            <button type="button" class="btn btn-secondary btn-circle"
+                                    onclick="fn_shareButton('link')">
                                 <i class="fa fa-link"></i>
                             </button>
                             <button type="button" class="btn btn-circle"
                                     style="background-color: #1DA1F2; color: white;"
                                     onclick="fn_shareButton('twitter')">
                                 <i class="fa fa-twitter"></i>
+                            </button>
+                            <button type="button" class="btn btn-circle"
+                                    style="background-color: #3578E5; color: white;"
+                                    onclick="fn_shareButton('facebook')">
+                                <i class="fa fa-facebook"></i>
                             </button>
                         </div>
                     </div>
@@ -176,14 +182,28 @@
     </script>
     <script th:inline="javascript" type="text/javascript">
         function fn_shareButton(sns) {
+            var thisUrl = document.URL;
             if(sns === "twitter") {
-                var thisUrl = document.URL;
                 /*<![CDATA[*/
                 var snsTitle = /*[[${storeDto.name}]]*/;
                 /*]]>*/
                 snsTitle += " - GorakuList :: 한국 오락실 리스트\n#GorakuList #고라쿠리스트";
                 var url = "http://twitter.com/share?url="+encodeURIComponent(thisUrl)+"&text="+encodeURIComponent(snsTitle);
                 window.open(url, "tweetPop", "width=486, height=286, scrollbars=yes");
+            }
+            else if(sns === "facebook") {
+                var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(thisUrl);
+                window.open(url, "", "width=486, height=286");
+            }
+            else if(sns === "link") {
+                var dummy_sns = document.createElement("input");
+
+                document.body.appendChild(dummy_sns);
+                dummy_sns.value = thisUrl;
+                dummy_sns.select();
+                document.execCommand("copy");
+                document.body.removeChild(dummy_sns);
+                alert("링크가 복사되었습니다!");
             }
         }
 
