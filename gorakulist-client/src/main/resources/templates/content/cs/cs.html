@@ -18,9 +18,9 @@
         <form id="cs-form">
             <div class="input-group mb-3">
                 <span class="input-group-text">이메일</span>
-                <input id="cs-email1" type="text" class="form-control" placeholder="메일 ID" aria-label="Username">
+                <input id="cs-email1" type="text" class="form-control" placeholder="메일 ID" aria-label="Username" required>
                 <span class="input-group-text">@</span>
-                <input id="cs-email2" type="text" class="form-control" placeholder="메일 서버" aria-label="Server">
+                <input id="cs-email2" type="text" class="form-control" placeholder="메일 서버" aria-label="Server" required>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -36,7 +36,7 @@
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text">문의 내용</span>
-                <textarea th:text="${incorrect}?'오락실 이름 : ' +${storeName} +'&#10;내용 제보 : ' :_" id="cs-content-text" class="form-control" aria-label="With textarea" rows="5"></textarea>
+                <textarea th:text="${incorrect}?'오락실 이름 : ' +${storeName} +'&#10;내용 제보 : ' :_" id="cs-content-text" class="form-control" aria-label="With textarea" rows="5" required></textarea>
             </div>
         </form>
         <div class="mb-3">
