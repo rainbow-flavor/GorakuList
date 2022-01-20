@@ -16,7 +16,18 @@
                     <div class="store-name w-100 text-center">
                         <h3 th:text="${storeDetail.name}" id="title-store">영등포 타임스퀘어 액션</h3>
                     </div>
-                    <table class="mt-4 table table-borderless">
+                    <div class="mt-1 w-100 text-right">
+                        <small class="link-dark text-decoration-none">
+                            <a id="link-cs" th:href="@{/cs/incorrect(storeName=${storeDetail.name})}">정보 수정 제안하기
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-chevron-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                                </svg>
+                            </a>
+                        </small>
+                    </div>
+                    <table class="mt-1 table table-borderless">
                         <tbody>
                         <tr>
                             <th scope="row">주소</th>
@@ -102,19 +113,10 @@
 
                 </div>
                 <div class="mt-4" id="machine-list">
-                    <span>MACHINE LIST</span>
+                    <strong>MACHINE LIST</strong>
                     <div th:each="machine : ${storeDetail.machineDetailDtos}">
                         <div th:replace="fragment/machine-card :: simple-machine-card(${machine})"></div>
                     </div>
-                </div>
-                <div class="mt-4 link-dark text-decoration-none">
-                    <a id="link-cs" th:href="@{/cs/incorrect(storeName=${storeDetail.name})}">정보 수정 제안하기
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                  d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </a>
                 </div>
             </div>
         </div>
