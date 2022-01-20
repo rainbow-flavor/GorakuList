@@ -1,10 +1,11 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
-<div th:fragment="simple-machine-card(searchMachine)" class="card mb-3" style="max-width: 1110px">
+<!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
+<div th:fragment="simple-machine-card(storeMachine)" class="card mb-3" style="max-width: 1110px">
     <div class="row no-gutters">
         <div class="card-body px-1 py-2">
             <div>
-                <h5 th:text="${searchMachine.name}" class="d-inline-block m-0"></h5>
+                <h5 th:text="${storeMachine.machine.koName}" class="d-inline-block m-0"></h5>
                 <span class="badge bg-success text-white">2대</span>
             </div>
             <p class="card-text mb-1 font-weight-bold">

@@ -5,8 +5,7 @@ import com.rainbowflavor.gorakulist.repository.MachineRepository;
 import com.rainbowflavor.gorakulist.repository.StoreRepository;
 import com.rainbowflavor.gorakulist.repository.queryrepository.StoreRepositorySupport;
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
-import com.rainbowflavor.gorakulist.store.dto.SearchStoreDto;
-import com.rainbowflavor.gorakulist.store.dto.StoreDetailDto;
+import com.rainbowflavor.gorakulist.store.dto.StoreDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,13 +26,13 @@ public class StoreService {
                 .stream().map(MachineDto::new).collect(Collectors.toList());
     }
 
-    public List<SearchStoreDto> searchStore(@NotEmpty String city1, String city2, Set<Long> machineParents, @NotEmpty String searchCondition){
+    public List<StoreDto> searchStore(@NotEmpty String city1, String city2, Set<Long> machineParents, @NotEmpty String searchCondition){
         return storeRepositorySupport.findWithTargetMachines(city1, city2, machineParents, searchCondition)
-                .stream().map(SearchStoreDto::new).collect(Collectors.toList());
+                .stream().map(StoreDto::new).collect(Collectors.toList());
     }
 
-    public StoreDetailDto getStoreDetail(Long id) {
+    public StoreDto getStoreDetail(Long id) {
         Store store = storeRepository.findAllRelationById(id).orElseThrow(StoreNotFoundException::new);
-        return new StoreDetailDto(store);
+        return new StoreDto(store);
     }
 }

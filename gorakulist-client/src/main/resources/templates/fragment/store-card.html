@@ -1,6 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
-<div th:fragment="simple-store-card(searchStore)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(storeId=${searchStore.id})}'|">
+<!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
+<div th:fragment="simple-store-card(storeDto)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(storeId=${storeDto.id})}'|">
     <div class="row no-gutters">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
@@ -8,27 +9,27 @@
         <div class="col-md-8">
             <div class="card-body  px-1 py-2">
                 <div class="text-center">
-                    <h5 th:text="${searchStore.name}" class="d-inline-block m-0"></h5>
-                    <span th:if="${searchStore.isop}" class="badge bg-success text-white">영업 중</span>
-                    <span th:if="${!searchStore.isop}" class="badge bg-danger text-white">폐업</span>
+                    <h5 th:text="${storeDto.name}" class="d-inline-block m-0"></h5>
+                    <span th:if="${storeDto.isop}" class="badge bg-success text-white">영업 중</span>
+                    <span th:if="${!storeDto.isop}" class="badge bg-danger text-white">폐업</span>
                 </div>
                 <h5 class="card-title m-1 text-white">
-                    <img th:if="${searchStore.networkType.k}" th:src="@{/images/k.png}" width="15" alt="k status">
-                    <img th:if="${searchStore.networkType.n}" th:src="@{/images/n.png}" width="15" alt="n status">
-                    <img th:if="${searchStore.networkType.s}" th:src="@{/images/s.png}" width="15" alt="s status">
-                    <img th:if="${searchStore.networkType.t}" th:src="@{/images/t.png}" width="15" alt="t status">
-                    <img th:if="${searchStore.networkType.a}" th:src="@{/images/a.png}" width="15" alt="a status">
+                    <img th:if="${storeDto.networkType.k}" th:src="@{/images/k.png}" width="15" alt="k status">
+                    <img th:if="${storeDto.networkType.n}" th:src="@{/images/n.png}" width="15" alt="n status">
+                    <img th:if="${storeDto.networkType.s}" th:src="@{/images/s.png}" width="15" alt="s status">
+                    <img th:if="${storeDto.networkType.t}" th:src="@{/images/t.png}" width="15" alt="t status">
+                    <img th:if="${storeDto.networkType.a}" th:src="@{/images/a.png}" width="15" alt="a status">
                 </h5>
                 <p class="card-text mb-1 font-weight-bold">
                     주소
-                    <span th:text="${searchStore.address}" class="font-weight-normal"
+                    <span th:text="${storeDto.address}" class="font-weight-normal"
                           id="store-card-address"></span>
                 </p>
                 <p class="card-text mb-1 font-weight-bold">
                     영업시간
-                    <span th:if="${!#strings.isEmpty(searchStore.uptime)}" th:text="${searchStore.uptime}"
+                    <span th:if="${!#strings.isEmpty(storeDto.uptime)}" th:text="${storeDto.uptime}"
                           class="font-weight-normal"></span>
-                    <span th:if="${#strings.isEmpty(searchStore.uptime)}" class="font-weight-normal">정보 없음</span>
+                    <span th:if="${#strings.isEmpty(storeDto.uptime)}" class="font-weight-normal">정보 없음</span>
                 </p>
             </div>
         </div>
@@ -36,11 +37,11 @@
     <div class="row">
         <div class="col-md-12">
             <p class="mb-0 text-center">
-                <span th:each="machine, status : ${searchStore.machines}" th:if="${status.index < 5}"
+                <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index < 5}"
                        class="card-text" id="store-card-machines">
-                    <span th:text="${machine.shortName}" class="badge bg-info text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}" class="badge bg-info text-white"></span>
                 </span>
-                <span th:text="|+${#lists.size(searchStore.machines)-5}|" th:if="${#lists.size(searchStore.machines) > 5}"
+                <span th:text="|+${#lists.size(storeDto.storeMachines)-5}|" th:if="${#lists.size(storeDto.storeMachines) > 5}"
                       class="badge bg-secondary text-white"></span>
             </p>
         </div>
