@@ -237,10 +237,10 @@
                 </div>
             </div>
             <div class="row mt-3 justify-content-end w-100">
-                <th:block th:if="${!#lists.isEmpty(searchStores)}">
-                    <div th:text="|검색 결과 ${#lists.size(searchStores)} 건|"></div>
+                <th:block th:if="${!#lists.isEmpty(storeDtos)}">
+                    <div th:text="|검색 결과 ${#lists.size(storeDtos)} 건|"></div>
                 </th:block>
-                <th:block th:if="${#lists.isEmpty(searchStores)}">
+                <th:block th:if="${#lists.isEmpty(storeDtos)}">
                     <div>검색 결과가 없습니다.</div>
                 </th:block>
             </div>
