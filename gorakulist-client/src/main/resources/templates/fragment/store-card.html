@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
 <!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
-<div th:fragment="simple-store-card(storeDto)" class="card mb-3" style="max-width: 1110px" th:onclick="|location.href='@{/store/detail(storeId=${storeDto.id})}'|">
+<div th:id="${storeDto.id}" th:fragment="simple-store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px" >
     <div class="row no-gutters">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">

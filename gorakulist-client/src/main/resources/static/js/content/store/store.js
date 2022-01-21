@@ -1,6 +1,7 @@
 $(function addEventListener() {
     $("#btn-search").on("click", submitForm);
     $("#city1").on("change", onFirstAddressChange);
+    $(".store-card").on("click", onCardClickHandler)
 });
 
 function isValid(city1, selectedGame){
@@ -30,6 +31,11 @@ function submitForm(){
     $("#searchRequestForm").submit();
 }
 
+function onCardClickHandler(e){
+    e.stopPropagation();
+    e.preventDefault();
+    location.href="https://www.gorakulist.kr/store/detail?storeId="+e.currentTarget.id;
+}
 
 function onFirstAddressChange() {
     const city1 = $("#city1").val();
