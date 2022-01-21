@@ -1,18 +1,37 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
-<!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
 <div th:fragment="simple-machine-card(storeMachine)" class="card mb-3" style="max-width: 1110px">
+    <!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
     <div class="row no-gutters">
         <div class="card-body px-1 py-2">
             <div>
                 <h5 th:text="${storeMachine.machine.koName}" class="d-inline-block m-0"></h5>
-                <span class="badge bg-success text-white">2대</span>
+                <span th:if="${storeMachine.machine.category.name() == 'RHYTHM'}"
+                      class="badge bg-danger text-white">리듬</span>
+                <span th:if="${storeMachine.machine.category.name() == 'FIGHT'}"
+                      class="badge bg-warning text-white">격투</span>
+                <span th:if="${storeMachine.machine.category.name() == 'RACING'}"
+                      class="badge bg-success text-white">레이싱</span>
+                <span th:if="${storeMachine.machine.category.name() == 'SHOOTING'}"
+                      class="badge bg-info text-white">슈팅</span>
+                <span th:if="${storeMachine.machine.category.name() == 'ACTION'}"
+                      class="badge bg-primary text-white">액션</span>
+                <span th:if="${storeMachine.machine.category.name() == 'PUZZLE'}"
+                      class="badge bg-secondary text-white">퍼즐</span>
+                <span th:if="${storeMachine.machine.category.name() == 'CASUAL'}"
+                      class="badge bg-secondary text-white">캐쥬얼</span>
+                <span th:if="${storeMachine.machine.category.name() == 'SPORTS'}"
+                      class="badge bg-secondary text-white">스포츠</span>
+                <span th:if="${storeMachine.machine.category.name() == 'ETC'}"
+                      class="badge bg-dark text-white">기타</span>
+                <span th:text="|${storeMachine.machineCount}대|" th:if="${storeMachine.machineCount >= 1}"
+                      class="badge bg-light text-black"></span>
+                <span th:if="${storeMachine.machineCount == null}" class="badge bg-light text-black">정보 없음</span>
+                <th:block th:if="${!#strings.isEmpty(storeMachine.description)}">
+                    <div th:text="|${storeMachine.description}|" class="font-weight-normal"
+                          id="store-card-address"></div>
+                </th:block>
             </div>
-            <p class="card-text mb-1 font-weight-bold">
-                상세정보
-                <span class="font-weight-normal"
-                      id="store-card-address">500원 쯤 하려나</span>
-            </p>
         </div>
     </div>
 </div>

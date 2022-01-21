@@ -3,6 +3,15 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/default-layout(activeTab='store')}">
+<head>
+    <title>[(${storeDto.name})] - GorakuList :: 한국 오락실 리스트</title>
+    <meta property="og:title" th:content="|${storeDto.name} - 한국 오락실 리스트|">
+    <meta property="og:description" th:content="|GorakuList에서 ${storeDto.name} 정보를 확인해보세요! ${storeDto.address}|">
+    <meta
+            name="description"
+            th:content="|GorakuList에서 ${storeDto.name} 정보를 확인해보세요! ${storeDto.address}|"
+    >
+</head>
 <body>
 <div layout:fragment="content" id="content">
     <div class="container">
@@ -27,28 +36,34 @@
                             </a>
                         </small>
                     </div>
-                    <table class="mt-1 table table-borderless">
+                    <table class="mt-1 table table-borderless machine-table">
                         <tbody>
                         <tr>
                             <th scope="row">주소</th>
                             <td>
-                                <div>
-                                    <span th:text="${storeDto.address}">서울특별시 영등포구</span>
-                                    <button id="btn-map" class="badge badge-primary badge-sm" type="button"
-                                            style="border: none"
-                                            data-toggle="collapse" data-target="#store-map" aria-expanded="false"
-                                            aria-controls="store-map">
-                                        지도보기
-                                    </button>
-                                </div>
-                                <div id="store-map" class="collapse">
-                                    <div id="map" style="width:100%;height:350px"></div>
-                                </div>
+                                <th:block th:if="${!#strings.isEmpty(storeDto.address)}">
+                                    <div>
+                                        <span th:text="${storeDto.address}">서울특별시 영등포구</span>
+                                        <button id="btn-map" class="badge badge-primary badge-sm" type="button"
+                                                style="border: none"
+                                                data-toggle="collapse" data-target="#store-map" aria-expanded="false"
+                                                aria-controls="store-map">
+                                            지도보기
+                                        </button>
+                                    </div>
+                                    <div id="store-map" class="collapse">
+                                        <div id="map" style="width:100%;height:350px"></div>
+                                    </div>
+                                </th:block>
+                                <th:block th:if="${#strings.isEmpty(storeDto.address)}">
+                                    <div>정보 없음</div>
+                                </th:block>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">영업시간</th>
-                            <td th:text="${storeDto.uptime}" th:if="${!#strings.isEmpty(storeDto.uptime)}">매일 10:30~22:00</td>
+                            <td th:text="${storeDto.uptime}"
+                                th:if="${!#strings.isEmpty(storeDto.uptime)}">매일 10:30~22:00</td>
                             <td th:if="${#strings.isEmpty(storeDto.uptime)}">정보 없음</td>
                         </tr>
                         <tr>
@@ -187,7 +202,7 @@
                 /*<![CDATA[*/
                 var snsTitle = /*[[${storeDto.name}]]*/;
                 /*]]>*/
-                snsTitle += " - GorakuList :: 한국 오락실 리스트\n#GorakuList #고라쿠리스트";
+                snsTitle += " - GorakuList :: 한국 오락실 리스트\n#GorakuList #고라쿠리스트\n";
                 var url = "http://twitter.com/share?url="+encodeURIComponent(thisUrl)+"&text="+encodeURIComponent(snsTitle);
                 window.open(url, "tweetPop", "width=486, height=286, scrollbars=yes");
             }
@@ -197,9 +212,12 @@
             }
             else if(sns === "link") {
                 var dummy_sns = document.createElement("input");
+                /*<![CDATA[*/
+                var shortUrl = 'http://gorakul.ist/' + /*[[${storeDto.id}]]*/;
+                /*]]>*/
 
                 document.body.appendChild(dummy_sns);
-                dummy_sns.value = thisUrl;
+                dummy_sns.value = shortUrl;
                 dummy_sns.select();
                 document.execCommand("copy");
                 document.body.removeChild(dummy_sns);
