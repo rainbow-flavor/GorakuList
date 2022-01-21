@@ -5,6 +5,8 @@
       layout:decorate="~{layout/default-layout(activeTab='store')}">
 <head>
     <title>[(${storeDto.name})] - GorakuList :: 한국 오락실 리스트</title>
+    <meta property="og:title" th:content="|${storeDto.name} - 한국 오락실 리스트|">
+    <meta property="og:description" th:content="|GorakuList에서 ${storeDto.name} 정보를 확인해보세요! ${storeDto.address}|">
     <meta
             name="description"
             th:content="|GorakuList에서 ${storeDto.name} 정보를 확인해보세요! ${storeDto.address}|"
