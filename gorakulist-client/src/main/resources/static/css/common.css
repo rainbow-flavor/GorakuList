@@ -20,6 +20,15 @@ body{
     font-size: 1.5em;
 }
 
+.machine-table > tbody > tr > th {
+    width: 30vw;
+}
+
+.machine-table > tbody > tr > td {
+    width: 70vw;
+    word-break: break-all;
+}
+
 @media (min-width: 576px) {
     #share-page {
         width: 40%;

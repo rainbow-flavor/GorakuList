@@ -34,7 +34,7 @@
                             </a>
                         </small>
                     </div>
-                    <table class="mt-1 table table-borderless">
+                    <table class="mt-1 table table-borderless machine-table">
                         <tbody>
                         <tr>
                             <th scope="row">주소</th>
@@ -55,7 +55,8 @@
                         </tr>
                         <tr>
                             <th scope="row">영업시간</th>
-                            <td th:text="${storeDto.uptime}" th:if="${!#strings.isEmpty(storeDto.uptime)}">매일 10:30~22:00</td>
+                            <td th:text="${storeDto.uptime}"
+                                th:if="${!#strings.isEmpty(storeDto.uptime)}">매일 10:30~22:00</td>
                             <td th:if="${#strings.isEmpty(storeDto.uptime)}">정보 없음</td>
                         </tr>
                         <tr>
