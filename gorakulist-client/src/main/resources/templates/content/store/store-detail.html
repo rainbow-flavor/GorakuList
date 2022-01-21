@@ -11,6 +11,7 @@
             name="description"
             th:content="|GorakuList에서 ${storeDto.name} 정보를 확인해보세요! ${storeDto.address}|"
     >
+    <link rel="stylesheet" type="text/css" th:href="@{/css/store-detail.css}">
 </head>
 <body>
 <div layout:fragment="content" id="content">
