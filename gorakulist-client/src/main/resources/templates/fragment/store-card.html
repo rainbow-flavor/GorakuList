@@ -22,8 +22,10 @@
                 </h5>
                 <p class="card-text mb-1 font-weight-bold">
                     주소
-                    <span th:text="${storeDto.address}" class="font-weight-normal"
+                    <span th:if="!${#strings.isEmpty(storeDto.address)}" th:text="${storeDto.address}" class="font-weight-normal"
                           id="store-card-address"></span>
+                    <span th:if="${#strings.isEmpty(storeDto.address)}" class="font-weight-normal"
+                          id="store-card-address-none">정보 없음</span>
                 </p>
                 <p class="card-text mb-1 font-weight-bold">
                     영업시간
