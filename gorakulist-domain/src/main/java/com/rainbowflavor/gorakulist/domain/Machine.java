@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -34,7 +36,7 @@ public class Machine {
     private String description;
 
     @OneToMany(mappedBy = "machine", fetch = FetchType.LAZY)
-    private Set<StoreMachine> stores = new HashSet<>();
+    private List<StoreMachine> stores = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Machine parent;

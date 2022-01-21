@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -47,7 +47,7 @@ public class Store {
     private NetworkType networkType;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
-    private Set<StoreMachine> machines = new HashSet<>();
+    private List<StoreMachine> machines = new ArrayList<>();
 
     @Override
     public String toString() {

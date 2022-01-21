@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,12 +28,18 @@ public class StoreService {
     }
 
     public List<StoreDto> searchStore(@NotEmpty String city1, String city2, Set<Long> machineParents, @NotEmpty String searchCondition){
-        return storeRepositorySupport.findWithTargetMachines(city1, city2, machineParents, searchCondition)
-                .stream().map(StoreDto::new).collect(Collectors.toList());
+        List<Store> stores = storeRepositorySupport.findWithTargetMachines(city1, city2, machineParents, searchCondition);
+        stores.forEach(store->sortStoreMachine(store));
+        return stores.stream().map(StoreDto::new).collect(Collectors.toList());
     }
 
     public StoreDto getStoreDetail(Long id) {
         Store store = storeRepository.findAllRelationById(id).orElseThrow(StoreNotFoundException::new);
+        sortStoreMachine(store);
         return new StoreDto(store);
+    }
+
+    private void sortStoreMachine(Store store) {
+        store.getMachines().sort(Comparator.comparing(sm -> sm.getMachine().getCategory()));
     }
 }
