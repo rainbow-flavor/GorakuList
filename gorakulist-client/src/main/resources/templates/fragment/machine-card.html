@@ -1,18 +1,20 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
-<!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
 <div th:fragment="simple-machine-card(storeMachine)" class="card mb-3" style="max-width: 1110px">
+    <!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
     <div class="row no-gutters">
         <div class="card-body px-1 py-2">
             <div>
                 <h5 th:text="${storeMachine.machine.koName}" class="d-inline-block m-0"></h5>
-                <span class="badge bg-success text-white">2대</span>
+                <span th:text="|${storeMachine.machineCount}대|" th:if="${storeMachine.machineCount >= 1}"
+                      class="badge bg-success text-white"></span>
+                <span th:if="${storeMachine.machineCount == null}" class="badge bg-danger text-white">정보 없음</span>
+                <p class="card-text mb-1 font-weight-bold">
+                    상세정보
+                    <span th:text="|${storeMachine.description}|" class="font-weight-normal"
+                          id="store-card-address"></span>
+                </p>
             </div>
-            <p class="card-text mb-1 font-weight-bold">
-                상세정보
-                <span class="font-weight-normal"
-                      id="store-card-address">500원 쯤 하려나</span>
-            </p>
         </div>
     </div>
 </div>
