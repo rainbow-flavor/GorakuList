@@ -1,5 +1,6 @@
 package com.rainbowflavor.gorakulist.store;
 
+import com.rainbowflavor.gorakulist.domain.Machine;
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
 import com.rainbowflavor.gorakulist.store.dto.StoreDto;
 import lombok.Data;
@@ -12,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,6 +30,7 @@ public class StoreController {
     public void loadGameType(Model model){
         List<MachineDto> parents = storeService.getMachineParent();
         model.addAttribute("parentCategory", parents);
+        model.addAttribute("byName", Comparator.comparing(MachineDto::getShortName));
     }
 
     @GetMapping

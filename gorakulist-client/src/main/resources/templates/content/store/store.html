@@ -82,7 +82,7 @@
                                 <div class="collapse" id="game1">
                                     <div class="py-2">
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).RHYTHM)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -105,7 +105,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).FIGHT)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -128,7 +128,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).RACING)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -151,7 +151,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).ACTION)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -174,7 +174,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).SHOOTING)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -197,7 +197,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).PUZZLE)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
@@ -221,7 +221,7 @@
                                     <div class="py-2">
 
                                         <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).ETC)}"
-                                             th:each="category : ${parentCategory}"
+                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
                                              class="form-check form-check-inline">
                                             <input th:id="${category.getId}"
                                                    class="form-check-input" type="checkbox"
