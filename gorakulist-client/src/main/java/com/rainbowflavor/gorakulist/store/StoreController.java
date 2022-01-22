@@ -53,6 +53,13 @@ public class StoreController {
         return "content/store/store";
     }
 
+    @GetMapping("/random")
+    public String storeRandom(Model model) {
+        StoreDto storeDto = storeService.getStoreRandom();
+        model.addAttribute("storeDto", storeDto);
+        return "content/store/store-detail";
+    }
+
     @GetMapping("/detail")
     public String storeDetailView(@RequestParam Long storeId, Model model) {
         StoreDto storeDto = storeService.getStoreDetail(storeId);

@@ -39,6 +39,12 @@ public class StoreService {
         return new StoreDto(store);
     }
 
+    public StoreDto getStoreRandom() {
+        Store store = storeRepositorySupport.findRandom();
+        sortStoreMachine(store);
+        return new StoreDto(store);
+    }
+
     private void sortStoreMachine(Store store) {
         store.getMachines().sort(Comparator.comparing(sm -> sm.getMachine().getCategory()));
     }
