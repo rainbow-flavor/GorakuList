@@ -2,7 +2,7 @@
 <body>
 <!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
 <div th:id="${storeDto.id}" th:fragment="simple-store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px" >
-    <div class="row no-gutters">
+    <div th:id="|info-${storeDto.id}|" class="row no-gutters store-card-info">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
         </div>
@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row store-card-machine">
         <div class="col-md-12">
             <p class="mb-0 text-center">
                 <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index < 5}"
