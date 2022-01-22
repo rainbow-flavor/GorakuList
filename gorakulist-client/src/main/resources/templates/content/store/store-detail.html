@@ -51,6 +51,11 @@
                                                 aria-controls="store-map">
                                             지도보기
                                         </button>
+                                        <button id="btn-map-find" class="badge badge-sm text-black" type="button"
+                                                style="border: none; background-color: #FEE500"
+                                                onclick="moveKakaoMap();">
+                                            길찾기
+                                        </button>
                                     </div>
                                     <div id="store-map" class="collapse">
                                         <div id="map" style="width:100%;height:350px"></div>
@@ -164,6 +169,7 @@
             src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=162ae82f112d5657bfca3b64694c2ac0"></script>
     <script th:inline="javascript" type="text/javascript">
         /*<![CDATA[*/
+        var name = /*[[${storeDto.name}]]*/;
         var lat = /*[[${storeDto.latitude}]]*/;
         var lng = /*[[${storeDto.longitude}]]*/;
         /*]]>*/
@@ -195,6 +201,10 @@
         }
 
         $('#btn-map').on('click', onCollapseClick);
+
+        function moveKakaoMap() {
+            location.href = 'https://map.kakao.com/link/to/'+name+','+lat+','+lng;
+        }
     </script>
     <script th:inline="javascript" type="text/javascript">
         function fn_shareButton(sns) {
