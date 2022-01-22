@@ -36,9 +36,10 @@
             </div>
         </div>
     </div>
-    <div class="row store-card-machine">
+    <div th:id="|machinelist-${storeDto.id}|" class="row store-card-machine">
         <div class="col-md-12">
             <p class="mb-0 text-center">
+                <span th:id="|machineclicked-${storeDto.id}|" hidden>0</span>
                 <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index < 5}"
                        class="card-text" id="store-card-machines">
                     <span th:text="${storeMachine.machine.shortName}"
@@ -69,8 +70,38 @@
                           th:if="${storeMachine.machine.category.name() == 'ETC'}"
                           class="badge bg-dark text-white"></span>
                 </span>
+                <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index >= 5}"
+                      class="card-text">
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'RHYTHM'}"
+                          th:class="|badge bg-danger text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'FIGHT'}"
+                          th:class="|badge bg-warning text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'RACING'}"
+                          th:class="|badge bg-success text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'SHOOTING'}"
+                          th:class="|badge bg-info text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'ACTION'}"
+                          th:class="|badge bg-primary text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'PUZZLE'}"
+                          th:class="|badge bg-secondary text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'CASUAL'}"
+                          th:class="|badge bg-secondary text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'SPORTS'}"
+                          th:class="|badge bg-secondary text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'ETC'}"
+                          th:class="|badge bg-dark text-white hidden-machine-${storeDto.id}|" style="display: none;"></span>
+                </span>
                 <span th:text="|+${#lists.size(storeDto.storeMachines)-5}|" th:if="${#lists.size(storeDto.storeMachines) > 5}"
-                      class="badge bg-light text-black"></span>
+                      class="badge bg-light text-black" th:id="|machinecount-${storeDto.id}|"></span>
             </p>
         </div>
     </div>

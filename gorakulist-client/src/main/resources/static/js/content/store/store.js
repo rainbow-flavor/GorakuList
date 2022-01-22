@@ -1,7 +1,8 @@
 $(function addEventListener() {
     $("#btn-search").on("click", submitForm);
     $("#city1").on("change", onFirstAddressChange);
-    $(".store-card-info").on("click", onCardClickHandler)
+    $(".store-card-info").on("click", onCardClickHandler);
+    $(".store-card-machine").on("click", onCardMachineClickHandler);
 });
 
 function isValid(city1, selectedGame){
@@ -35,6 +36,11 @@ function onCardClickHandler(e){
     e.stopPropagation();
     e.preventDefault();
     location.href="https://www.gorakulist.kr/store/detail?storeId="+e.currentTarget.id.split('-')[1];
+}
+
+function onCardMachineClickHandler(e) {
+    $("#machinecount-"+e.currentTarget.id.split('-')[1]).toggle();
+    $(".hidden-machine-"+e.currentTarget.id.split('-')[1]).toggle();
 }
 
 function onFirstAddressChange() {
