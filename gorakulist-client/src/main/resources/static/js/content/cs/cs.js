@@ -1,7 +1,22 @@
 $(function () {
     initIncorrectCS();
     $("#btn-submit").on("click", submitForm);
+    $("input[type=file]").bind("change", onFileClickHandler)
+
 });
+
+function onFileClickHandler(e) {
+    if (this.files && this.files[0]) {
+        let maxSize = 10 * 1024 * 1024;
+        let fileSize = this.files[0].size;
+
+        if (fileSize > maxSize) {
+            alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+            $(this).val('');
+            return false;
+        }
+    }
+}
 
 function initIncorrectCS() {
     if (hasUrlParam("incorrect")) {
@@ -20,7 +35,7 @@ function getUrlParam(param) {
     return new URLSearchParams(location.search).get(param);
 }
 
-function submitForm() {
+async function submitForm() {
     const email1 = $("#cs-email1").val();
     const email2 = $("#cs-email2").val();
     const cstype = $("#cs-type option:selected").val();
@@ -29,14 +44,13 @@ function submitForm() {
     if (!isValidateForm(email1, email2, cstype, content)) {
         return;
     }
-    sendWebhookRequest(makeRequestData(email1, email2, cstype, content));
+    sendWebhookRequest(await makeRequestData(email1, email2, cstype, content));
 }
 
 function validateEmail(e1, e2) {
     let email = e1 + '@' + e2;
     let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    if (email.match(regExp) != null) return true;
-    else return false;
+    if (email.match(regExp) != null) return true; else return false;
 }
 
 function isValidateForm(email1, email2, cstype, content) {
@@ -59,37 +73,33 @@ function isValidateForm(email1, email2, cstype, content) {
     return true;
 }
 
-function makeRequestData(email1, email2, cstype, content) {
-    let current = new Date();
+async function makeRequestData(email1, email2, cstype, content) {
+    const formData = new FormData();
+    formData.append("email", email1 + "@" + email2);
+    formData.append("cstype", cstype);
+    formData.append("content", content);
+    formData.append("footer", new Date().toLocaleString());
+    const file = $("#input-image-file")[0].files[0];
 
-    let embed = {
-        fields: [
-            {
-                name: "이메일",
-                value: email1 + "@" + email2
-            },
-            {
-                name: "문의 종류",
-                value: cstype
-            },
-            {
-                name: "문의 내용",
-                value: content
-            }
-        ],
-        footer: {
-            text: current.toLocaleString()
-        }
+    if (file != null) {
+        const base64EncodedFile = await toBase64(file);
+        formData.append("image", base64EncodedFile);
     }
 
-    let data = {
-        embeds: [embed]
-    }
-    return data;
+    return formData;
 }
 
-function sendWebhookRequest(data) {
-    axios.post("/cs", data)
+const toBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
+function sendWebhookRequest(formData) {
+    axios.post("/cs", formData)
         .then(() => {
             $("#cs-form")[0].reset();
             $('#cs-modal-success').modal('toggle');

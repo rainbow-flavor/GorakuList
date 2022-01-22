@@ -11,9 +11,16 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app")
 public class AppProperties {
     private Discord discord;
+    private Imgur imgur;
 
     @Data
     public static class Discord{
         String url;
+    }
+
+    @Data
+    public static class Imgur{
+        String url;
+        String key;
     }
 }
