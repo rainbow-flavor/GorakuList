@@ -38,6 +38,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                         byMachineIdList(origin, machineTypes, condition),
                         byAndMachineType(machineTypes, condition))
                 .distinct()
+                .orderBy(store.id.asc())
                 .fetch();
     }
 
