@@ -2,7 +2,7 @@
 <body>
 <!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
 <div th:id="${storeDto.id}" th:fragment="simple-store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px" >
-    <div class="row no-gutters">
+    <div th:id="|info-${storeDto.id}|" class="row no-gutters store-card-info">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
         </div>
@@ -36,15 +36,41 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row store-card-machine">
         <div class="col-md-12">
             <p class="mb-0 text-center">
                 <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index < 5}"
                        class="card-text" id="store-card-machines">
-                    <span th:text="${storeMachine.machine.shortName}" class="badge bg-info text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'RHYTHM'}"
+                          class="badge bg-danger text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'FIGHT'}"
+                          class="badge bg-warning text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'RACING'}"
+                          class="badge bg-success text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'SHOOTING'}"
+                          class="badge bg-info text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'ACTION'}"
+                          class="badge bg-primary text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'PUZZLE'}"
+                          class="badge bg-secondary text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'CASUAL'}"
+                          class="badge bg-secondary text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'SPORTS'}"
+                          class="badge bg-secondary text-white"></span>
+                    <span th:text="${storeMachine.machine.shortName}"
+                          th:if="${storeMachine.machine.category.name() == 'ETC'}"
+                          class="badge bg-dark text-white"></span>
                 </span>
                 <span th:text="|+${#lists.size(storeDto.storeMachines)-5}|" th:if="${#lists.size(storeDto.storeMachines) > 5}"
-                      class="badge bg-secondary text-white"></span>
+                      class="badge bg-light text-black"></span>
             </p>
         </div>
     </div>
