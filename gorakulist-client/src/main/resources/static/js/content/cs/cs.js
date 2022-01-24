@@ -35,7 +35,7 @@ function getUrlParam(param) {
     return new URLSearchParams(location.search).get(param);
 }
 
-async function submitForm() {
+function submitForm() {
     const email1 = $("#cs-email1").val();
     const email2 = $("#cs-email2").val();
     const cstype = $("#cs-type option:selected").val();
@@ -44,7 +44,7 @@ async function submitForm() {
     if (!isValidateForm(email1, email2, cstype, content)) {
         return;
     }
-    sendWebhookRequest(await makeRequestData(email1, email2, cstype, content));
+    sendWebhookRequest(makeRequestData(email1, email2, cstype, content));
 }
 
 function validateEmail(e1, e2) {
@@ -73,29 +73,19 @@ function isValidateForm(email1, email2, cstype, content) {
     return true;
 }
 
-async function makeRequestData(email1, email2, cstype, content) {
+function makeRequestData(email1, email2, cstype, content) {
     const formData = new FormData();
     formData.append("email", email1 + "@" + email2);
     formData.append("cstype", cstype);
     formData.append("content", content);
     formData.append("footer", new Date().toLocaleString());
+
     const file = $("#input-image-file")[0].files[0];
 
     if (file != null) {
-        const base64EncodedFile = await toBase64(file);
-        formData.append("image", base64EncodedFile);
+        formData.append("image", file);
     }
-
     return formData;
-}
-
-const toBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
-    });
 }
 
 function sendWebhookRequest(formData) {
