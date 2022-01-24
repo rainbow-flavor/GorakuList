@@ -1,12 +1,14 @@
 package com.rainbowflavor.gorakulist.cs;
 
 import com.rainbowflavor.gorakulist.cs.message.request.CsRequest;
-import com.rainbowflavor.gorakulist.webhook.DiscordWebhookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
@@ -16,7 +18,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 @RequestMapping("/cs")
 public class CsController {
-    private final DiscordWebhookService discordWebhookService;
     private final CsService csService;
     @GetMapping
     public String csView(){
@@ -31,9 +32,10 @@ public class CsController {
     }
 
     @PostMapping
-    public ResponseEntity doCsRequest(@ModelAttribute CsRequest csRequest, @RequestParam String image) throws IOException {
-        ResponseEntity<String> stringResponseEntity = csService.sendRequestToImgur(image);
-        log.info("response = {}", stringResponseEntity);
-        return ResponseEntity.ok().build();
+    public ResponseEntity doCsRequest(@ModelAttribute CsRequest csRequest, @RequestParam("image") @Nullable MultipartFile multipartFile) throws IOException {
+        HttpStatus httpStatus = multipartFile != null ?
+                csService.sendCsRequest(csRequest, multipartFile.getBytes()) :
+                csService.sendCsRequest(csRequest, null);
+        return ResponseEntity.status(httpStatus).build();
     }
 }
