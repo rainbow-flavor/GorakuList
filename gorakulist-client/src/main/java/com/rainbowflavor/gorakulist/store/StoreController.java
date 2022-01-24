@@ -1,18 +1,16 @@
 package com.rainbowflavor.gorakulist.store;
-
-import com.rainbowflavor.gorakulist.domain.Machine;
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
 import com.rainbowflavor.gorakulist.store.dto.StoreDto;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -34,21 +32,12 @@ public class StoreController {
     }
 
     @GetMapping
-    public String storeSearchView(@ModelAttribute("searchRequest")SearchRequest searchRequest){
-        return "content/store/store";
-    }
-
-    @PostMapping("/search")
-    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
-            log.warn("[StoreController] binding result={}",bindingResult);
-            return "content/store/store";
-        }
+    public String search(@ModelAttribute("searchRequest")SearchRequest searchRequest, Model model) {
         List<StoreDto> storeDtos = storeService.searchStore(
-                searchRequest.getCity1(),
-                searchRequest.getCity2(),
-                searchRequest.getGameCheckbox(),
-                searchRequest.getCondition());
+            searchRequest.getCity1(), 
+            searchRequest.getCity2(), 
+            searchRequest.getGameCheckbox(), 
+            searchRequest.getCondition());
         model.addAttribute("storeDtos", storeDtos);
         return "content/store/store";
     }
@@ -74,6 +63,7 @@ public class StoreController {
         private String city2;
         @NotEmpty
         private String condition;
+        @Size(max = 5)
         private Set<Long> gameCheckbox = new HashSet<>();
     }
 }

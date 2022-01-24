@@ -5,11 +5,7 @@ $(function addEventListener() {
     $(".store-card-machine").on("click", onCardMachineClickHandler);
 });
 
-function isValid(city1, selectedGame){
-    if (city1 === '' || !city1 || city1 === "전국") {
-        alert("시/도를 선택하세요.");
-        return false;
-    }
+function isValid(selectedGame){
     if (selectedGame.length > 5) {
         alert("5개 이상 선택하실 수 없습니다!");
         return false;
@@ -19,23 +15,26 @@ function isValid(city1, selectedGame){
 
 function submitForm(){
     const city1 = $("#city1").val();
-    const selectedGame = [];
+    const city2 = $("#city2").val();
+    const condition = $("input[name=condition]:checked").val();
+    const gameCheckbox = [];
 
     $("input[name=gameCheckbox]:checked").each(function(){
-        selectedGame.push(this.value);
+        gameCheckbox.push(this.value);
     });
 
-    if(!isValid(city1, selectedGame)){
+    if(!isValid(gameCheckbox)){
         return;
     }
 
-    $("#searchRequestForm").submit();
+    const param = new URLSearchParams({ city1, city2, condition, gameCheckbox }).toString();
+    location.href = `/store?${param}`;
 }
 
 function onCardClickHandler(e){
     e.stopPropagation();
     e.preventDefault();
-    location.href="https://www.gorakulist.kr/store/detail?storeId="+e.currentTarget.id.split('-')[1];
+    location.href="/store/detail?storeId="+e.currentTarget.id.split('-')[1];
 }
 
 function onCardMachineClickHandler(e) {
