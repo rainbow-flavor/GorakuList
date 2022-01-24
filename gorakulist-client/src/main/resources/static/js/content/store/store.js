@@ -55,6 +55,21 @@ function onFirstAddressChange() {
     $("#city2").selectpicker('refresh');
 }
 
+window.addEventListener('DOMContentLoaded', initCity2);
+
+function initCity2(){
+    const city1 = $("#city1").val();
+    console.log(city1);
+    $("#city2 option").not("[value='']").remove();
+    $.each(city2[city1], function (idx, item) {
+        console.log(item);
+        $("#city2").append("<option value='" + item + "'>" + item + "</option>")
+    });
+    const city2Last = $("#city2-last").val();
+    console.log(city2Last);
+    $("#city2").selectpicker('val', city2Last);
+}
+
 const city2 = {
     강원: ["강릉시", "고성군", "동해시", "삼척시", "속초시",
         "양구군", "양양군", "영월군", "원주시", "인제군",

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -32,7 +33,7 @@ public class StoreController {
     }
 
     @GetMapping
-    public String search(@ModelAttribute("searchRequest")SearchRequest searchRequest, Model model) {
+    public String search(@ModelAttribute("searchRequest")SearchRequest searchRequest, BindingResult bindingResult, Model model) {
         List<StoreDto> storeDtos = storeService.searchStore(
             searchRequest.getCity1(), 
             searchRequest.getCity2(), 
@@ -62,7 +63,7 @@ public class StoreController {
         private String city1;
         private String city2;
         @NotEmpty
-        private String condition;
+        private String condition="or";
         @Size(max = 5)
         private Set<Long> gameCheckbox = new HashSet<>();
     }
