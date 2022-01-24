@@ -35,7 +35,7 @@ function submitForm(){
 function onCardClickHandler(e){
     e.stopPropagation();
     e.preventDefault();
-    location.href="https://www.gorakulist.kr/store/detail?storeId="+e.currentTarget.id.split('-')[1];
+    location.href="/store/detail?storeId="+e.currentTarget.id.split('-')[1];
 }
 
 function onCardMachineClickHandler(e) {
