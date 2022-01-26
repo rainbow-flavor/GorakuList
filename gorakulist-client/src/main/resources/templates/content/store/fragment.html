@@ -1,7 +1,44 @@
 <html xmlns:th="http://www.thymeleaf.org/">
 <body>
+
+<div th:fragment="machine-card(storeMachine)" class="card mb-3" style="max-width: 1110px">
+    <!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
+    <div class="row no-gutters">
+        <div class="card-body px-1 py-2">
+            <div>
+                <h5 th:text="${storeMachine.machine.koName}" class="d-inline-block m-0"></h5>
+                <span th:if="${storeMachine.machine.category.name() == 'RHYTHM'}"
+                      class="badge bg-danger text-white">리듬</span>
+                <span th:if="${storeMachine.machine.category.name() == 'FIGHT'}"
+                      class="badge bg-warning text-white">격투</span>
+                <span th:if="${storeMachine.machine.category.name() == 'RACING'}"
+                      class="badge bg-success text-white">레이싱</span>
+                <span th:if="${storeMachine.machine.category.name() == 'SHOOTING'}"
+                      class="badge bg-info text-white">슈팅</span>
+                <span th:if="${storeMachine.machine.category.name() == 'ACTION'}"
+                      class="badge bg-primary text-white">액션</span>
+                <span th:if="${storeMachine.machine.category.name() == 'PUZZLE'}"
+                      class="badge bg-secondary text-white">퍼즐</span>
+                <span th:if="${storeMachine.machine.category.name() == 'CASUAL'}"
+                      class="badge bg-secondary text-white">캐쥬얼</span>
+                <span th:if="${storeMachine.machine.category.name() == 'SPORTS'}"
+                      class="badge bg-secondary text-white">스포츠</span>
+                <span th:if="${storeMachine.machine.category.name() == 'ETC'}"
+                      class="badge bg-dark text-white">기타</span>
+                <span th:text="|${storeMachine.machineCount}대|" th:if="${storeMachine.machineCount >= 1}"
+                      class="badge bg-light text-black"></span>
+                <span th:if="${storeMachine.machineCount == null}" class="badge bg-light text-black">정보 없음</span>
+                <th:block th:if="${!#strings.isEmpty(storeMachine.description)}">
+                    <div th:text="|${storeMachine.description}|" class="font-weight-normal"
+                         id="store-card-address"></div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
-<div th:id="${storeDto.id}" th:fragment="simple-store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px; cursor:pointer" >
+<div th:id="${storeDto.id}" th:fragment="store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px; cursor:pointer" >
     <div th:id="|info-${storeDto.id}|" class="row no-gutters store-card-info">
         <div class="col-md-4 text-center">
             <img class="img-thumbnail img-fluid" width="150" th:src="@{/images/unknown.png}" alt="...">
@@ -41,7 +78,7 @@
             <p class="mb-0 text-center">
                 <span th:id="|machineclicked-${storeDto.id}|" hidden>0</span>
                 <span th:each="storeMachine, status : ${storeDto.storeMachines}" th:if="${status.index < 5}"
-                       class="card-text" id="store-card-machines">
+                      class="card-text" id="store-card-machines">
                     <span th:text="${storeMachine.machine.shortName}"
                           th:if="${storeMachine.machine.category.name() == 'RHYTHM'}"
                           class="badge bg-danger text-white"></span>
@@ -105,6 +142,15 @@
             </p>
         </div>
     </div>
+</div>
+
+<div th:fragment="check-game(category)" class="form-check form-check-inline">
+        <input th:field="*{gameCheckbox}" th:id="${category.id}"
+               class="form-check-input" type="checkbox"
+               th:name="gameCheckbox" th:value="${category.id}">
+        <label th:for="${category.id}" class="form-check-label"
+               th:text="${category.shortName}"></label>
+    </th:block>
 </div>
 </body>
 </html>

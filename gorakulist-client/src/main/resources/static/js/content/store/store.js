@@ -1,3 +1,8 @@
+const myGroup = $('#myGroup');
+myGroup.on('show.bs.collapse','.collapse', function() {
+    myGroup.find('.collapse.in').collapse('hide');
+});
+
 $(function addEventListener() {
     $("#btn-search").on("click", submitForm);
     $("#city1").on("change", onFirstAddressChange);
