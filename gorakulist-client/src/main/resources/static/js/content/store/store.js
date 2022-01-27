@@ -1,3 +1,8 @@
+const myGroup = $('#myGroup');
+myGroup.on('show.bs.collapse','.collapse', function() {
+    myGroup.find('.collapse.in').collapse('hide');
+});
+
 $(function addEventListener() {
     $("#btn-search").on("click", submitForm);
     $("#city1").on("change", onFirstAddressChange);
@@ -5,11 +10,7 @@ $(function addEventListener() {
     $(".store-card-machine").on("click", onCardMachineClickHandler);
 });
 
-function isValid(city1, selectedGame){
-    if (city1 === '' || !city1 || city1 === "전국") {
-        alert("시/도를 선택하세요.");
-        return false;
-    }
+function isValid(selectedGame){
     if (selectedGame.length > 5) {
         alert("5개 이상 선택하실 수 없습니다!");
         return false;
@@ -19,23 +20,26 @@ function isValid(city1, selectedGame){
 
 function submitForm(){
     const city1 = $("#city1").val();
-    const selectedGame = [];
+    const city2 = $("#city2").val();
+    const condition = $("input[name=condition]:checked").val();
+    const gameCheckbox = [];
 
     $("input[name=gameCheckbox]:checked").each(function(){
-        selectedGame.push(this.value);
+        gameCheckbox.push(this.value);
     });
 
-    if(!isValid(city1, selectedGame)){
+    if(!isValid(gameCheckbox)){
         return;
     }
 
-    $("#searchRequestForm").submit();
+    const param = new URLSearchParams({ city1, city2, condition, gameCheckbox }).toString();
+    location.href = `/store?${param}`;
 }
 
 function onCardClickHandler(e){
     e.stopPropagation();
     e.preventDefault();
-    location.href="https://www.gorakulist.kr/store/detail?storeId="+e.currentTarget.id.split('-')[1];
+    location.href="/store/detail?storeId="+e.currentTarget.id.split('-')[1];
 }
 
 function onCardMachineClickHandler(e) {
@@ -54,6 +58,21 @@ function onFirstAddressChange() {
         });
     }
     $("#city2").selectpicker('refresh');
+}
+
+window.addEventListener('DOMContentLoaded', initCity2);
+
+function initCity2(){
+    const city1 = $("#city1").val();
+    console.log(city1);
+    $("#city2 option").not("[value='']").remove();
+    $.each(city2[city1], function (idx, item) {
+        console.log(item);
+        $("#city2").append("<option value='" + item + "'>" + item + "</option>")
+    });
+    const city2Last = $("#city2-last").val();
+    console.log(city2Last);
+    $("#city2").selectpicker('val', city2Last);
 }
 
 const city2 = {

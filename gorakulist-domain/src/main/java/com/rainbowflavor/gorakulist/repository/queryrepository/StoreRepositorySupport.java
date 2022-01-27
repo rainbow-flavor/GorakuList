@@ -9,4 +9,5 @@ import java.util.Set;
 @Transactional(readOnly = true)
 public interface StoreRepositorySupport {
     List<Store> findWithTargetMachines(String city1, String city2, Set<Long> machineTypes, String condition);
+    Store findRandom();
 }

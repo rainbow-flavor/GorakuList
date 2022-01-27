@@ -1,6 +1,7 @@
 package com.rainbowflavor.gorakulist.repository.queryrepository;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.rainbowflavor.gorakulist.domain.QMachine;
 import com.rainbowflavor.gorakulist.domain.Store;
@@ -70,5 +71,21 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         } else {
             return null;
         }
+    }
+
+    public Store findRandom() {
+        QMachine parent = new QMachine("parent");
+        QMachine origin = new QMachine("origin");
+        return jpaQueryFactory
+                .selectFrom(store)
+                .join(store.machines, storeMachine)
+                .fetchJoin()
+                .join(storeMachine.machine, origin)
+                .fetchJoin()
+                .leftJoin(origin.parent, parent)
+                .fetchJoin()
+                .orderBy(NumberExpression.random().asc())
+                .limit(1)
+                .fetchOne();
     }
 }

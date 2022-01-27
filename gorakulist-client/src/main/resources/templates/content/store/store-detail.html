@@ -157,7 +157,7 @@
                 <div class="mt-4" id="machine-list">
                     <strong>MACHINE LIST</strong>
                     <div th:each="storeMachine : ${storeDto.storeMachines}">
-                        <div th:replace="fragment/machine-card :: simple-machine-card(${storeMachine})"></div>
+                        <div th:replace="content/store/fragment :: machine-card(${storeMachine})"></div>
                     </div>
                 </div>
             </div>

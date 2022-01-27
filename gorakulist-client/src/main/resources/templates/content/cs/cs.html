@@ -38,6 +38,10 @@
                 <span class="input-group-text">문의 내용</span>
                 <textarea th:text="${incorrect}?'오락실 이름 : ' +${storeName} +'&#10;내용 제보 : ' :_" id="cs-content-text" class="form-control" aria-label="With textarea" rows="5" required></textarea>
             </div>
+            <div class="form-group">
+                <label for="input-image-file" class="d-inline">사진 첨부 : </label>
+                <input type="file" class="form-control-file w-50 d-inline" id="input-image-file" accept="image/*">
+            </div>
         </form>
         <div class="mb-3">
             아래의 제출 버튼을 누름으로서 GorakuList의 <a th:href="@{/legal/toc}">이용약관</a>과 <a

@@ -1,22 +1,18 @@
 package com.rainbowflavor.gorakulist.store;
-
-import com.rainbowflavor.gorakulist.domain.Machine;
 import com.rainbowflavor.gorakulist.store.dto.MachineDto;
 import com.rainbowflavor.gorakulist.store.dto.StoreDto;
+
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -34,23 +30,21 @@ public class StoreController {
     }
 
     @GetMapping
-    public String storeSearchView(@ModelAttribute("searchRequest")SearchRequest searchRequest){
+    public String search(@ModelAttribute("searchRequest")SearchRequest searchRequest, BindingResult bindingResult, Model model) {
+        List<StoreDto> storeDtos = storeService.searchStore(
+            searchRequest.getCity1(), 
+            searchRequest.getCity2(), 
+            searchRequest.getGameCheckbox(), 
+            searchRequest.getCondition());
+        model.addAttribute("storeDtos", storeDtos);
         return "content/store/store";
     }
 
-    @PostMapping("/search")
-    public String storeSearch(@Validated @ModelAttribute("searchRequest") SearchRequest searchRequest, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()){
-            log.warn("[StoreController] binding result={}",bindingResult);
-            return "content/store/store";
-        }
-        List<StoreDto> storeDtos = storeService.searchStore(
-                searchRequest.getCity1(),
-                searchRequest.getCity2(),
-                searchRequest.getGameCheckbox(),
-                searchRequest.getCondition());
-        model.addAttribute("storeDtos", storeDtos);
-        return "content/store/store";
+    @GetMapping("/random")
+    public String storeRandom(Model model) {
+        StoreDto storeDto = storeService.getStoreRandom();
+        model.addAttribute("storeDto", storeDto);
+        return "content/store/store-detail";
     }
 
     @GetMapping("/detail")
@@ -66,7 +60,8 @@ public class StoreController {
         private String city1;
         private String city2;
         @NotEmpty
-        private String condition;
+        private String condition="or";
+        @Size(max = 5)
         private Set<Long> gameCheckbox = new HashSet<>();
     }
 }

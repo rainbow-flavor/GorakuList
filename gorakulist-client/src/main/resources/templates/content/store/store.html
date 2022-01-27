@@ -6,6 +6,11 @@
 <head>
     <link rel="stylesheet" type="text/css"
           th:href="@{/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css}"/>
+    <style>
+        .bootstrap-select .dropdown-menu {
+            max-height: 20vh;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="content" id="content">
@@ -14,10 +19,10 @@
             <h5 class="display-5" id="search-title">오락실 검색</h5>
             <p class="lead" id="search-subtitle">아래에 조건을 입력해주세요</p>
         </div>
-        <form id="searchRequestForm" th:action="@{/store/search}" method="post">
+        <form id="searchRequestForm" th:object="${searchRequest}" th:action="@{/store/search}" method="post">
             <div id="search-combo" class="row justify-content-between align-items-center">
                 <div class="col-4 pr-1">
-                    <select id="city1" name="city1" class="selectpicker" data-width="100%">
+                    <select th:field="*{city1}" id="city1" name="city1" class="selectpicker" data-width="100%">
                         <option value="">전국</option>
                         <option value="서울">서울</option>
                         <option value="부산">부산</option>
@@ -40,8 +45,10 @@
                     </select>
                 </div>
                 <div class="col-4 px-1">
-                    <select id="city2" name="city2" class="selectpicker" data-width="100%" data-none-selected-text="전체">
-                        <option value="전체">전체</option>
+                    <input type="hidden" id="city2-last" th:value="${searchRequest.city2}">
+                    <select id="city2" th:field="*{city2}" name="city2" class="selectpicker" data-width="100%"
+                            data-none-selected-text="전체">
+                        <option value="">전체</option>
                     </select>
                 </div>
                 <div class="col-4 pl-1">
@@ -50,189 +57,98 @@
             </div>
             <div class="row">
                 <div class="col-12 mt-2">
-                    <button class="btn btn-light w-100" type="button" data-toggle="collapse"
-                            data-target="#detail-content"
-                            aria-expanded="false" aria-controls="detail-content">
-                        상세 검색
-                    </button>
-                    <div class="collapse" id="detail-content">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item p-1">
-                                <label for="inlineRadio1" class="form-check-label mr-2">검색 조건</label>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio"
-                                           name="condition" id="inlineRadio1"
-                                           value="or" checked>
-                                    <label class="form-check-label" for="inlineRadio1">or</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio"
-                                           name="condition" id="inlineRadio2"
-                                           value="and">
-                                    <label class="form-check-label" for="inlineRadio2">and</label>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
+                    <ul id="myGroup" class="list-group border-bottom pb-2 list-group-horizontal">
+                        <li class="list-group-item border-0 p-1">
+                            <label for="inlineRadio1" class="form-check-label mr-2">검색 조건</label>
+                            <div class="form-check form-check-inline">
+                                <input th:field="*{condition}" class="form-check-input" type="radio"
+                                       name="condition" id="inlineRadio1"
+                                       value="or">
+                                <label class="form-check-label" for="inlineRadio1">or</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input th:field="*{condition}" class="form-check-input" type="radio"
+                                       name="condition" id="inlineRadio2"
+                                       value="and">
+                                <label class="form-check-label" for="inlineRadio2">and</label>
+                            </div>
+                        </li>
+                        <th:block th:with="categoryItemMap=${ {'리듬','격투','레이싱','액션','슈팅','퍼즐/캐주얼/스포츠','기타'} },
+                                            colorMap=${ {'btn-danger','btn-warning','btn-success','btn-primary','btn-info','btn-secondary','btn-dark'} }">
+                            <li th:each="categoryItem, status:${categoryItemMap}" class="list-group-item flex-fill border-0 p-1">
                                 <div class="px-0">
-                                    <button type="button" class="mb-0 btn btn-block btn-sm btn-danger text-center"
+                                    <button
+                                            th:text="${categoryItem}"
+                                            th:classappend="${colorMap[status.index]}"
+                                            type="button" class="mb-0 btn btn-block btn-sm text-white text-center"
                                             data-toggle="collapse"
-                                            href="#game1" role="button" aria-expanded="false" aria-controls="game1">리듬
+                                            th:href="|#game${status.count}|" role="button" aria-expanded="false"
+                                            th:aria-controls="|game${status.count}|">
                                     </button>
                                 </div>
-                                <div class="collapse" id="game1">
-                                    <div class="py-2">
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).RHYTHM)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
                             </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-warning text-white text-center"
-                                            data-toggle="collapse" href="#game2" role="button" aria-expanded="false"
-                                            aria-controls="game2">격투
-                                    </button>
-                                </div>
-                                <div class="collapse" id="game2">
-                                    <div class="py-2">
+                        </th:block>
+                    </ul>
+                    <div id="category-collapse-parent" th:with="enumCategory=${T(com.rainbowflavor.gorakulist.domain.Category)}">
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game1">
+                            <div class="py-0">
+                                <th:block th:each="category : ${#lists.sort(parentCategory, byName)}"
+                                          th:if="${category.getCategory.equals(enumCategory.RHYTHM)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game2">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.FIGHT)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game3">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.RACING)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game4">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.ACTION)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game5">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.SHOOTING)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game6">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.PUZZLE) ||
+                                                           category.getCategory.equals(enumCategory.CASUAL) ||
+                                                           category.getCategory.equals(enumCategory.SPORTS)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
 
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).FIGHT)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-success text-white text-center"
-                                            data-toggle="collapse" href="#game3" role="button" aria-expanded="false"
-                                            aria-controls="game3">레이싱
-                                    </button>
-                                </div>
-                                <div class="collapse" id="game3">
-                                    <div class="py-2">
-
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).RACING)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-primary text-white text-center"
-                                            data-toggle="collapse" href="#game4" role="button" aria-expanded="false"
-                                            aria-controls="game4">액션
-                                    </button>
-                                </div>
-                                <div class="collapse" id="game4">
-                                    <div class="py-2">
-
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).ACTION)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-info text-white text-center"
-                                            data-toggle="collapse" href="#game5" role="button" aria-expanded="false"
-                                            aria-controls="game5">슈팅
-                                    </button>
-                                </div>
-                                <div class="collapse" id="game5">
-                                    <div class="py-2">
-
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).SHOOTING)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-secondary text-white text-center"
-                                            data-toggle="collapse" href="#game6" role="button" aria-expanded="false"
-                                            aria-controls="game6">퍼즐/캐쥬얼/스포츠
-                                    </button>
-                                </div>
-                                <div class="collapse" id="game6">
-                                    <div class="py-2">
-
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).PUZZLE)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item p-1">
-                                <div class="px-0">
-                                    <button type="button"
-                                            class="mb-0 btn btn-block btn-sm btn-dark text-white text-center"
-                                            data-toggle="collapse" href="#game7" role="button" aria-expanded="false"
-                                            aria-controls="game7">기타
-                                    </button>
-
-                                </div>
-                                <div class="collapse" id="game7">
-                                    <div class="py-2">
-
-                                        <div th:if="${category.getCategory.equals(T(com.rainbowflavor.gorakulist.domain.Category).ETC)}"
-                                             th:each="category : ${#lists.sort(parentCategory, byName)}"
-                                             class="form-check form-check-inline">
-                                            <input th:id="${category.getId}"
-                                                   class="form-check-input" type="checkbox"
-                                                   th:name="gameCheckbox" th:value="${category.id}">
-                                            <label th:for="${category.getId}" class="form-check-label"
-                                                   th:text="${category.getShortName}"></label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent" id="game7">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.ETC)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -247,7 +163,7 @@
             <div class="row mt-1 justify-content-center align-items-center">
                 <div id="store-card-list" class="col">
                     <th:block th:if="${!#lists.isEmpty(storeDto)}" th:each=" storeDto : ${storeDtos}">
-                        <div th:replace="fragment/store-card :: simple-store-card(${storeDto})"></div>
+                        <div th:replace="content/store/fragment :: store-card(${storeDto})"></div>
                     </th:block>
                 </div>
             </div>

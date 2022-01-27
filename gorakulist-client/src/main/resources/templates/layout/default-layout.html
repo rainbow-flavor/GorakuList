@@ -37,10 +37,10 @@
     </script>
 </head>
 <body>
-<div th:replace="fragment/navbar.html :: default-navbar(${activeTab})"></div>
+<div th:replace="layout/navbar.html :: default-navbar(${activeTab})"></div>
 <div layout:fragment="content"></div>
-<div th:replace="fragment/footer.html :: default-footer"></div>
-<div th:replace="fragment/script.html :: default-script"></div>
+<div th:replace="layout/footer.html :: default-footer"></div>
+<div th:replace="layout/script.html :: default-script"></div>
 <div layout:fragment="custom-script"></div>
 </body>
 <div layout:fragment="modal"></div>
