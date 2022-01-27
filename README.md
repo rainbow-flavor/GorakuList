@@ -1,3 +1,5 @@
+![gorakulistbanner](https://user-images.githubusercontent.com/26007107/151335145-46343534-364a-432b-a2d4-a860c9e52620.png)
+
 # GorakuList :joystick:
 
 build : [![CircleCI](https://circleci.com/gh/rainbow-flavor/GorakuList/tree/master.svg?style=svg)](https://circleci.com/gh/rainbow-flavor/GorakuList/tree/master)  
