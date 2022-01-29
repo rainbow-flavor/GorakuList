@@ -6,6 +6,8 @@ build : [![CircleCI](https://circleci.com/gh/rainbow-flavor/GorakuList/tree/mast
 
 아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱
 
+문의 : [사이트 내 문의](https://www.gorakulist.kr/cs) 또는 [admin@gorakulist.kr](mailto:admin@gorakulist.kr)
+
 ## Dependencies
 ```css  
 postgresql@14  
