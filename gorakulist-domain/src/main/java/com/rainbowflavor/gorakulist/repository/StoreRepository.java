@@ -12,6 +12,11 @@ import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
 public interface StoreRepository extends JpaRepository<Store, Long> {
-    @Query("select s from Store s join fetch s.machines sm join fetch sm.machine m left join fetch m.parent where s.id=:id order by s.id asc, m.id asc")
+    @Query("select s " +
+            "from Store s " +
+            "join fetch s.machines sm " +
+            "join fetch sm.machine m " +
+            "left join fetch m.parent " +
+            "where s.id=:id order by s.id asc, m.id asc")
     Optional<Store> findAllRelationById(@Param("id") Long id);
 }

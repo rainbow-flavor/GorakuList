@@ -145,6 +145,8 @@
 </div>
 
 <div th:fragment="check-game(category)" class="form-check form-check-inline">
+    </th:block>
+
         <input th:field="*{gameCheckbox}" th:id="${category.id}"
                class="form-check-input" type="checkbox"
                th:name="gameCheckbox" th:value="${category.id}">

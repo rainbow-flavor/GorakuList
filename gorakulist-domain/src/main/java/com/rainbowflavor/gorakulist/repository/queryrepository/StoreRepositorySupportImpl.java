@@ -1,5 +1,6 @@
 package com.rainbowflavor.gorakulist.repository.queryrepository;
 
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -41,6 +42,30 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .distinct()
                 .orderBy(store.id.asc())
                 .fetch();
+    }
+
+//    private Long count(){
+//        return jpaQueryFactory
+//                .select(store)
+//                .join(store.machines, storeMachine)
+//                .fetchJoin()
+//                .join(storeMachine.machine, machine);
+//    }
+
+    private BooleanExpression k(){
+        return store.networkType.k;
+    }
+    private BooleanExpression n(){
+        return store.networkType.n;
+    }
+    private BooleanExpression s(){
+        return store.networkType.s;
+    }
+    private BooleanExpression t(){
+        return store.networkType.t;
+    }
+    private BooleanExpression a(){
+        return store.networkType.a;
     }
 
     private BooleanExpression byMachineIdList(QMachine origin, Set<Long> machineTypes, String condition) {
