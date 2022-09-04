@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default-layout(activeTab='store')}">
+<head>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/node_modules/bootstrap-select/dist/css/bootstrap-select.min.css}"/>
+    <style>
+        .bootstrap-select .dropdown-menu {
+            max-height: 20vh;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content" id="content">
+    <div class="container">
+        <form id="searchRequestForm" th:object="${searchRequest}" th:action="@{/store/search}" method="post">
+            <div id="search-combo" class="row justify-content-between align-items-center">
+                <div class="col-4 pr-1">
+                    <select th:field="*{city1}" id="city1" name="city1" class="selectpicker" data-width="100%">
+                        <option value="">전국</option>
+                        <option value="서울">서울</option>
+                        <option value="부산">부산</option>
+                        <option value="인천">인천</option>
+                        <option value="대구">대구</option>
+                        <option value="광주">광주</option>
+                        <option value="대전">대전</option>
+                        <option value="세종">세종</option>
+                        <option value="경기북부">경기북부</option>
+                        <option value="경기남부">경기남부</option>
+                        <option value="강원">강원</option>
+                        <option value="충북">충북</option>
+                        <option value="충남">충남</option>
+                        <option value="전북">전북</option>
+                        <option value="전남">전남</option>
+                        <option value="경북">경북</option>
+                        <option value="경남">경남</option>
+                        <option value="제주">제주</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </div>
+                <div class="col-4 px-1">
+                    <input type="hidden" id="city2-last" th:value="${searchRequest.city2}">
+                    <select id="city2" th:field="*{city2}" name="city2" class="selectpicker" data-width="100%"
+                            data-none-selected-text="전체">
+                        <option value="">전체</option>
+                    </select>
+                </div>
+                <div class="col-4 pl-1">
+                    <button id="btn-search" type="button" class="btn btn-outline-dark w-100">검색</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <ul id="condition-connect" class="list-group border-bottom pb-2 list-group-horizontal">
+                        <li class="list-group-item border-0 p-1">
+                            <label for="inlineRadio1" class="form-check-label mr-2">검색 연결</label>
+                            <div class="form-check form-check-inline">
+                                <input th:field="*{condition}" class="form-check-input" type="radio"
+                                       name="condition" id="inlineRadio1"
+                                       value="or">
+                                <label class="form-check-label" for="inlineRadio1">or</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input th:field="*{condition}" class="form-check-input" type="radio"
+                                       name="condition" id="inlineRadio2"
+                                       value="and">
+                                <label class="form-check-label" for="inlineRadio2">and</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <ul id="condition-machine-count" class="list-group border-bottom pb-2 list-group-horizontal">
+                        <li class="list-group-item border-0 p-1">
+                            <span>검색 기체 수</span>
+                        </li>
+                        <li>
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value=""
+                                   aria-label="...">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <ul id="condition-knsta" class="list-group border-bottom pb-2 list-group-horizontal">
+                        <li class="list-group-item border-0 p-1">
+                            <label for="inlineRadio1" class="form-check-label mr-2">KNSTA 검색</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" for="inlineCheckbox1">K</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" for="inlineCheckbox2">N</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">S</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">T</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option3">
+                                <label class="form-check-label" for="inlineCheckbox3">A</label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <ul id="categoryList" class="list-group border-bottom pb-2 list-group-horizontal">
+                        <th:block th:with="categoryItemMap=${ {'리듬','격투','레이싱','액션','슈팅','퍼즐/캐주얼/스포츠','기타'} },
+                                            colorMap=${ {'btn-danger','btn-warning','btn-success','btn-primary','btn-info','btn-secondary','btn-dark'} }">
+                            <li th:each="categoryItem, status:${categoryItemMap}"
+                                class="list-group-item flex-fill border-0 p-1">
+                                <div class="px-0">
+                                    <button
+                                            th:text="${categoryItem}"
+                                            th:classappend="${colorMap[status.index]}"
+                                            type="button" class="mb-0 btn btn-block btn-sm text-white text-center"
+                                            data-toggle="collapse"
+                                            th:href="|#game${status.count}|" role="button" aria-expanded="false"
+                                            th:aria-controls="|game${status.count}|">
+                                    </button>
+                                </div>
+                            </li>
+                        </th:block>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <div id="category-collapse-parent"
+                         th:with="enumCategory=${T(com.rainbowflavor.gorakulist.domain.Category)}">
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game1">
+                            <div class="py-0">
+                                <th:block th:each="category : ${#lists.sort(parentCategory, byName)}"
+                                          th:if="${category.getCategory.equals(enumCategory.RHYTHM)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game2">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.FIGHT)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game3">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.RACING)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game4">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.ACTION)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game5">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.SHOOTING)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game6">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.PUZZLE) ||
+                                                           category.getCategory.equals(enumCategory.CASUAL) ||
+                                                           category.getCategory.equals(enumCategory.SPORTS)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+
+                            </div>
+                        </div>
+                        <div class="collapse border-bottom" data-target="#" data-parent="#category-collapse-parent"
+                             id="game7">
+                            <div class="py-2">
+                                <th:block th:if="${category.getCategory.equals(enumCategory.ETC)}"
+                                          th:each="category : ${#lists.sort(parentCategory, byName)}">
+                                    <div th:replace="content/store/fragment :: check-game(${category})"></div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 justify-content-end w-100">
+                <th:block th:if="${!#lists.isEmpty(storeDtos)}">
+                    <div th:text="|검색 결과 ${#lists.size(storeDtos)} 건|"></div>
+                </th:block>
+                <th:block th:if="${#lists.isEmpty(storeDtos)}">
+                    <div>검색 결과가 없습니다.</div>
+                </th:block>
+            </div>
+            <div class="row mt-1 justify-content-center align-items-center">
+                <div id="store-card-list" class="col">
+                    <th:block th:if="${!#lists.isEmpty(storeDto)}" th:each=" storeDto : ${storeDtos}">
+                        <div th:replace="content/store/fragment :: store-card(${storeDto})"></div>
+                    </th:block>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<th:block layout:fragment="custom-script">
+    <script type="application/javascript" th:src="@{/node_modules/axios/dist/axios.min.js}"></script>
+    <script type="application/javascript"
+            th:src="@{/node_modules/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+    <script type="application/javascript" th:src="@{/js/content/store/store.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../static/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>footer</title>
+</head>
+<body>
+<footer th:fragment="default-footer" class="container-fluid mt-auto py-1 bg-light">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="flex-grow-1">
+            <img th:src="@{/images/gl_logo.svg}" src="../../static/images/gl_logo.svg" height="20vh">
+            <p class="mb-0 text-dark d-inline-block" href="/"> GORAKULIST</p>
+        </div>
+        <div class="mr-2 text-right">
+            <a href="https://twitter.com/GorakuList" role="button">
+                <img th:src="@{/images/twitter_logo.svg}" src="../../static/images/twitter_logo.svg" width="20%" alt="">
+            </a>
+        </div>
+
+        <div class="d-flex flex-wrap">
+            <div class="text-nowrap">
+                <a th:href="@{/legal/toc}"><small>이용 약관</small></a> | <a
+                    th:href="@{/legal/privacy}"><small>개인정보취급방침</small></a>
+            </div>
+            <div>
+                <small>&nbsp;&nbsp;Copyright © 2021 - <span th:text="${#dates.year(#dates.createNow())}"></span></small>
+                <a href="/"><small>GorakuList</small></a>
+                | <small>All rights reserved</small>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
