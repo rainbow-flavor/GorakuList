@@ -31,6 +31,6 @@ jobs:
     steps:
     - name: Build with jib
       run: |
-        sudo cp ./GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar /data/deploy/gorakulist/jars/
+        sudo cp /home/irostub/actions-runner/_work/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar /data/deploy/gorakulist/jars/
         sudo sh /data/deploy/gorakulist/run.sh
         
