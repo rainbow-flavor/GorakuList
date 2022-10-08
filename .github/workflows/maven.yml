@@ -26,10 +26,11 @@ jobs:
       run: mvn -B package --file pom.xml
       
   deploy:
+    needs: build
     runs-on: self-hosted
     
     steps:
-    - name: Build with jib
+    - name: build and run
       run: |
         sudo cp /home/irostub/actions-runner/_work/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar /data/deploy/gorakulist/jars/
         sudo sh /data/deploy/gorakulist/run.sh
