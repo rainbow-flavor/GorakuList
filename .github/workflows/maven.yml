@@ -31,7 +31,11 @@ jobs:
     
     steps:
     - name: build and run
+      env: 
+        DEPLOY_PATH: ${{DEPLOY_PATH}}
+        PROPERTIES_SPRING_RUN: ${{PROPERTIES_SPRING_RUN}}
+        RUNNER_WORK_PATH: ${{RUNNER_WORK_PATH}}
       run: |
-        sudo cp /home/irostub/actions-runner/_work/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar /data/deploy/gorakulist/jars/
-        sudo sh /data/deploy/gorakulist/run.sh
+        sudo cp $RUNNER_WORK_PATH/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar $DEPLOY_PATH/jars
+        sudo sh $DEPLOY_PATH/run.sh $PROPERTIES_SPRING_RUN
         
