@@ -37,5 +37,5 @@ jobs:
         RUNNER_WORK_PATH: ${{ secrets.RUNNER_WORK_PATH }}
       run: |
         sudo cp $RUNNER_WORK_PATH/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar $DEPLOY_PATH/jars
-        sudo sh $DEPLOY_PATH/run.sh $PROPERTIES_SPRING_RUN
+        sudo sh $DEPLOY_PATH/run.sh "$PROPERTIES_SPRING_RUN"
         
