@@ -32,9 +32,9 @@ jobs:
     steps:
     - name: build and run
       env: 
-        DEPLOY_PATH: ${{ screts.DEPLOY_PATH }}
-        PROPERTIES_SPRING_RUN: ${{ screts.PROPERTIES_SPRING_RUN }}
-        RUNNER_WORK_PATH: ${{ screts.RUNNER_WORK_PATH }}
+        DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        PROPERTIES_SPRING_RUN: ${{ secrets.PROPERTIES_SPRING_RUN }}
+        RUNNER_WORK_PATH: ${{ secrets.RUNNER_WORK_PATH }}
       run: |
         sudo cp $RUNNER_WORK_PATH/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar $DEPLOY_PATH/jars
         sudo sh $DEPLOY_PATH/run.sh $PROPERTIES_SPRING_RUN
