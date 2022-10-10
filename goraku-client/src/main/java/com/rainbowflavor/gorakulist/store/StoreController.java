@@ -16,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.util.*;
 
 @Slf4j
+@Deprecated
 //@Controller
 @RequiredArgsConstructor
 @RequestMapping("/store")

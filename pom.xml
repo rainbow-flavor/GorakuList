@@ -22,7 +22,7 @@
     <properties>
         <java.version>11</java.version>
         <log4j2.version>2.15.0</log4j2.version>
-        <spring-cloud.version>2021.0.0</spring-cloud.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
 
     </properties>
     <dependencies>

@@ -346,7 +346,7 @@ dist
 !.yarn/cache
 yarn.lock
 
-*.properties
+application-local.properties
 # and uncomment the following lines
 # .pnp.*
 

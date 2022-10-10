@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 
 //@Controller
+@Deprecated
 @Slf4j
 @RequiredArgsConstructor
 @RequestMapping("/cs")
