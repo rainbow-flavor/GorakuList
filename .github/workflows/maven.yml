@@ -1,40 +1,118 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: Java CI with Maven
+name: ci
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - 'master'
 
 jobs:
-  build:
-
-    runs-on: self-hosted
-
+  discord:
+    runs-on: ubuntu-latest
+    name: Discord Notifier
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-      
-  deploy:
-    needs: build
-    runs-on: self-hosted
-    
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v34
+        with:
+          separator: "\n"
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+      - uses: benjlevesque/short-sha@v2.1
+        id: short-sha
+        with:
+          length: 7
+      - run: echo $SHA
+        env:
+          SHA: ${{ steps.short-sha.outputs.sha }}
+      - run: echo $SHA
+        env:
+          SHA: ${{ env.SHA }}
+      - name: build start notify to Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: Gorakulist Deploy Start Hooker
+          DISCORD_EMBEDS: |
+            [    { 
+            "title": "${{github.event.repository.name}} 의 빌드가 시작되었어요!",
+            "author": {  "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}", "name": "${{ github.actor }}", "url": "https://github.com/${{github.actor}}" },
+            "url": "https://github.com/${{github.repository}}/commit/${{github.sha}}",
+            "fields": [
+            { "name": "Repository", "value": "[${{github.event.repository.name}}](${{github.event.repository.clone_url}})", "inline": true },
+            { "name": "Branch", "value": "[${{github.ref_name}}](https://github.com/${{github.repository}}/tree/${{github.ref_name}})", "inline": true },
+            { "name": "Event", "value": "${{github.event_name}}", "inline": true },
+            { "name": "Commit Message", "value": "[${{ env.SHA }}](https://github.com/${{github.repository}}/commit/${{github.sha}}) - `${{github.event.head_commit.message}}`" },
+            { "name": "Changed Files", "value": "${{ steps.changed-files.outputs.all_changed_files }}" },
+            { "name": "Author", "value": "[${{github.event.head_commit.author.name}}](https://github.com/${{github.actor}})" }
+            ],
+            "color":11004856,
+            "timestamp": "${{github.event.head_commit.timestamp}}",
+            "footer":{"text": "${{github.event.head_commit.timestamp}}"}
+            }    ]
+        uses: Ilshidur/action-discord@master
+      - name: echo
+        run: |
+          echo ${{github.event_name}}
+
+  image-build-push:
+    runs-on: ubuntu-latest
     steps:
-    - name: build and run
-      env: 
-        DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
-        RUNNER_WORK_PATH: ${{ secrets.RUNNER_WORK_PATH }}
-      run: |
-        sudo cp $RUNNER_WORK_PATH/GorakuList/GorakuList/goraku-client/target/goraku-client-0.0.1.jar $DEPLOY_PATH/jars
-        sudo sh $DEPLOY_PATH/run.sh
-        
+      -
+        name: login to irohub
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.IROHUB_URL }}
+          username: ${{ secrets.IROHUB_USERNAME }}
+          password: ${{ secrets.IROHUB_TOKEN }}
+      -
+        name: build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ${{ secrets.IROHUB_URL }}/roxy-api-server:latest
+
+  reload:
+    needs: image-build-push
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: pull and apply
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.MASTER_HOST }}
+          username: ${{ secrets.MASTER_USERNAME }}
+          password: ${{ secrets.MASTER_PASSWORD }}
+          port: ${{ secrets.MASTER_PORT }}
+          script: cd ${{ secrets.GORAKU_DEP_PATH }} && ${{ secrets.GORAKU_DEP }}
+
+      - name: deploy finish notify to Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_USERNAME: Gorakulist Deploy Finish Hooker
+          DISCORD_EMBEDS: |
+            [    { 
+            "title": "${{github.event.repository.name}} 가 배포 완료되었어요!",
+            "author": {  "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}", "name": "${{ github.actor }}", "url": "https://github.com/${{github.actor}}" },
+            "url": "https://github.com/${{github.repository}}/commit/${{github.sha}}",
+            "fields": [
+            { "name": "Repository", "value": "[${{github.event.repository.name}}](${{github.event.repository.clone_url}})", "inline": true },
+            { "name": "Branch", "value": "[${{github.ref_name}}](https://github.com/${{github.repository}}/tree/${{github.ref_name}})", "inline": true },
+            { "name": "Event", "value": "${{github.event_name}}", "inline": true },
+            { "name": "Job", "value": "${{github.job}}", "inline": true },
+            { "name": "Commit Message", "value": "[${{ env.SHA }}](https://github.com/${{github.repository}}/commit/${{github.sha}}) - `${{github.event.head_commit.message}}`" },
+            { "name": "Author", "value": "[${{github.event.head_commit.author.name}}](https://github.com/${{github.actor}})" }
+            ],
+            "color":9484536,
+            "timestamp": "${{github.event.head_commit.timestamp}}",
+            "footer":{"text": "${{github.event.head_commit.timestamp}}"}
+            }    ]
+        uses: Ilshidur/action-discord@master
+      - name: echo
+        run: |
+          echo ${{github.event_name}}
