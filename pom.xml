@@ -5,7 +5,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>goraku-client</module>
-        <module>goraku-admin</module>
         <module>goraku-domain</module>
     </modules>
     <parent>
@@ -16,14 +15,13 @@
     </parent>
     <groupId>com.rainbowflavor</groupId>
     <artifactId>gorakulist</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.1</version>
     <name>gorakulist</name>
     <description>korea arcade station search web application</description>
     <properties>
         <java.version>11</java.version>
         <log4j2.version>2.15.0</log4j2.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
-
     </properties>
     <dependencies>
         <dependency>
