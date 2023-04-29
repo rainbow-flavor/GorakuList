@@ -5,7 +5,7 @@ RUN ./mvnw clean package
 
 FROM adoptopenjdk/openjdk11
 WORKDIR /deploy/
-COPY --from=0 /app/goraku-client/target/roxy-api-server-1.0.1.jar /deploy/goraku-client-1.0.1.jar
+COPY --from=0 /app/goraku-client/target/goraku-client-1.0.1.jar /deploy/goraku-client-1.0.1.jar
 COPY --from=0 /app/whatap.conf /deploy/
 
 RUN mkdir -p /whatap
