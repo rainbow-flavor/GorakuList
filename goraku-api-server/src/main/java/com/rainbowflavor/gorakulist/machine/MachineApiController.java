@@ -23,7 +23,7 @@ public class MachineApiController {
         List<MachineDto> result = machineService.getMachineParent().stream()
                 .sorted(Comparator.comparing(MachineDto::getShortName))
                 .collect(Collectors.toList());
-        return ResponseEntity.ok(new Response<>(result));
+        return ResponseEntity.ok(Response.success(result));
     }
 
     @GetMapping("/search")
