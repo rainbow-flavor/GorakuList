@@ -1,40 +1,39 @@
 package com.rainbowflavor.gorakulist.store;
 
-import com.rainbowflavor.gorakulist.store.dto.StoreDto;
+import com.rainbowflavor.gorakulist.common.Response;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/store")
 public class StoreApiController {
     private final StoreService storeService;
 
-    @GetMapping
-    public ResponseEntity<List<StoreDto>> search(@RequestParam(required = false, defaultValue = "") String city1,
-                                                @RequestParam(required = false, defaultValue = "") String city2,
-                                                @RequestParam(required = false, defaultValue = "") Set<Long> gameCheckBox,
-                                                @RequestParam(defaultValue = "or") String condition){
-        List<StoreDto> storeDtos = storeService.searchStore(city1, city2, gameCheckBox, condition);
-        return ResponseEntity.ok(storeDtos);
+    @GetMapping("/search")
+    public ResponseEntity<Response<List<StoreDto>>> search(@ModelAttribute StoreSearchCondition condition){
+        List<StoreDto> storeDtos = storeService.searchStore(condition);
+        return ResponseEntity.ok(new Response<>(storeDtos));
     }
 
     @GetMapping("/random")
-    public ResponseEntity<StoreDto> getRandom() {
+    public ResponseEntity<Response<StoreDto>> getRandom() {
         StoreDto storeRandom = storeService.getStoreRandom();
-        return ResponseEntity.ok(storeRandom);
+        return ResponseEntity.ok(new Response<>(storeRandom));
     }
 
     @GetMapping("/detail")
-    public ResponseEntity<StoreDto> detail(@RequestParam Long storeId){
+    public ResponseEntity<Response<StoreDto>> detail(@RequestParam Long storeId){
         StoreDto storeDetail = storeService.getStoreDetail(storeId);
-        return ResponseEntity.ok(storeDetail);
+        return ResponseEntity.ok(new Response<>(storeDetail));
     }
 }

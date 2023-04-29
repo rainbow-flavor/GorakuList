@@ -1,8 +1,9 @@
 package com.rainbowflavor.gorakulist.machine;
 
+import com.rainbowflavor.gorakulist.domain.Machine;
 import com.rainbowflavor.gorakulist.repository.MachineRepository;
-import com.rainbowflavor.gorakulist.store.dto.MachineDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,14 @@ public class MachineService {
     public List<MachineDto> getMachineParent(){
         return machineRepository.findAllByParentIsNull().stream()
                 .map(MachineDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Cacheable("machineStrList")
+    public List<String> searchMachineByName(String machineName, Integer limit) {
+        return machineRepository.findAllByMachineName(machineName).stream()
+                .map(Machine::getKoName)
+                .limit(limit)
                 .collect(Collectors.toList());
     }
 }

@@ -2,7 +2,7 @@
 <body>
 
 <div th:fragment="machine-card(storeMachine)" class="card mb-3" style="max-width: 1110px">
-    <!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.dto.StoreMachineDto"*/-->
+    <!--/*@thymesVar id="storeMachine" type="com.rainbowflavor.gorakulist.store.StoreMachineDto"*/-->
     <div class="row no-gutters">
         <div class="card-body px-1 py-2">
             <div>
@@ -37,7 +37,7 @@
     </div>
 </div>
 
-<!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.dto.StoreDto"*/-->
+<!--/*@thymesVar id="storeDto" type="com.rainbowflavor.gorakulist.store.StoreDto"*/-->
 <div th:id="${storeDto.id}" th:fragment="store-card(storeDto)" class="card store-card mb-3" style="max-width: 1110px; cursor:pointer" >
     <div th:id="|info-${storeDto.id}|" class="row no-gutters store-card-info">
         <div class="col-md-4 text-center">

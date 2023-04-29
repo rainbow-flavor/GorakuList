@@ -1,4 +1,4 @@
-package com.rainbowflavor.gorakulist.store.dto;
+package com.rainbowflavor.gorakulist.store;
 
 import com.rainbowflavor.gorakulist.domain.NetworkType;
 import com.rainbowflavor.gorakulist.domain.Store;

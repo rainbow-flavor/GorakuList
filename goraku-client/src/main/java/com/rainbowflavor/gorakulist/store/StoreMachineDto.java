@@ -1,6 +1,7 @@
-package com.rainbowflavor.gorakulist.store.dto;
+package com.rainbowflavor.gorakulist.store;
 
 import com.rainbowflavor.gorakulist.domain.StoreMachine;
+import com.rainbowflavor.gorakulist.machine.MachineDto;
 import lombok.Data;
 
 @Data

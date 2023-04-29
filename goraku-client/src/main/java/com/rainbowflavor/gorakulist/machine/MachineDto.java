@@ -1,4 +1,4 @@
-package com.rainbowflavor.gorakulist.store.dto;
+package com.rainbowflavor.gorakulist.machine;
 
 import com.rainbowflavor.gorakulist.domain.Category;
 import com.rainbowflavor.gorakulist.domain.Machine;

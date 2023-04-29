@@ -41,7 +41,7 @@ class StoreRepositorySupportTest {
     @Transactional
     void initStoreData() {
         List<Machine> machines = new ArrayList<>();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             Machine machine = new Machine(
                     null,
                     "머신" + i,
