@@ -74,7 +74,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: ${{ secrets.IROHUB_URL }}/roxy-api-server:latest
+          tags: ${{ secrets.IROHUB_URL }}/goraku-api-server:latest
 
   reload:
     needs: image-build-push

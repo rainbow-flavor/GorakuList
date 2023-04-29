@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
     <modules>
-        <module>goraku-client</module>
+        <module>goraku-api-server</module>
         <module>goraku-domain</module>
     </modules>
     <parent>
