@@ -30,6 +30,6 @@ public class MachineApiController {
     public ResponseEntity<Response<List<String>>> searchMachine(@RequestParam(defaultValue = "") String machineName,
                                                                 @RequestParam(required = false, defaultValue = "10") Integer limit) {
         List<String> result = machineService.searchMachineByName(machineName, limit);
-        return ResponseEntity.ok(new Response<>(result));
+        return ResponseEntity.ok(Response.success(result));
     }
 }
