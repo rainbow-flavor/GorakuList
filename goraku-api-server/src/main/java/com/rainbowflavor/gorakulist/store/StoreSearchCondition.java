@@ -7,6 +7,7 @@ import java.util.Set;
 
 @Data
 public class StoreSearchCondition {
+    private String machineName;
     private String city1;
     private String city2;
     private Boolean cardK;

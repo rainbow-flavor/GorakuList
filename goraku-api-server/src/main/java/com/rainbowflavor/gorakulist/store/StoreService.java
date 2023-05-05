@@ -17,6 +17,7 @@ public class StoreService {
 
     public List<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
         return storeRepository.findByAddressOrCard(
+                storeSearchCondition.getMachineName(),
                 storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
                 storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA())
                 .stream()

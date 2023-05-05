@@ -46,13 +46,31 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .fetch();
     }
 
-    public List<Store> findByAddressOrCard(String city1, String city2,
-                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA){
+    public List<Store> findByAddressOrCard(String machineName,
+                                           String city1, String city2,
+                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {
         return jpaQueryFactory.selectFrom(store)
-                .where(byCity1(city1), byCity2(city2), byCard(cardK, cardN, cardS, cardT, cardA)).fetch();
+                .join(store.machines, storeMachine)
+                .join(storeMachine.machine, machine)
+                .where(
+                        byMachineName(machineName),
+                        byCity1(city1), byCity2(city2),
+                        byCard(cardK, cardN, cardS, cardT, cardA))
+                .fetch();
     }
 
-    private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA){
+    private Predicate byMachineName(String machineName) {
+        if (!StringUtils.hasText(machineName)) {
+            return null;
+        }
+
+        return new BooleanBuilder()
+                .or(machine.enName.eq(machineName))
+                .or(machine.koName.eq(machineName))
+                .or(machine.shortName.eq(machineName));
+    }
+
+    private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {
         BooleanBuilder bb = new BooleanBuilder();
         if (cardK != null) {
             bb.or(store.networkType.k.eq(cardK)).or(store.networkType.k.isNull());
@@ -73,7 +91,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
     }
 
     private BooleanExpression byMachineIdList(QMachine origin, Set<Long> machineTypes, String condition) {
-        if(!machineTypes.isEmpty() && condition.equals("or")){
+        if (!machineTypes.isEmpty() && condition.equals("or")) {
             return origin.parent.id.in(machineTypes);
         }
         return null;
