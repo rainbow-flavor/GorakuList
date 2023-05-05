@@ -19,8 +19,9 @@ public class StoreService {
         return storeRepository.findByAddressOrCard(
                 storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
                 storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA())
-                .stream().limit(storeSearchCondition.getLimit())
+                .stream()
                 .filter(s -> s.getIsop().equals(storeSearchCondition.getIsOp()))
+                .limit(storeSearchCondition.getLimit())
                 .map(s -> new StoreDto(s, false))
                 .collect(Collectors.toList());
     }
