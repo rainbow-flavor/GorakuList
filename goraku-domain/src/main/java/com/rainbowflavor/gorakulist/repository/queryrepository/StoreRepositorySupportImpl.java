@@ -65,9 +65,9 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         }
 
         return new BooleanBuilder()
-                .or(machine.enName.eq(machineName))
-                .or(machine.koName.eq(machineName))
-                .or(machine.shortName.eq(machineName));
+                .or(machine.enName.like(machineName))
+                .or(machine.koName.like(machineName))
+                .or(machine.shortName.like(machineName));
     }
 
     private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {
