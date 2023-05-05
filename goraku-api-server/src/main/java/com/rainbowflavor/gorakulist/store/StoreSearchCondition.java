@@ -16,5 +16,6 @@ public class StoreSearchCondition {
     private Boolean cardT;
     private Boolean cardA;
     private Boolean isOp = true;
+    private Integer page = 0;
     private Integer limit = 30;
 }

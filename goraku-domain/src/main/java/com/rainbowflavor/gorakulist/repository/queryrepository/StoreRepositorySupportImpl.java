@@ -9,6 +9,9 @@ import com.rainbowflavor.gorakulist.domain.NetworkType;
 import com.rainbowflavor.gorakulist.domain.QMachine;
 import com.rainbowflavor.gorakulist.domain.Store;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -46,28 +49,71 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .fetch();
     }
 
+    public Page<Store> findByAddressOrCard(Pageable pageable,
+                                           String machineName,
+                                           String city1, String city2,
+                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
+                                           Boolean isOp) {
+        List<Store> contents = jpaQueryFactory.selectFrom(store)
+                .join(store.machines, storeMachine)
+                .join(storeMachine.machine, machine)
+                .where(
+                        byMachineName(machineName),
+                        byCity1(city1), byCity2(city2),
+                        byCard(cardK, cardN, cardS, cardT, cardA),
+                        byIsOp(isOp))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        return PageableExecutionUtils.getPage(contents, pageable, ()-> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp));
+    }
+
+    private Long getSearchCount(String machineName, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp) {
+        return jpaQueryFactory
+                .select(store.count())
+                .from(store)
+                .join(store.machines, storeMachine)
+                .join(storeMachine.machine, machine)
+                .where(
+                        byMachineName(machineName),
+                        byCity1(city1), byCity2(city2),
+                        byCard(cardK, cardN, cardS, cardT, cardA),
+                        byIsOp(isOp))
+                .fetchOne();
+    }
+
     public List<Store> findByAddressOrCard(String machineName,
                                            String city1, String city2,
-                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {
+                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
+                                           Boolean isOp) {
         return jpaQueryFactory.selectFrom(store)
                 .join(store.machines, storeMachine)
                 .join(storeMachine.machine, machine)
                 .where(
                         byMachineName(machineName),
                         byCity1(city1), byCity2(city2),
-                        byCard(cardK, cardN, cardS, cardT, cardA))
+                        byCard(cardK, cardN, cardS, cardT, cardA),
+                        byIsOp(isOp))
                 .fetch();
+    }
+
+    private Predicate byIsOp(Boolean isOp) {
+        if (isOp == null) {
+            return null;
+        }
+        return store.isop.eq(isOp);
     }
 
     private Predicate byMachineName(String machineName) {
         if (!StringUtils.hasText(machineName)) {
             return null;
         }
-
+        machineName = machineName.toUpperCase();
         return new BooleanBuilder()
-                .or(machine.enName.like(machineName))
-                .or(machine.koName.like(machineName))
-                .or(machine.shortName.like(machineName));
+                .or(machine.enName.upper().like("%"+machineName+"%"))
+                .or(machine.koName.upper().like("%"+machineName+"%"))
+                .or(machine.shortName.upper().like("%"+machineName+"%"));
     }
 
     private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {

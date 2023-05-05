@@ -1,8 +1,10 @@
 package com.rainbowflavor.gorakulist.store;
 
+import com.rainbowflavor.gorakulist.common.PagingResponse;
 import com.rainbowflavor.gorakulist.common.Response;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,9 +22,9 @@ public class StoreApiController {
     private final StoreService storeService;
 
     @GetMapping("/search")
-    public ResponseEntity<Response<List<StoreDto>>> search(@ModelAttribute StoreSearchCondition condition){
-        List<StoreDto> storeDtos = storeService.searchStore(condition);
-        return ResponseEntity.ok(Response.success(storeDtos));
+    public ResponseEntity<PagingResponse<List<StoreDto>>> search(@ModelAttribute StoreSearchCondition condition){
+        Page<StoreDto> storeDtos = storeService.searchStore(condition);
+        return ResponseEntity.ok(PagingResponse.success(storeDtos));
     }
 
     @GetMapping("/random")

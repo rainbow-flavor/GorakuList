@@ -3,11 +3,11 @@ package com.rainbowflavor.gorakulist.store;
 import com.rainbowflavor.gorakulist.domain.Store;
 import com.rainbowflavor.gorakulist.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -15,16 +15,14 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
-    public List<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
+    public Page<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
         return storeRepository.findByAddressOrCard(
+                PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
                 storeSearchCondition.getMachineName(),
                 storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
-                storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA())
-                .stream()
-                .filter(s -> s.getIsop().equals(storeSearchCondition.getIsOp()))
-                .limit(storeSearchCondition.getLimit())
-                .map(s -> new StoreDto(s, false))
-                .collect(Collectors.toList());
+                storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA(),
+                        storeSearchCondition.getIsOp())
+                .map(s -> new StoreDto(s, false));
     }
 
     public StoreDto getStoreDetail(Long id) {
