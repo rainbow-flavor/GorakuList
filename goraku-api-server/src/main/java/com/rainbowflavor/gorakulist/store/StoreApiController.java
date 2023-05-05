@@ -22,7 +22,7 @@ public class StoreApiController {
     @GetMapping("/search")
     public ResponseEntity<Response<List<StoreDto>>> search(@ModelAttribute StoreSearchCondition condition){
         List<StoreDto> storeDtos = storeService.searchStore(condition);
-        return ResponseEntity.ok(new Response<>(storeDtos));
+        return ResponseEntity.ok(Response.success(storeDtos));
     }
 
     @GetMapping("/random")
