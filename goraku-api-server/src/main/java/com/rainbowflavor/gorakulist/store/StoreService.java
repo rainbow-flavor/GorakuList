@@ -20,6 +20,7 @@ public class StoreService {
                 storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
                 storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA())
                 .stream().limit(storeSearchCondition.getLimit())
+                .filter(s -> s.getIsop().equals(storeSearchCondition.getIsOp()))
                 .map(s -> new StoreDto(s, false))
                 .collect(Collectors.toList());
     }
