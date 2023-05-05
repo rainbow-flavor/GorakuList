@@ -1,8 +1,11 @@
 package com.rainbowflavor.gorakulist.repository.queryrepository;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.rainbowflavor.gorakulist.domain.NetworkType;
 import com.rainbowflavor.gorakulist.domain.QMachine;
 import com.rainbowflavor.gorakulist.domain.Store;
 import lombok.RequiredArgsConstructor;
@@ -43,20 +46,30 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .fetch();
     }
 
-    private BooleanExpression k(){
-        return store.networkType.k;
+    public List<Store> findByAddressOrCard(String city1, String city2,
+                                           Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA){
+        return jpaQueryFactory.selectFrom(store)
+                .where(byCity1(city1), byCity2(city2), byCard(cardK, cardN, cardS, cardT, cardA)).fetch();
     }
-    private BooleanExpression n(){
-        return store.networkType.n;
-    }
-    private BooleanExpression s(){
-        return store.networkType.s;
-    }
-    private BooleanExpression t(){
-        return store.networkType.t;
-    }
-    private BooleanExpression a(){
-        return store.networkType.a;
+
+    private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA){
+        BooleanBuilder bb = new BooleanBuilder();
+        if (cardK != null) {
+            bb.or(store.networkType.k.eq(cardK)).or(store.networkType.k.isNull());
+        }
+        if (cardN != null) {
+            bb.or(store.networkType.n.eq(cardN)).or(store.networkType.n.isNull());
+        }
+        if (cardS != null) {
+            bb.or(store.networkType.s.eq(cardS)).or(store.networkType.s.isNull());
+        }
+        if (cardT != null) {
+            bb.or(store.networkType.t.eq(cardT)).or(store.networkType.t.isNull());
+        }
+        if (cardA != null) {
+            bb.or(store.networkType.a.eq(cardA)).or(store.networkType.a.isNull());
+        }
+        return bb;
     }
 
     private BooleanExpression byMachineIdList(QMachine origin, Set<Long> machineTypes, String condition) {

@@ -16,28 +16,26 @@ public class StoreService {
     private final StoreRepository storeRepository;
 
     public List<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
-        List<Store> stores = storeRepository.findWithTargetMachines(
-                storeSearchCondition.getCity1(),
-                storeSearchCondition.getCity2(),
-                storeSearchCondition.getGameCheckBox(),
-                storeSearchCondition.getCondition());
-        stores.forEach(this::sortStoreMachine);
-        return stores.stream()
-                .map(StoreDto::new).collect(Collectors.toList());
+        return storeRepository.findByAddressOrCard(
+                storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
+                storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA())
+                .stream().limit(storeSearchCondition.getLimit())
+                .map(s -> new StoreDto(s, false))
+                .collect(Collectors.toList());
     }
 
     public StoreDto getStoreDetail(Long id) {
         Store store = storeRepository.findAllRelationById(id)
                 .orElseThrow(StoreNotFoundException::new);
         sortStoreMachine(store);
-        return new StoreDto(store);
+        return new StoreDto(store, true);
     }
 
     public StoreDto getStoreRandom() {
         Store store = storeRepository.findRandom()
                 .orElseThrow(StoreNotFoundException::new);
         sortStoreMachine(store);
-        return new StoreDto(store);
+        return new StoreDto(store, true);
     }
 
     private void sortStoreMachine(Store store) {

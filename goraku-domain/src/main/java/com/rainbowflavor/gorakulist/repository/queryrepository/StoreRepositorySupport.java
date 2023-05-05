@@ -9,5 +9,7 @@ import java.util.Set;
 
 public interface StoreRepositorySupport {
     List<Store> findWithTargetMachines(String city1, String city2, Set<Long> machineTypes, String condition);
+    List<Store> findByAddressOrCard(String city1, String city2,
+                                    Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA);
     Optional<Store> findRandom();
 }

@@ -38,7 +38,7 @@ public class StoreDto {
 
     private List<StoreMachineDto> storeMachines = new ArrayList<>();
 
-    public StoreDto(Store store) {
+    public StoreDto(Store store, boolean withStoreMachine) {
         this.id = store.getId();
         this.city1 = store.getCity1();
         this.city2 = store.getCity2();
@@ -52,8 +52,10 @@ public class StoreDto {
         this.twitter = store.getTwitter();
         this.website = store.getWebsite();
         this.networkType = store.getNetworkType();
-        this.storeMachines = store.getMachines().stream()
-                .map(StoreMachineDto::new)
-                .collect(Collectors.toList());
+        if (withStoreMachine) {
+            this.storeMachines = store.getMachines().stream()
+                    .map(StoreMachineDto::new)
+                    .collect(Collectors.toList());
+        }
     }
 }

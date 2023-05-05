@@ -9,6 +9,10 @@ import java.util.Set;
 public class StoreSearchCondition {
     private String city1;
     private String city2;
-    private Set<Long> gameCheckBox = new HashSet<>();
-    private String condition = "or";
+    private Boolean cardK;
+    private Boolean cardN;
+    private Boolean cardS;
+    private Boolean cardT;
+    private Boolean cardA;
+    private Integer limit = 30;
 }
