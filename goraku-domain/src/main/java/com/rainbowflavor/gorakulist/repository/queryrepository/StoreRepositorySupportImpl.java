@@ -55,6 +55,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                                            Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
                                            Boolean isOp) {
         List<Store> contents = jpaQueryFactory.selectFrom(store)
+                .distinct()
                 .join(store.machines, storeMachine)
                 .join(storeMachine.machine, machine)
                 .where(
@@ -62,6 +63,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                         byCity1(city1), byCity2(city2),
                         byCard(cardK, cardN, cardS, cardT, cardA),
                         byIsOp(isOp))
+                .orderBy(store.id.asc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
