@@ -19,6 +19,6 @@ public interface StoreRepositorySupport {
     Page<Store> findByAddressOrCard(Pageable pageable, String machineName,
                                     String city1, String city2,
                                     Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
-                                    Boolean isOp);
+                                    Boolean isOp, Double latitude, Double longitude);
     Optional<Store> findRandom();
 }

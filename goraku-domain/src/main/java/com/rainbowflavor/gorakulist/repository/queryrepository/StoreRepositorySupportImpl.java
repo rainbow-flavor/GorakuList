@@ -18,11 +18,13 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.querydsl.jpa.JPAExpressions.select;
 import static com.rainbowflavor.gorakulist.domain.QMachine.machine;
 import static com.rainbowflavor.gorakulist.domain.QStore.store;
 import static com.rainbowflavor.gorakulist.domain.QStoreMachine.storeMachine;
+import static com.rainbowflavor.gorakulist.utils.CoordinateUtils.distance;
 
 @RequiredArgsConstructor
 public class StoreRepositorySupportImpl implements StoreRepositorySupport {
@@ -53,7 +55,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                                            String machineName,
                                            String city1, String city2,
                                            Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
-                                           Boolean isOp) {
+                                           Boolean isOp, Double latitude, Double longitude) {
         List<Store> contents = jpaQueryFactory.selectFrom(store)
                 .distinct()
                 .join(store.machines, storeMachine)
@@ -67,6 +69,20 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+
+        if (latitude != null && longitude != null) {
+                contents.sort((a, b) -> {
+                    if (!a.isSetCoordinates()) return 1;
+                    else if (!b.isSetCoordinates()) return -1;
+
+                    double aDistance = distance(latitude, longitude, Double.parseDouble(a.getLatitude()), Double.parseDouble(a.getLongitude()), "");
+                    double bDistance = distance(latitude, longitude, Double.parseDouble(b.getLatitude()), Double.parseDouble(b.getLongitude()), "");
+                    double aAbsDist = Math.abs(aDistance);
+                    double bAbsDist = Math.abs(bDistance);
+
+                    return Double.compare(aAbsDist, bAbsDist);
+                });
+        }
 
         return PageableExecutionUtils.getPage(contents, pageable, ()-> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp));
     }

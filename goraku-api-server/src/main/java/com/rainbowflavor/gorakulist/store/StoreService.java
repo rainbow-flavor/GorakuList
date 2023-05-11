@@ -12,17 +12,17 @@ import java.util.Comparator;
 @Service
 @RequiredArgsConstructor
 public class StoreService {
-
     private final StoreRepository storeRepository;
 
     public Page<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
-        return storeRepository.findByAddressOrCard(
-                PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
-                storeSearchCondition.getMachineName(),
-                storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
-                storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(),storeSearchCondition.getCardT(), storeSearchCondition.getCardA(),
-                        storeSearchCondition.getIsOp())
+        Page<StoreDto> result = storeRepository.findByAddressOrCard(
+                        PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
+                        storeSearchCondition.getMachineName(),
+                        storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
+                        storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(), storeSearchCondition.getCardT(), storeSearchCondition.getCardA(),
+                        storeSearchCondition.getIsOp(), storeSearchCondition.getLatitude(), storeSearchCondition.getLongitude())
                 .map(s -> new StoreDto(s, false));
+        return result;
     }
 
     public StoreDto getStoreDetail(Long id) {

@@ -48,6 +48,13 @@ public class Store {
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
     private List<StoreMachine> machines = new ArrayList<>();
 
+    public boolean isSetCoordinates(){
+        if (latitude != null && longitude != null) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Store{" +

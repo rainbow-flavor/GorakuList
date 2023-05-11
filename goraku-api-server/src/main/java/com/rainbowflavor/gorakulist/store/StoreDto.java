@@ -1,5 +1,6 @@
 package com.rainbowflavor.gorakulist.store;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rainbowflavor.gorakulist.domain.NetworkType;
 import com.rainbowflavor.gorakulist.domain.Store;
 import lombok.Data;
