@@ -20,11 +20,4 @@ public class StoreSearchCondition {
     private Integer limit = 30;
     private Double latitude;
     private Double longitude;
-
-    public boolean isSetCoordinates(){
-        if (latitude != null && longitude != null) {
-            return true;
-        }
-        return false;
-    }
 }

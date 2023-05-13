@@ -71,26 +71,26 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .fetch();
 
         if (latitude != null && longitude != null) {
-                contents.sort((a, b) -> {
-                    if (!a.isSetCoordinates()) return 1;
-                    else if (!b.isSetCoordinates()) return -1;
+            contents.sort((a, b) -> {
+                if (!a.isSetCoordinates()) return 1;
+                else if (!b.isSetCoordinates()) return -1;
 
-                    double aDistance = distance(latitude, longitude, Double.parseDouble(a.getLatitude()), Double.parseDouble(a.getLongitude()), "");
-                    double bDistance = distance(latitude, longitude, Double.parseDouble(b.getLatitude()), Double.parseDouble(b.getLongitude()), "");
-                    double aAbsDist = Math.abs(aDistance);
-                    double bAbsDist = Math.abs(bDistance);
+                double aDistance = distance(latitude, longitude, Double.parseDouble(a.getLatitude()), Double.parseDouble(a.getLongitude()), "");
+                double bDistance = distance(latitude, longitude, Double.parseDouble(b.getLatitude()), Double.parseDouble(b.getLongitude()), "");
+                double aAbsDist = Math.abs(aDistance);
+                double bAbsDist = Math.abs(bDistance);
 
-                    return Double.compare(aAbsDist, bAbsDist);
-                });
+                return Double.compare(aAbsDist, bAbsDist);
+            });
         }
 
-        return PageableExecutionUtils.getPage(contents, pageable, ()-> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp));
+        return PageableExecutionUtils.getPage(contents, pageable, () -> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp, pageable.getOffset(), pageable.getPageSize()));
     }
 
-    private Long getSearchCount(String machineName, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp) {
-        return jpaQueryFactory
-                .select(store.count())
-                .from(store)
+    private Long getSearchCount(String machineName, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp, long offset, int pageSize) {
+        return (long) jpaQueryFactory
+                .selectFrom(store)
+                .distinct()
                 .join(store.machines, storeMachine)
                 .join(storeMachine.machine, machine)
                 .where(
@@ -98,7 +98,9 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                         byCity1(city1), byCity2(city2),
                         byCard(cardK, cardN, cardS, cardT, cardA),
                         byIsOp(isOp))
-                .fetchOne();
+                .offset(offset)
+                .limit(pageSize)
+                .fetch().size();
     }
 
     public List<Store> findByAddressOrCard(String machineName,
@@ -129,13 +131,16 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         }
         machineName = machineName.toUpperCase();
         return new BooleanBuilder()
-                .or(machine.enName.upper().like("%"+machineName+"%"))
-                .or(machine.koName.upper().like("%"+machineName+"%"))
-                .or(machine.shortName.upper().like("%"+machineName+"%"));
+                .or(machine.enName.upper().like("%" + machineName + "%"))
+                .or(machine.koName.upper().like("%" + machineName + "%"))
+                .or(machine.shortName.upper().like("%" + machineName + "%"));
     }
 
     private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {
         BooleanBuilder bb = new BooleanBuilder();
+        if (cardK == null && cardN == null && cardS == null && cardT == null && cardA == null) {
+            return null;
+        }
         if (cardK != null) {
             bb.or(store.networkType.k.eq(cardK)).or(store.networkType.k.isNull());
         }
