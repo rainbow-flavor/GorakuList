@@ -98,8 +98,6 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                         byCity1(city1), byCity2(city2),
                         byCard(cardK, cardN, cardS, cardT, cardA),
                         byIsOp(isOp))
-                .offset(offset)
-                .limit(pageSize)
                 .fetch().size();
     }
 
