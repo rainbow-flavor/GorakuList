@@ -29,6 +29,7 @@ public class MachineApiController {
     @GetMapping("/search")
     public ResponseEntity<Response<List<String>>> searchMachine(@RequestParam(defaultValue = "") String machineName,
                                                                 @RequestParam(required = false, defaultValue = "10") Integer limit) {
+        machineName = machineName.toUpperCase();
         List<String> result = machineService.searchMachineByName(machineName, limit);
         return ResponseEntity.ok(Response.success(result));
     }
