@@ -10,3 +10,12 @@ public class CsRequest {
     private String content;
     private String footer;
 }
+
+/*
+{
+"email":"email",
+"cstype":"cstype",
+"content":"content",
+"footer":"footer"
+}
+ */

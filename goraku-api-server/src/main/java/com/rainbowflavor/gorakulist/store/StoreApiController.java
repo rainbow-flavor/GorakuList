@@ -30,12 +30,12 @@ public class StoreApiController {
     @GetMapping("/random")
     public ResponseEntity<Response<StoreDto>> getRandom() {
         StoreDto storeRandom = storeService.getStoreRandom();
-        return ResponseEntity.ok(new Response<>(storeRandom));
+        return ResponseEntity.ok(Response.success(storeRandom));
     }
 
     @GetMapping("/detail")
     public ResponseEntity<Response<StoreDto>> detail(@RequestParam Long storeId){
         StoreDto storeDetail = storeService.getStoreDetail(storeId);
-        return ResponseEntity.ok(new Response<>(storeDetail));
+        return ResponseEntity.ok(Response.success(storeDetail));
     }
 }
