@@ -69,6 +69,7 @@ class StoreRepositorySupportTest {
                 null,
                 null,
                 null,
+                null,
                 new NetworkType(true, false, false, true, false),
                 new ArrayList<>());
 
