@@ -42,6 +42,8 @@ public class Store {
 
     private String website;
 
+    private String thumbnail;
+
     @Embedded
     private NetworkType networkType;
 

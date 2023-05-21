@@ -37,6 +37,8 @@ public class StoreDto {
 
     private NetworkType networkType;
 
+    private String thumbnail;
+
     private List<StoreMachineDto> storeMachines = new ArrayList<>();
 
     public StoreDto(Store store, boolean withStoreMachine) {
@@ -53,6 +55,7 @@ public class StoreDto {
         this.twitter = store.getTwitter();
         this.website = store.getWebsite();
         this.networkType = store.getNetworkType();
+        this.thumbnail = store.getThumbnail();
         if (withStoreMachine) {
             this.storeMachines = store.getMachines().stream()
                     .map(StoreMachineDto::new)
