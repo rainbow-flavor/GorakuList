@@ -27,6 +27,12 @@ public class StoreApiController {
         return ResponseEntity.ok(PagingResponse.success(storeDtos));
     }
 
+    @GetMapping("/integration-search")
+    public ResponseEntity<PagingResponse<List<StoreDto>>> integrationSearch(@ModelAttribute StoreSearchCondition condition){
+        Page<StoreDto> storeDtos = storeService.integrationSearchStore(condition);
+        return ResponseEntity.ok(PagingResponse.success(storeDtos));
+    }
+
     @GetMapping("/random")
     public ResponseEntity<Response<StoreDto>> getRandom() {
         StoreDto storeRandom = storeService.getStoreRandom();

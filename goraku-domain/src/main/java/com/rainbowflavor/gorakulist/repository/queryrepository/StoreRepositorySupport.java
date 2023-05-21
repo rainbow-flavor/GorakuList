@@ -11,6 +11,7 @@ import java.util.Set;
 
 public interface StoreRepositorySupport {
     List<Store> findWithTargetMachines(String city1, String city2, Set<Long> machineTypes, String condition);
+
     List<Store> findByAddressOrCard(String machineName,
                                     String city1, String city2,
                                     Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
@@ -20,5 +21,12 @@ public interface StoreRepositorySupport {
                                     String city1, String city2,
                                     Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
                                     Boolean isOp, Double latitude, Double longitude);
+
+    Page<Store> findByParamStrWhereAll(Pageable pageable,
+                                       String paramStr,
+                                       String city1, String city2,
+                                       Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
+                                       Boolean isOp, Double latitude, Double longitude);
+
     Optional<Store> findRandom();
 }

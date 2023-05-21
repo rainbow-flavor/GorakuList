@@ -25,6 +25,17 @@ public class StoreService {
         return result;
     }
 
+    public Page<StoreDto> integrationSearchStore(StoreSearchCondition storeSearchCondition){
+        Page<StoreDto> result = storeRepository.findByParamStrWhereAll(
+                        PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
+                        storeSearchCondition.getIntegrationSearch(),
+                        storeSearchCondition.getCity1(), storeSearchCondition.getCity2(),
+                        storeSearchCondition.getCardK(), storeSearchCondition.getCardN(), storeSearchCondition.getCardS(), storeSearchCondition.getCardT(), storeSearchCondition.getCardA(),
+                        storeSearchCondition.getIsOp(), storeSearchCondition.getLatitude(), storeSearchCondition.getLongitude())
+                .map(s -> new StoreDto(s, false));
+        return result;
+    }
+
     public StoreDto getStoreDetail(Long id) {
         Store store = storeRepository.findAllRelationById(id)
                 .orElseThrow(StoreNotFoundException::new);

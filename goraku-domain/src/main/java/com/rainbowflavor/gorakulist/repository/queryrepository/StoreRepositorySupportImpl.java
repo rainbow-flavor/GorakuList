@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -70,6 +71,36 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .limit(pageable.getPageSize())
                 .fetch();
 
+        distanceSortBy(latitude, longitude, contents);
+
+        return PageableExecutionUtils.getPage(contents, pageable, () -> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp));
+    }
+
+    public Page<Store> findByParamStrWhereAll(Pageable pageable,
+                                              String paramStr,
+                                              String city1, String city2,
+                                              Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA,
+                                              Boolean isOp, Double latitude, Double longitude){
+        List<Store> contents = jpaQueryFactory.selectFrom(store)
+                .distinct()
+                .join(store.machines, storeMachine)
+                .join(storeMachine.machine, machine)
+                .where(
+                        searchAnywhere(paramStr),
+                        byCity1(city1), byCity2(city2),
+                        byCard(cardK, cardN, cardS, cardT, cardA),
+                        byIsOp(isOp))
+                .orderBy(store.id.asc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        distanceSortBy(latitude, longitude, contents);
+
+        return PageableExecutionUtils.getPage(contents, pageable, () -> getIntegrationSearchCount(paramStr, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp));
+    }
+
+    private static void distanceSortBy(Double latitude, Double longitude, List<Store> contents) {
         if (latitude != null && longitude != null) {
             contents.sort((a, b) -> {
                 if (!a.isSetCoordinates()) return 1;
@@ -83,11 +114,33 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 return Double.compare(aAbsDist, bAbsDist);
             });
         }
-
-        return PageableExecutionUtils.getPage(contents, pageable, () -> getSearchCount(machineName, city1, city2, cardK, cardN, cardS, cardT, cardA, isOp, pageable.getOffset(), pageable.getPageSize()));
     }
 
-    private Long getSearchCount(String machineName, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp, long offset, int pageSize) {
+    private Long getIntegrationSearchCount(String paramStr, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp) {
+        return (long) jpaQueryFactory
+                .selectFrom(store)
+                .distinct()
+                .join(store.machines, storeMachine)
+                .join(storeMachine.machine, machine)
+                .where(
+                        searchAnywhere(paramStr),
+                        byCity1(city1), byCity2(city2),
+                        byCard(cardK, cardN, cardS, cardT, cardA),
+                        byIsOp(isOp))
+                .fetch().size();
+    }
+
+    private BooleanBuilder searchAnywhere(String paramStr) {
+        if(StringUtils.hasText(paramStr)){
+            return Objects.requireNonNull(byMachineName(paramStr))
+                    .or(byStoreName(paramStr))
+                    .or(byCity1(paramStr))
+                    .or(byCity2(paramStr));
+        }
+        return null;
+    }
+
+    private Long getSearchCount(String machineName, String city1, String city2, Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA, Boolean isOp) {
         return (long) jpaQueryFactory
                 .selectFrom(store)
                 .distinct()
@@ -123,7 +176,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         return store.isop.eq(isOp);
     }
 
-    private Predicate byMachineName(String machineName) {
+    private BooleanBuilder byMachineName(String machineName) {
         if (!StringUtils.hasText(machineName)) {
             return null;
         }
@@ -132,6 +185,15 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .or(machine.enName.upper().like("%" + machineName + "%"))
                 .or(machine.koName.upper().like("%" + machineName + "%"))
                 .or(machine.shortName.upper().like("%" + machineName + "%"));
+    }
+
+    private Predicate byStoreName(String storeName) {
+        if (!StringUtils.hasText(storeName)) {
+            return null;
+        }
+        storeName = storeName.toUpperCase();
+        return new BooleanBuilder()
+                .or(store.name.upper().like("%" + storeName + "%"));
     }
 
     private Predicate byCard(Boolean cardK, Boolean cardN, Boolean cardS, Boolean cardT, Boolean cardA) {

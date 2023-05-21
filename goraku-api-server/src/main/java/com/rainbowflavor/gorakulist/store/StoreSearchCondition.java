@@ -20,4 +20,5 @@ public class StoreSearchCondition {
     private Integer limit = 30;
     private Double latitude;
     private Double longitude;
+    private String integrationSearch;
 }
