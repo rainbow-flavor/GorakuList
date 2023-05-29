@@ -2,7 +2,7 @@
 
 # GorakuList :joystick:
 
-build : [![build status](https://github.com/rainbow-flavor/Gorakulist/actions/workflows/maven.yml/badge.svg)
+![build status](https://github.com/rainbow-flavor/Gorakulist/actions/workflows/maven.yml/badge.svg)
 
 아케이드 게임 플레이어가 원하는 오락실을 쉽게 찾기 위한 오락실 검색 웹앱
 
