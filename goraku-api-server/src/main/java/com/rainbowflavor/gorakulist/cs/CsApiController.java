@@ -19,7 +19,7 @@ public class CsApiController {
     private final CsService csService;
 
     @PostMapping(consumes = { MediaType.MULTIPART_FORM_DATA_VALUE })
-    public ResponseEntity<?> doCsRequest(@RequestPart CsRequest csRequest, @RequestPart MultipartFile image) {
+    public ResponseEntity<?> doCsRequest(@RequestPart CsRequest csRequest, @RequestPart(required = false) MultipartFile image) {
         HttpStatus httpStatus = null;
         try {
             httpStatus = image != null ?
