@@ -84,7 +84,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         List<Store> contents = jpaQueryFactory.selectFrom(store)
                 .distinct()
                 .leftJoin(store.machines, storeMachine)
-                .leftJoin(storeMachine.machine, machine)
+                .join(storeMachine.machine, machine)
                 .where(
                         searchAnywhere(paramStr),
                         byCity1(city1), byCity2(city2),
@@ -121,7 +121,7 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                 .selectFrom(store)
                 .distinct()
                 .leftJoin(store.machines, storeMachine)
-                .leftJoin(storeMachine.machine, machine)
+                .join(storeMachine.machine, machine)
                 .where(
                         searchAnywhere(paramStr),
                         byCity1(city1), byCity2(city2),
