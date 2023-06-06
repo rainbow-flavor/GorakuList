@@ -20,7 +20,7 @@ public class MachineService {
                 .collect(Collectors.toList());
     }
 
-    @Cacheable(value = "machineStrList",unless="#result == null or #result.size() == 0")
+//    @Cacheable(value = "machineStrList",unless="#result == null or #result.size() == 0")
     public List<String> searchMachineByName(String machineName, Integer limit) {
         return machineRepository.findAllByMachineName(machineName).stream()
                 .map(Machine::getKoName)

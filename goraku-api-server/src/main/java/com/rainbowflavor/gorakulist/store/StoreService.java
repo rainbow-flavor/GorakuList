@@ -15,7 +15,7 @@ import java.util.Comparator;
 public class StoreService {
     private final StoreRepository storeRepository;
 
-    @Cacheable(value = "storeStrList",unless="#result == null or #result.size() == 0")
+//    @Cacheable(value = "storeStrList",unless="#result == null or #result.size() == 0")
     public Page<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
         Page<StoreDto> result = storeRepository.findByAddressOrCard(
                         PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
@@ -27,7 +27,7 @@ public class StoreService {
         return result;
     }
 
-    @Cacheable(value = "integrationStrList",unless="#result == null or #result.getSize() == 0")
+//    @Cacheable(value = "integrationStrList",unless="#result == null or #result.getSize() == 0")
     public Page<StoreDto> integrationSearchStore(StoreSearchCondition storeSearchCondition){
         Page<StoreDto> result = storeRepository.findByParamStrWhereAll(
                         PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
