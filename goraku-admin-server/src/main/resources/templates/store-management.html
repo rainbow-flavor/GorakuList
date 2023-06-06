@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goraku Store Management</title>
+    <th:block th:insert="base-fragment :: base-head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <table class="table table-condensed table-bordered table-hover">
+        <tr class="success">
+            <th>Id</th>
+            <th>Address</th>
+            <th>City1</th>
+            <th>City2</th>
+            <th>Contact</th>
+            <th>Isop</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Name</th>
+            <th>Twitter</th>
+            <th>Uptime</th>
+            <th>Website</th>
+            <th>K</th>
+            <th>N</th>
+            <th>S</th>
+            <th>T</th>
+            <th>A</th>
+            <th>Thumbnail</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="store: ${stores}">
+            <td th:data-value="${store.id}" data-name="id" th:text="${store.id}"></td>
+            <td th:data-value="${store.address}" data-name="address" th:text="${store.address}"></td>
+            <td th:data-value="${store.city1}" data-name="city1" th:text="${store.city1}"></td>
+            <td th:data-value="${store.city2}" data-name="city2" th:text="${store.city2}"></td>
+            <td th:data-value="${store.contact}" data-name="contact" th:text="${store.contact}"></td>
+            <td th:data-value="${store.isop}" data-name="isop" th:text="${store.isop}"></td>
+            <td th:data-value="${store.latitude}" data-name="latitude" th:text="${store.latitude}"></td>
+            <td th:data-value="${store.longitude}" data-name="longitude" th:text="${store.longitude}"></td>
+            <td th:data-value="${store.name}" data-name="name" th:text="${store.name}"></td>
+            <td th:data-value="${store.twitter}" data-name="twitter" th:text="${store.twitter}"></td>
+            <td th:data-value="${store.uptime}" data-name="uptime" th:text="${store.uptime}"></td>
+            <td th:data-value="${store.website}" data-name="website" th:text="${store.website}"></td>
+            <td th:data-value="${store.networkType?.k}" data-name="networkTypeK" th:text="${store.networkType?.k}"></td>
+            <td th:data-value="${store.networkType?.n}" data-name="networkTypeN" th:text="${store.networkType?.n}"></td>
+            <td th:data-value="${store.networkType?.s}" data-name="networkTypeS" th:text="${store.networkType?.s}"></td>
+            <td th:data-value="${store.networkType?.t}" data-name="networkTypeT" th:text="${store.networkType?.t}"></td>
+            <td th:data-value="${store.networkType?.a}" data-name="networkTypeA" th:text="${store.networkType?.a}"></td>
+            <td th:data-value="${store.thumbnail}" data-name="thumbnail" th:text="${store.thumbnail}"></td>
+            <td><button class="btn btn-warning btn-xs" type="button">수정</button></td>
+        </tr>
+        <th:block th:insert="base-fragment :: base-script"></th:block>
+        <script>
+            const editButtons = [...document.querySelectorAll("button[type='button']")]
+            editButtons.forEach(el => {
+                el.addEventListener('click', (e) => {
+                    const target = e.currentTarget;
+                    const currentRow = target.parentNode.parentNode;
+                    const tds = [...currentRow.querySelectorAll('td')]
+
+                    if (target.textContent === "제출") {
+                        const body = {}
+
+                        tds.forEach((el) => {
+                            body[el.dataset.name] = el.textContent
+                            el.setAttribute("contenteditable", "false")
+                        })
+
+                        $.ajax({
+                            type: 'POST',
+                            url : '/api/v1/admin/management/store',
+                            data: JSON.stringify(body),
+                            dataType: 'JSON',
+                            contentType: "application/json; charset=utf-8",
+                            success: function(result){
+                                for (const [key, value] of Object.entries(result)) {
+                                    for (let i = 0; i < tds.length; i++) {
+                                        if (tds[i].dataset.name === key) {
+                                            tds[i].textContent = value;
+                                            tds[i].dataset.value = value;
+                                        }
+                                    }
+                                }
+                            },
+                            error:function(err){
+                                tds.forEach((el, idx, array) => {
+                                    if(idx !== array.length - 1){
+                                        el.textContent = el.dataset.value;
+                                    }
+
+                                })
+                            }
+                        })
+                        target.classList.replace('btn-danger', 'btn-warning')
+                        currentRow.classList.remove('warning')
+                        target.textContent = "수정"
+                    } else {
+                        target.textContent = "제출"
+                        target.classList.replace('btn-warning', 'btn-danger')
+                        currentRow.classList.add('warning')
+                        tds.forEach((el, idx, array) => {
+                            if(idx !== array.length - 1){
+                                el.setAttribute("contenteditable", "true")
+                            }
+                        })
+                    }
+                })
+            })
+        </script>
+    </table>
+</div>
+</body>
+</html>

@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 @Getter
-@AllArgsConstructor @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Machine {
     @Id
@@ -42,6 +43,15 @@ public class Machine {
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Set<Machine> childMachine = new HashSet<>();
+
+    public void updateChangeableData(String category, String company, String description, String enName, String koName, String shortName) {
+        this.category = Category.valueOf(category.toUpperCase());
+        this.company = company;
+        this.description = description;
+        this.enName = enName;
+        this.koName = koName;
+        this.shortName = shortName;
+    }
 
     @Override
     public String toString() {

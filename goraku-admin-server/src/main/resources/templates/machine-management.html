@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Goraku Machine Management</title>
+    <th:block th:insert="base-fragment :: base-head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <table class="table table-condensed table-bordered table-hover">
+        <tr class="success">
+            <th>Id</th>
+            <th>Category</th>
+            <th>Company</th>
+            <th>Description</th>
+            <th>EnName</th>
+            <th>KoName</th>
+            <th>ShortName</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="machine: ${machines}">
+            <td th:data-value="${machine.id}" data-name="id" th:text="${machine.id}"></td>
+            <td th:data-value="${machine.category}" data-name="category" th:text="${machine.category}"></td>
+            <td th:data-value="${machine.company}" data-name="company" th:text="${machine.company}"></td>
+            <td th:data-value="${machine.description}" data-name="description" th:text="${machine.description}"></td>
+            <td th:data-value="${machine.enName}" data-name="enName" th:text="${machine.enName}"></td>
+            <td th:data-value="${machine.koName}" data-name="koName" th:text="${machine.koName}"></td>
+            <td th:data-value="${machine.shortName}" data-name="shortName" th:text="${machine.shortName}"></td>
+            <td><button class="btn btn-warning btn-xs" type="button">수정</button></td>
+        </tr>
+    </table>
+    <th:block th:insert="base-fragment :: base-script"></th:block>
+    <script>
+        const editButtons = [...document.querySelectorAll("button[type='button']")]
+        editButtons.forEach(el => {
+            el.addEventListener('click', (e) => {
+                const target = e.currentTarget;
+                const currentRow = target.parentNode.parentNode;
+                const tds = [...currentRow.querySelectorAll('td')]
+
+                if (target.textContent === "제출") {
+                    const body = {}
+
+                    tds.forEach((el) => {
+                        body[el.dataset.name] = el.textContent
+                        el.setAttribute("contenteditable", "false")
+                    })
+
+                    $.ajax({
+                        type: 'POST',
+                        url : '/api/v1/admin/management/machine',
+                        data: JSON.stringify(body),
+                        dataType: 'JSON',
+                        contentType: "application/json; charset=utf-8",
+                        success: function(result){
+                            for (const [key, value] of Object.entries(result)) {
+                                for (let i = 0; i < tds.length; i++) {
+                                    if (tds[i].dataset.name === key) {
+                                        tds[i].textContent = value;
+                                        tds[i].dataset.value = value;
+                                    }
+                                }
+                            }
+                        },
+                        error:function(err){
+                            tds.forEach((el, idx, array) => {
+                                if(idx !== array.length - 1){
+                                    el.textContent = el.dataset.value;
+                                }
+
+                            })
+                        }
+                    })
+                    target.classList.replace('btn-danger', 'btn-warning')
+                    currentRow.classList.remove('warning')
+                    target.textContent = "수정"
+                } else {
+                    target.textContent = "제출"
+                    target.classList.replace('btn-warning', 'btn-danger')
+                    currentRow.classList.add('warning')
+                    tds.forEach((el, idx, array) => {
+                        if(idx !== array.length - 1){
+                            el.setAttribute("contenteditable", "true")
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+</div>
+</body>
+</html>
