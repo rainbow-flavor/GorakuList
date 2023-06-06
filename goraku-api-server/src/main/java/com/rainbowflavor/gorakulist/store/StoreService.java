@@ -27,6 +27,7 @@ public class StoreService {
         return result;
     }
 
+    @Cacheable(value = "integrationStrList",unless="#result == null or #result.size() == 0")
     public Page<StoreDto> integrationSearchStore(StoreSearchCondition storeSearchCondition){
         Page<StoreDto> result = storeRepository.findByParamStrWhereAll(
                         PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),

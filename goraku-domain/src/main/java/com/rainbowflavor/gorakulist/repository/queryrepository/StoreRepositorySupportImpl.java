@@ -83,8 +83,8 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
                                               Boolean isOp, Double latitude, Double longitude){
         List<Store> contents = jpaQueryFactory.selectFrom(store)
                 .distinct()
-                .join(store.machines, storeMachine)
-                .join(storeMachine.machine, machine)
+                .leftJoin(store.machines, storeMachine)
+                .leftJoin(storeMachine.machine, machine)
                 .where(
                         searchAnywhere(paramStr),
                         byCity1(city1), byCity2(city2),
@@ -120,8 +120,8 @@ public class StoreRepositorySupportImpl implements StoreRepositorySupport {
         return (long) jpaQueryFactory
                 .selectFrom(store)
                 .distinct()
-                .join(store.machines, storeMachine)
-                .join(storeMachine.machine, machine)
+                .leftJoin(store.machines, storeMachine)
+                .leftJoin(storeMachine.machine, machine)
                 .where(
                         searchAnywhere(paramStr),
                         byCity1(city1), byCity2(city2),
