@@ -3,6 +3,7 @@ package com.rainbowflavor.gorakulist.store;
 import com.rainbowflavor.gorakulist.domain.Store;
 import com.rainbowflavor.gorakulist.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.util.Comparator;
 public class StoreService {
     private final StoreRepository storeRepository;
 
+    @Cacheable(value = "storeStrList",unless="#result == null or #result.size() == 0")
     public Page<StoreDto> searchStore(StoreSearchCondition storeSearchCondition){
         Page<StoreDto> result = storeRepository.findByAddressOrCard(
                         PageRequest.of(storeSearchCondition.getPage(), storeSearchCondition.getLimit()),
