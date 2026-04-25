@@ -1,118 +1,71 @@
-name: ci
+name: Build and Deploy Goraku API
 
 on:
   push:
     branches:
-      - 'master'
+      - master # 또는 main (사용하시는 브랜치명에 맞게 수정하세요)
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  discord:
+  build-and-push:
     runs-on: ubuntu-latest
-    name: Discord Notifier
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v34
-        with:
-          separator: "\n"
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
-      - uses: benjlevesque/short-sha@v2.1
-        id: short-sha
-        with:
-          length: 7
-      - run: echo $SHA
-        env:
-          SHA: ${{ steps.short-sha.outputs.sha }}
-      - run: echo $SHA
-        env:
-          SHA: ${{ env.SHA }}
-      - name: build start notify to Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_USERNAME: Gorakulist Deploy Start Hooker
-          DISCORD_EMBEDS: |
-            [    { 
-            "title": "${{github.event.repository.name}} 의 빌드가 시작되었어요!",
-            "author": {  "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}", "name": "${{ github.actor }}", "url": "https://github.com/${{github.actor}}" },
-            "url": "https://github.com/${{github.repository}}/commit/${{github.sha}}",
-            "fields": [
-            { "name": "Repository", "value": "[${{github.event.repository.name}}](${{github.event.repository.clone_url}})", "inline": true },
-            { "name": "Branch", "value": "[${{github.ref_name}}](https://github.com/${{github.repository}}/tree/${{github.ref_name}})", "inline": true },
-            { "name": "Event", "value": "${{github.event_name}}", "inline": true },
-            { "name": "Commit Message", "value": "[${{ env.SHA }}](https://github.com/${{github.repository}}/commit/${{github.sha}}) - `${{github.event.head_commit.message}}`" },
-            { "name": "Changed Files", "value": "${{ steps.changed-files.outputs.all_changed_files }}" },
-            { "name": "Author", "value": "[${{github.event.head_commit.author.name}}](https://github.com/${{github.actor}})" }
-            ],
-            "color":11004856,
-            "timestamp": "${{github.event.head_commit.timestamp}}",
-            "footer":{"text": "${{github.event.head_commit.timestamp}}"}
-            }    ]
-        uses: Ilshidur/action-discord@master
-      - name: echo
-        run: |
-          echo ${{github.event_name}}
+    permissions:
+      contents: read
+      packages: write
 
-  image-build-push:
-    runs-on: ubuntu-latest
     steps:
-      -
-        name: login to irohub
-        uses: docker/login-action@v2
+      - name: 소스 체크아웃
+        uses: actions/checkout@v4
+
+      - name: GHCR 로그인
+        uses: docker/login-action@v3
         with:
-          registry: ${{ secrets.IROHUB_URL }}
-          username: ${{ secrets.IROHUB_USERNAME }}
-          password: ${{ secrets.IROHUB_TOKEN }}
-      -
-        name: build and push
-        uses: docker/build-push-action@v3
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker 메타데이터 추출
+        id: meta
+        uses: docker/metadata-action@v5
         with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,prefix=sha-
+            type=raw,value=latest
+
+      - name: 이미지 빌드 및 push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
           push: true
-          tags: ${{ secrets.IROHUB_URL }}/goraku-api-server:latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
-  reload:
-    needs: image-build-push
-    name: Deploy
+  deploy:
+    needs: build-and-push
     runs-on: ubuntu-latest
-    steps:
-      -
-        name: pull and apply
-        uses: appleboy/ssh-action@v0.1.6
-        with:
-          host: ${{ secrets.MASTER_HOST }}
-          username: ${{ secrets.MASTER_USERNAME }}
-          password: ${{ secrets.MASTER_PASSWORD }}
-          port: ${{ secrets.MASTER_PORT }}
-          script: cd ${{ secrets.GORAKU_DEP_PATH }} && ${{ secrets.GORAKU_DEP }}
 
-      - name: deploy finish notify to Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          DISCORD_USERNAME: Gorakulist Deploy Finish Hooker
-          DISCORD_EMBEDS: |
-            [    { 
-            "title": "${{github.event.repository.name}} 가 배포 완료되었어요!",
-            "author": {  "icon_url": "https://avatars.githubusercontent.com/${{ github.actor }}", "name": "${{ github.actor }}", "url": "https://github.com/${{github.actor}}" },
-            "url": "https://github.com/${{github.repository}}/commit/${{github.sha}}",
-            "fields": [
-            { "name": "Repository", "value": "[${{github.event.repository.name}}](${{github.event.repository.clone_url}})", "inline": true },
-            { "name": "Branch", "value": "[${{github.ref_name}}](https://github.com/${{github.repository}}/tree/${{github.ref_name}})", "inline": true },
-            { "name": "Event", "value": "${{github.event_name}}", "inline": true },
-            { "name": "Job", "value": "${{github.job}}", "inline": true },
-            { "name": "Commit Message", "value": "[${{ env.SHA }}](https://github.com/${{github.repository}}/commit/${{github.sha}}) - `${{github.event.head_commit.message}}`" },
-            { "name": "Author", "value": "[${{github.event.head_commit.author.name}}](https://github.com/${{github.actor}})" }
-            ],
-            "color":9484536,
-            "timestamp": "${{github.event.head_commit.timestamp}}",
-            "footer":{"text": "${{github.event.head_commit.timestamp}}"}
-            }    ]
-        uses: Ilshidur/action-discord@master
-      - name: echo
-        run: |
-          echo ${{github.event_name}}
+    steps:
+      - name: SSH로 서버 배포
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            # 1. 서버의 배포 대상 폴더로 이동 (dolimban -> goraku-api 로 변경)
+            cd ${{ secrets.DEPLOY_ROOT_PATH }}/goraku-api
+            
+            # 2. GHCR 로그인 (서버에서 이미지를 pull 받기 위함)
+            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # 3. 최신 이미지 Pull 및 컨테이너 재실행
+            docker compose pull
+            docker compose up -d --no-build
+            
+            # 4. 사용하지 않는 구버전 이미지(dangling) 삭제하여 용량 확보
+            docker image prune -f

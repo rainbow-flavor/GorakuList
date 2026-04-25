@@ -15,15 +15,15 @@ public class AppProperties {
 
     @Data
     public static class Discord {
-        String url;
+        String url="";
     }
 
     @Data
     public static class Imgur {
-        String url;
-        String clientId;
-        String accessToken;
-        String refreshToken;
-        String accountId;
+        String url="";
+        String clientId="";
+        String accessToken="";
+        String refreshToken="";
+        String accountId="";
     }
 }
