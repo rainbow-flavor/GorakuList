@@ -51,17 +51,25 @@ jobs:
     steps:
       - name: SSH로 서버 배포
         uses: appleboy/ssh-action@v1
+        # 1. 스크립트에서 안전하게 사용할 수 있도록 환경변수로 먼저 할당합니다.
+        env:
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_ROOT_PATH }}
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
+          # 2. 위에서 세팅한 env 값들을 SSH 환경으로 넘겨주겠다고 명시합니다.
+          envs: GHCR_TOKEN,GITHUB_ACTOR,DEPLOY_PATH
           script: |
             # 1. 서버의 배포 대상 폴더로 이동 (dolimban -> goraku-api 로 변경)
-            cd ${{ secrets.DEPLOY_ROOT_PATH }}/goraku-api
+            cd $DEPLOY_PATH/goraku-api
             
             # 2. GHCR 로그인 (서버에서 이미지를 pull 받기 위함)
-            echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            # 변수를 쌍따옴표("")로 감싸서 넘기면 특수문자나 줄바꿈으로 인한 문법 파괴를 막아줍니다.
+            echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
             
             # 3. 최신 이미지 Pull 및 컨테이너 재실행
             docker compose pull
